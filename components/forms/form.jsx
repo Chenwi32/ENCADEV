@@ -116,9 +116,9 @@ const Form = ({ step, setStep, formData, updateFormData }) => {
               handleSubmit(e);
             }}
             type="submit"
-            bg={step >= 5 && "blue"}
+            bg={step >= 4 && "blue"}
           >
-            {step === 5 ? "Confirm" : "Next Step"}
+            {step === 4 ? "Confirm" : "Next Step"}
           </Button>
         </Flex>
       </Container>
