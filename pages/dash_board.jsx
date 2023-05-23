@@ -19,7 +19,7 @@ const Dash_board = (props) => {
 }
 
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const candidatescollection = collection(db, "candidates");
   // Query all Id cards
   const candidateQuery = query(candidatescollection);
