@@ -112,6 +112,7 @@ const Form = ({ step, setStep, formData, updateFormData, sendData}) => {
           <FinancialStatus
             financialStatus={financialStatus}
             setFinancialStatus={setFinancialStatus}
+            updateFormData={updateFormData}
           />
         )}
       

@@ -1,6 +1,6 @@
 import { Container, FormLabel, Heading, Input, Text } from "@chakra-ui/react";
 
-const FinancialStatus = ({financialStatus, setFinancialStatus}) => {
+const FinancialStatus = ({financialStatus, setFinancialStatus, updateFormData}) => {
   return (
     <Container>
       <Heading>Financial Readiness</Heading>
@@ -34,6 +34,7 @@ const FinancialStatus = ({financialStatus, setFinancialStatus}) => {
             ...financialStatus,
             date: e.target.value,
           });
+          updateFormData(financialStatus)
         }}
         type="date"
         mb={5}

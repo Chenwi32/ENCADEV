@@ -11,7 +11,7 @@ const stepTitles = [
   "Qualification",
   "Civil Status",
   "Financial Status",
-  "Confirm",
+
   "Finish",
 ];
 
