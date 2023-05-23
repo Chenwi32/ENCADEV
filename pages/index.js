@@ -2,55 +2,56 @@ import Head from "next/head";
 import Step from "../components/step";
 import { useState } from "react";
 import Form from "../components/forms/form";
-import { Container, Flex, Text, useMediaQuery } from "@chakra-ui/react";
+import { Container, Flex, Text, Toast, useMediaQuery } from "@chakra-ui/react";
+import { db } from "../firebase";
+import { doc, setDoc } from "firebase/firestore";
 
 const stepTitles = [
   "Personal info",
   "Qualification",
   "Civil Status",
   "Financial Status",
+  "Confirm",
   "Finish",
 ];
 
 export default function Home() {
   const [isLargerThan700] = useMediaQuery("(min-width: 700px)");
 
-  const [formData, setFormData] = useState({
-    personalInfo: {
-      name: "",
-      email: "",
-      phoneNumber: "",
-      country: "",
-      province: "",
-      city: "",
-    },
-
-    qualification: {
-      qualification: "",
-      othersSpecific: "",
-      certificate: "",
-      subject: "",
-      institution: "",
-      date: "",
-      lanOfInstruct: "",
-      englishProff: "",
-      experience: "",
-    },
-
-    civilStatus: {
-      marital: '',
-      numOfChildren: '',
-      ageGroup: '',
-      bringingThem: '',
-      drivingSkills: '',
-      sessionLocation: '',
-    },
-
-    financialStatus: {
-      signature: '',
-      date: '',
-    }
-  });
+  const [formData, setFormData] = useState(
+    {
+      personalInfo: {
+        name: "",
+        email: "",
+        phoneNumber: "",
+        country: "",
+        province: "",
+        city: "",
+      },
+      qualification: {
+        qualification: "",
+        othersSpecific: "",
+        certificate: "",
+        subject: "",
+        institution: "",
+        date: "",
+        lanOfInstruct: "",
+        englishProff: "",
+        experience: "",
+      },
+      civilStatus: {
+        marital: "",
+        numOfChildren: "",
+        ageGroup: "",
+        bringingThem: "",
+        drivingSkills: "",
+        sessionLocation: "",
+      },
+      financialStatus: {
+        signature: "",
+        date: "",
+      },
+    });
   const [step, setStep] = useState(1);
 
   const updateFormData = (data) => {
@@ -64,12 +65,42 @@ export default function Home() {
       setFormData({
         ...formData,
         // add the data from the next component
+        qualification: data,
       });
     } else if (step == 3) {
       setFormData({
         ...formData,
         // Add data from next component
+        civilStatus: data,
       });
+    } else if (step == 4) {
+      setFormData({
+        ...formData,
+        // Add data from next component
+        financialStatus: data,
+      });
+    }
+  };
+
+  const sendData = async () => {
+    const timestamp = Date.now().toString();
+
+    const candidate = doc(db, `candidates/${timestamp}`);
+
+    const candidateData = formData;
+
+    try {
+      await setDoc(candidate, candidateData).then(() => {});
+      Toast(
+        "The information has been sent successfully. Thank you for the efforts",
+        {
+          hideProgressBar: true,
+          autoClose: 6000,
+          type: "success",
+        }
+      );
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -107,6 +138,7 @@ export default function Home() {
             setStep={setStep}
             formData={formData}
             updateFormData={updateFormData}
+            sendData={sendData}
           />
         </Flex>
       </Container>

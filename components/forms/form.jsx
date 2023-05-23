@@ -11,7 +11,8 @@ import Qualification from "./qualification";
 import FinancialStatus from "./financial_status";
 import Success from "./success";
 
-const Form = ({ step, setStep, formData, updateFormData }) => {
+
+const Form = ({ step, setStep, formData, updateFormData, sendData}) => {
   // Handle Data
   const [personalInfo, setPersonalInfo] = useState({
     ...formData.personalInfo,
@@ -34,11 +35,14 @@ const Form = ({ step, setStep, formData, updateFormData }) => {
     hasValidEmailAddress: true,
     hasValidPhoneNumber: true,
   });
+
+   let hasValidPhoneNumber = phoneNumberRegex.test(personalInfo.phoneNumber);
+
   const formValidation = () => {
     let hasValidName = nameRegex.test(personalInfo.name);
 
     let hasValidEmailAddress = emailRegex.test(personalInfo.email);
-    let hasValidPhoneNumber = phoneNumberRegex.test(personalInfo.phoneNumber);
+  
 
     if (personalInfo.name === "") hasValidName = undefined;
     if (personalInfo.email === "") hasValidEmailAddress = undefined;
@@ -60,9 +64,12 @@ const Form = ({ step, setStep, formData, updateFormData }) => {
       } else if (step === 3) {
         updateFormData(civilStatus);
       } else if (step === 4) {
-         updateFormData(financialStatus);
+        updateFormData(financialStatus);
+        sendData();
+      } else if (step === 5) {
+        
+        sendData();
       }
-
       setStep((s) => s + 1);
     }
   };
@@ -101,7 +108,13 @@ const Form = ({ step, setStep, formData, updateFormData }) => {
             setCivilStatus={setCivilStatus}
           />
         )}
-        {step === 4 && <FinancialStatus financialStatus={financialStatus} setFinancialStatus={setFinancialStatus} />}
+        {step === 4 && (
+          <FinancialStatus
+            financialStatus={financialStatus}
+            setFinancialStatus={setFinancialStatus}
+          />
+        )}
+      
 
         <Flex justifyContent={"space-between"}>
           <Button
@@ -114,10 +127,22 @@ const Form = ({ step, setStep, formData, updateFormData }) => {
           <Button
             onClick={(e) => {
               handleSubmit(e);
+              
             }}
             type="submit"
-            bg={step === 4 && "blue"}
-            color={step === 4 && "white"}
+            bg={step === 4 || hasValidPhoneNumber === true ? "blue" : "inherit"}
+            color={
+              step === 4 || hasValidPhoneNumber === true ? "white" : "black"
+            }
+            _hover={{
+              bg:
+                step === 4 || hasValidPhoneNumber === true ? "blue" : "inherit",
+              color:
+                step === 4 || hasValidPhoneNumber === true
+                  ? "white"
+                  : "inherit",
+            }}
+            isDisabled={hasValidPhoneNumber != true}
           >
             {step === 4 ? "Confirm" : "Next Step"}
           </Button>

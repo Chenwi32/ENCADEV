@@ -12,6 +12,10 @@ export default function Step({ step, stepNumber, children }) {
         } 
         color={step === stepNumber || (step === 5 && stepNumber === 5)? 'white'
           : 'black'}
+        cursor={'default'}
+        _hover={{
+          bg: ''
+        }}
       >
         {stepNumber}
       </Button>
