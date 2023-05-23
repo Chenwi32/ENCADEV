@@ -1,21 +1,23 @@
-import { Button } from "@chakra-ui/react";
+import { Box, Button, Text, useMediaQuery } from "@chakra-ui/react";
 
 export default function Step({ step, stepNumber, children }) {
+
+  const [isLargerThan700] = useMediaQuery("(min-width: 700px)");
+
   return (
     <article >
       <Button
-         bg={step == stepNumber || (step == 5 && stepNumber == 4)? 'blue'
+         bg={step === stepNumber || (step === 5 && stepNumber === 5)? 'blue'
           : 'gray'
         } 
-        color={step == stepNumber || (step == 5 && stepNumber == 4)? 'white'
+        color={step === stepNumber || (step === 5 && stepNumber === 5)? 'white'
           : 'black'}
       >
         {stepNumber}
       </Button>
-      <div>
-        <p >STEP {stepNumber}</p>
-        <h2 >{children.toUpperCase()}</h2>
-      </div>
+  
+        <Text display={isLargerThan700? 'block' : 'none'}>{children}</Text>
+      
     </article>
   );
 }

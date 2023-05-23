@@ -1,14 +1,12 @@
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import Step from "../components/step";
 import { useState } from "react";
 import Form from "../components/forms/form";
-import { Container, Flex, useMediaQuery } from "@chakra-ui/react";
+import { Container, Flex, Text, useMediaQuery } from "@chakra-ui/react";
 
 const stepTitles = [
-  "your info",
-  "Your qualification",
+  "Personal info",
+  "Qualification",
   "Civil Status",
   "Financial Status",
   "Finish",
@@ -76,31 +74,42 @@ export default function Home() {
   };
 
   return (
-    <Container maxW={1200}>
+    <>
       <Head>
         <title>ADES-UK Healthcare</title>
         <meta name="description" content="ADES-UK healthcare form" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Container maxW={1200} p={2}>
+        <Flex flexDirection={isLargerThan700 ? "row" : "column"}>
+          <aside>
+            <Flex
+              flexDirection={isLargerThan700 ? "column" : "row"}
+              gap={5}
+              justifyContent={"space-between"}
+              mb={1}
+            >
+              {stepTitles.map((title, i) => {
+                return (
+                  <Step key={title} step={step} stepNumber={i + 1}>
+                    {title}
+                  </Step>
+                );
+              })}
+            </Flex>
+            <Text mb={5} fontSize={"0.8rem"}>
+              Progress Bar
+            </Text>
+          </aside>
 
-      <Flex flexDirection={isLargerThan700 ? "row" : "column"}>
-        <aside>
-          {stepTitles.map((title, i) => {
-            return (
-              <Step key={title} step={step} stepNumber={i + 1}>
-                {title}
-              </Step>
-            );
-          })}
-        </aside>
-
-        <Form
-          step={step}
-          setStep={setStep}
-          formData={formData}
-          updateFormData={updateFormData}
-        />
-      </Flex>
-    </Container>
+          <Form
+            step={step}
+            setStep={setStep}
+            formData={formData}
+            updateFormData={updateFormData}
+          />
+        </Flex>
+      </Container>
+    </>
   );
 }

@@ -14,7 +14,7 @@ import {
 const Qualification = ({ qualification, setQualification }) => {
 
   return (
-    <Container>
+    <Container maxW={'unset'} p={0}>
       <Heading mb={5}>Qualification</Heading>
 
       <Text mb={5}>

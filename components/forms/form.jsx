@@ -116,7 +116,8 @@ const Form = ({ step, setStep, formData, updateFormData }) => {
               handleSubmit(e);
             }}
             type="submit"
-            bg={step >= 4 && "blue"}
+            bg={step === 4 && "blue"}
+            color={step === 4 && "white"}
           >
             {step === 4 ? "Confirm" : "Next Step"}
           </Button>
