@@ -20,7 +20,9 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
   };
   return (
     <>
-      <Heading mb={5}>Personal info</Heading>
+      <Heading fontSize={"1.5rem"} mb={5}>
+        Personal info
+      </Heading>
       <Text mb={5}>
         Please provide your name, email address, and phone number.
       </Text>
@@ -92,7 +94,7 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
           name="phoneNumber"
         />
       </label>
-      <Heading fontSize={"1.5rem"} mb={5}>
+      <Heading fontSize={"1.2rem"} mb={5}>
         Adress
       </Heading>
       <label>Country</label>
@@ -135,12 +137,16 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
         <option value="Bermuda">Bermuda</option>
         <option value="Bhutan">Bhutan</option>
         <option value="Bolivia">Bolivia</option>
-        <option value="Bonaire, Sint Eustatius and Saba">Bonaire, Sint Eustatius and Saba</option>
+        <option value="Bonaire, Sint Eustatius and Saba">
+          Bonaire, Sint Eustatius and Saba
+        </option>
         <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
         <option value="Botswana">Botswana</option>
         <option value="Bouvet Island">Bouvet Island</option>
         <option value="Brazil">Brazil</option>
-        <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+        <option value="British Indian Ocean Territory">
+          British Indian Ocean Territory
+        </option>
         <option value="Brunei Darussalam">Brunei Darussalam</option>
         <option value="Bulgaria">Bulgaria</option>
         <option value="Burkina Faso">Burkina Faso</option>
@@ -150,7 +156,9 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
         <option value="Canada">Canada</option>
         <option value="Cape Verde">Cape Verde</option>
         <option value="Cayman Islands">Cayman Islands</option>
-        <option value="Central African Republic">Central African Republic</option>
+        <option value="Central African Republic">
+          Central African Republic
+        </option>
         <option value="Chad">Chad</option>
         <option value="Chile">Chile</option>
         <option value="China">China</option>
@@ -159,7 +167,9 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
         <option value="Colombia">Colombia</option>
         <option value="Comoros">Comoros</option>
         <option value="Congo">Congo</option>
-        <option value="Congo, Democratic Republic of the Congo">Congo, Democratic Republic of the Congo</option>
+        <option value="Congo, Democratic Republic of the Congo">
+          Congo, Democratic Republic of the Congo
+        </option>
         <option value="CK">Cook Islands</option>
         <option value="CR">Costa Rica</option>
         <option value="CI">Cote D'Ivoire</option>
@@ -179,7 +189,9 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
         <option value="Eritrea">Eritrea</option>
         <option value="Estonia">Estonia</option>
         <option value="Ethiopia">Ethiopia</option>
-        <option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
+        <option value="Falkland Islands (Malvinas)">
+          Falkland Islands (Malvinas)
+        </option>
         <option value="FO">Faroe Islands</option>
         <option value="FJ">Fiji</option>
         <option value="FI">Finland</option>
@@ -204,15 +216,21 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
         <option value="Guinea-Bissau">Guinea-Bissau</option>
         <option value="Guyana">Guyana</option>
         <option value="Haiti">Haiti</option>
-        <option value="Heard Island and Mcdonald Islands">Heard Island and Mcdonald Islands</option>
-        <option value="Holy See (Vatican City State)">Holy See (Vatican City State)</option>
+        <option value="Heard Island and Mcdonald Islands">
+          Heard Island and Mcdonald Islands
+        </option>
+        <option value="Holy See (Vatican City State)">
+          Holy See (Vatican City State)
+        </option>
         <option value="Honduras">Honduras</option>
         <option value="Hong Kong">Hong Kong</option>
         <option value="Hungary">Hungary</option>
         <option value="Iceland">Iceland</option>
         <option value="India">India</option>
         <option value="Indonesia">Indonesia</option>
-        <option value="Iran, Islamic Republic of">Iran, Islamic Republic of</option>
+        <option value="Iran, Islamic Republic of">
+          Iran, Islamic Republic of
+        </option>
         <option value="Iraq">Iraq</option>
         <option value="IE">Ireland</option>
         <option value="IM">Isle of Man</option>
@@ -299,8 +317,12 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
         <option value="KN">Saint Kitts and Nevis</option>
         <option value="Saint Lucia">Saint Lucia</option>
         <option value="Saint Martin">Saint Martin</option>
-        <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
-        <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+        <option value="Saint Pierre and Miquelon">
+          Saint Pierre and Miquelon
+        </option>
+        <option value="Saint Vincent and the Grenadines">
+          Saint Vincent and the Grenadines
+        </option>
         <option value="Samoa">Samoa</option>
         <option value="San Marino">San Marino</option>
         <option value="Sao Tome and Principe">Sao Tome and Principe</option>
@@ -317,7 +339,9 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
         <option value="Solomon Islands">Solomon Islands</option>
         <option value="Somalia">Somalia</option>
         <option value="South Africa">South Africa</option>
-        <option value="South Georgia and the South Sandwich Islands">South Georgia and the South Sandwich Islands</option>
+        <option value="South Georgia and the South Sandwich Islands">
+          South Georgia and the South Sandwich Islands
+        </option>
         <option value="South Sudan">South Sudan</option>
         <option value="Spain">Spain</option>
         <option value="Sri Lanka">Sri Lanka</option>
@@ -328,9 +352,13 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
         <option value="Sweden">Sweden</option>
         <option value="Switzerland">Switzerland</option>
         <option value="Syrian Arab Republic">Syrian Arab Republic</option>
-        <option value="Taiwan, Province of China">Taiwan, Province of China</option>
+        <option value="Taiwan, Province of China">
+          Taiwan, Province of China
+        </option>
         <option value="Tajikistan">Tajikistan</option>
-        <option value="Tanzania, United Republic of">Tanzania, United Republic of</option>
+        <option value="Tanzania, United Republic of">
+          Tanzania, United Republic of
+        </option>
         <option value="Thailand">Thailand</option>
         <option value="Timor-Leste">Timor-Leste</option>
         <option value="Togo">Togo</option>
@@ -340,14 +368,18 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
         <option value="Tunisia">Tunisia</option>
         <option value="Turkey">Turkey</option>
         <option value="Turkmenistan">Turkmenistan</option>
-        <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
+        <option value="Turks and Caicos Islands">
+          Turks and Caicos Islands
+        </option>
         <option value="Tuvalu">Tuvalu</option>
         <option value="Uganda">Uganda</option>
         <option value="Ukraine">Ukraine</option>
         <option value="United Arab Emirates">United Arab Emirates</option>
         <option value="United Kingdom">United Kingdom</option>
         <option value="United States">United States</option>
-        <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+        <option value="United States Minor Outlying Islands">
+          United States Minor Outlying Islands
+        </option>
         <option value="Uruguay">Uruguay</option>
         <option value="Uzbekistan">Uzbekistan</option>
         <option value="Vanuatu">Vanuatu</option>

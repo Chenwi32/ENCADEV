@@ -14,8 +14,10 @@ import {
 const Qualification = ({ qualification, setQualification }) => {
 
   return (
-    <Container maxW={'unset'} p={0}>
-      <Heading mb={5}>Qualification</Heading>
+    <Container maxW={"unset"} p={0}>
+      <Heading fontSize={"1.5rem"} mb={5}>
+        Qualification
+      </Heading>
 
       <Text mb={5}>
         To qualify for this program, you must have at least a high school

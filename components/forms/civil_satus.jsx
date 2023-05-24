@@ -13,7 +13,9 @@ import {
 const CivilStatus = ({civilStatus, setCivilStatus}) => {
   return (
     <Container>
-      <Heading mb={5}>Civil Status</Heading>
+      <Heading fontSize={"1.5rem"} mb={5}>
+        Civil Status
+      </Heading>
       <FormLabel>What is your marital status?</FormLabel>
       <RadioGroup
         mb={5}

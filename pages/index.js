@@ -2,7 +2,7 @@ import Head from "next/head";
 import Step from "../components/step";
 import { useState } from "react";
 import Form from "../components/forms/form";
-import { Container, Flex, Text, Toast, useMediaQuery } from "@chakra-ui/react";
+import { Container, Flex, Heading, Text, Toast, useMediaQuery } from "@chakra-ui/react";
 import { db } from "../firebase";
 import { doc, setDoc } from "firebase/firestore";
 
@@ -11,7 +11,7 @@ const stepTitles = [
   "Qualification",
   "Civil Status",
   "Financial Status",
-
+"Confirm",
   "Finish",
 ];
 
@@ -112,6 +112,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container maxW={1200} p={2}>
+        <Heading mb={5} textAlign={'center'}>ADES Healthcare Form</Heading>
         <Flex flexDirection={isLargerThan700 ? "row" : "column"}>
           <aside>
             <Flex
@@ -119,6 +120,7 @@ export default function Home() {
               gap={5}
               justifyContent={"space-between"}
               mb={1}
+              
             >
               {stepTitles.map((title, i) => {
                 return (

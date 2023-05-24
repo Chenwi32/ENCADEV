@@ -10,9 +10,9 @@ import {
 import Qualification from "./qualification";
 import FinancialStatus from "./financial_status";
 import Success from "./success";
+import Confirm from "../confirm";
 
-
-const Form = ({ step, setStep, formData, updateFormData, sendData}) => {
+const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
   // Handle Data
   const [personalInfo, setPersonalInfo] = useState({
     ...formData.personalInfo,
@@ -36,13 +36,12 @@ const Form = ({ step, setStep, formData, updateFormData, sendData}) => {
     hasValidPhoneNumber: true,
   });
 
-   let hasValidPhoneNumber = phoneNumberRegex.test(personalInfo.phoneNumber);
+  let hasValidPhoneNumber = phoneNumberRegex.test(personalInfo.phoneNumber);
 
   const formValidation = () => {
     let hasValidName = nameRegex.test(personalInfo.name);
 
     let hasValidEmailAddress = emailRegex.test(personalInfo.email);
-  
 
     if (personalInfo.name === "") hasValidName = undefined;
     if (personalInfo.email === "") hasValidEmailAddress = undefined;
@@ -65,11 +64,10 @@ const Form = ({ step, setStep, formData, updateFormData, sendData}) => {
         updateFormData(civilStatus);
       } else if (step === 4) {
         updateFormData(financialStatus);
-        sendData();
-      } else if (step === 5) {
+      } /*else if (step === 5) {
         
-        sendData();
-      }
+         sendData(); 
+      }*/
       setStep((s) => s + 1);
     }
   };
@@ -84,7 +82,7 @@ const Form = ({ step, setStep, formData, updateFormData, sendData}) => {
     setStep((s) => s - 1);
   };
 
-  if (step != 5)
+  if (step != 6)
     return (
       <Container>
         {step === 1 && (
@@ -115,9 +113,10 @@ const Form = ({ step, setStep, formData, updateFormData, sendData}) => {
             updateFormData={updateFormData}
           />
         )}
-      
 
-        <Flex justifyContent={"space-between"}>
+        {step === 5 && <Confirm formData={formData} />}
+
+        <Flex justifyContent={"space-between"} mt={5}>
           <Button
             type="button"
             borderColor={step >= 1 ? "blue" : "green"}
@@ -128,7 +127,6 @@ const Form = ({ step, setStep, formData, updateFormData, sendData}) => {
           <Button
             onClick={(e) => {
               handleSubmit(e);
-              
             }}
             type="submit"
             bg={step === 4 || hasValidPhoneNumber === true ? "blue" : "inherit"}
@@ -144,8 +142,21 @@ const Form = ({ step, setStep, formData, updateFormData, sendData}) => {
                   : "inherit",
             }}
             isDisabled={hasValidPhoneNumber != true}
+            display={step >= 5 ? "none" : "block"}
           >
             {step === 4 ? "Confirm" : "Next Step"}
+          </Button>
+
+          <Button
+            display={step >= 5 ? "block" : "none"}
+            bg={"blue"}
+            color={"white"}
+            onClick={() => {
+              sendData();
+              setStep((s) => s + 1);
+            }}
+          >
+            send
           </Button>
         </Flex>
       </Container>

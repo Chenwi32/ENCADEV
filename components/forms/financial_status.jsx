@@ -3,7 +3,9 @@ import { Container, FormLabel, Heading, Input, Text } from "@chakra-ui/react";
 const FinancialStatus = ({financialStatus, setFinancialStatus, updateFormData}) => {
   return (
     <Container>
-      <Heading>Financial Readiness</Heading>
+      <Heading fontSize={"1.5rem"} mb={5}>
+        Financial Readiness
+      </Heading>
       <Text mb={5}>
         Please confirm that you have the financial ability to pay for the
         service package that you are interested in. We do not offer
@@ -34,7 +36,7 @@ const FinancialStatus = ({financialStatus, setFinancialStatus, updateFormData}) 
             ...financialStatus,
             date: e.target.value,
           });
-          updateFormData(financialStatus)
+          updateFormData(financialStatus);
         }}
         type="date"
         mb={5}
