@@ -1,8 +1,11 @@
 import {
+  Box,
+  Button,
   Checkbox,
   Container,
   FormLabel,
   Heading,
+  Image,
   Input,
   Radio,
   RadioGroup,
@@ -10,8 +13,48 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { useEffect, useState } from "react";
+import storage from "../../firebase";
 
 const Qualification = ({ qualification, setQualification }) => {
+  // File upload functionality
+
+  const [selectedFile, setSelectedFile] = useState();
+  const [preview, setPreview] = useState("");
+
+  const [downloadUrl, setDownloadUrl] = useState("");
+  const [uploadbtnText, setUploadBtntext] = useState("Upload");
+
+  // create a preview as a side effect, whenever selected file is changed
+  useEffect(() => {
+    if (!selectedFile) {
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(selectedFile);
+    setPreview(objectUrl);
+
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [selectedFile]);
+
+  const handleUpload = () => {
+    const mountainsRef = ref(storage, "canditCertif/" + selectedFile.name);
+    uploadBytesResumable(mountainsRef, selectedFile).then((snapshot) => {
+      setUploadBtntext("Uploading...");
+      getDownloadURL(snapshot.ref).then((downloadURL) => {
+        setDownloadUrl(downloadURL);
+        setQualification({
+          ...qualification,
+          certificate: downloadURL,
+        });
+        setUploadBtntext("Uploaded");
+      });
+    });
+  };
+
+  ////////////////////////////////
 
   return (
     <Container maxW={"unset"} p={0}>
@@ -35,6 +78,7 @@ const Qualification = ({ qualification, setQualification }) => {
         }}
         mb={5}
         placeholder="Select Qualification"
+        borderColor={"gray"}
       >
         <option value={"GCE A-level"}>GCE A-level</option>
         <option value={"Brevet"}>Brevet</option>
@@ -53,20 +97,61 @@ const Qualification = ({ qualification, setQualification }) => {
           });
         }}
         mb={5}
+        borderColor={"gray"}
       />
 
-      <FormLabel>Upload Highest Certificate</FormLabel>
+      <FormLabel>
+        Upload Highest Certificate ( PDF or image( jpg, jpeg, png ) )
+      </FormLabel>
       <Input
-        value={qualification.certificate}
         onChange={(e) => {
-          setQualification({
-            ...qualification,
-            certificate: e.target.value,
-          });
+          if (!e.target.files || e.target.files.length === 0) {
+            setSelectedFile(undefined);
+            return;
+          }
+
+          // Selects just one file
+
+          setSelectedFile(e.target.files[0]);
         }}
         mb={5}
+        border={"none"}
         type="file"
       />
+
+      <Box mt={5} mb={5} w={"100%"}>
+        {selectedFile && (
+          <>
+            <Heading mb={5} fontSize={"1.1rem"}>
+              {" "}
+              Preview
+            </Heading>
+            {selectedFile.name.includes(".pdf") === true ? (
+              <iframe src={preview} />
+            ) : (
+              <Image
+                src={preview}
+                width={300}
+                height={300}
+                alt="Uploaded Id card image"
+                mb={10}
+              />
+            )}
+            <Button
+              mt={5}
+              bg={"brand.100"}
+              color={"white"}
+              _hover={{
+                bg: "default",
+              }}
+              onClick={handleUpload}
+            >
+              {uploadbtnText}
+            </Button>
+          </>
+        )}
+      </Box>
+
       <FormLabel>
         What is the subject (specialization) of your diploma or degree?
       </FormLabel>
@@ -79,6 +164,7 @@ const Qualification = ({ qualification, setQualification }) => {
           });
         }}
         mb={5}
+        borderColor={"gray"}
       />
       <FormLabel>
         In which institution(s) did you obtain your qualification(s)?
@@ -92,6 +178,7 @@ const Qualification = ({ qualification, setQualification }) => {
           });
         }}
         mb={5}
+        borderColor={"gray"}
       />
       <FormLabel>In what year did you graduate?</FormLabel>
       <Input
@@ -104,6 +191,7 @@ const Qualification = ({ qualification, setQualification }) => {
         }}
         type={"date"}
         mb={5}
+        borderColor={"gray"}
       />
       <FormLabel>
         Was English your language of instruction and are your transcripts and
@@ -113,12 +201,15 @@ const Qualification = ({ qualification, setQualification }) => {
         value={qualification.lanOfInstruct}
         onChange={(e) => {
           setQualification({ ...qualification, lanOfInstruct: e });
-          console.log(qualification);
         }}
       >
         <Stack direction="row">
-          <Radio value="Yes">Yes</Radio>
-          <Radio value="No">No</Radio>
+          <Radio borderColor={"gray.400"} value="Yes">
+            Yes
+          </Radio>
+          <Radio borderColor={"gray.400"} value="No">
+            No
+          </Radio>
         </Stack>
       </RadioGroup>
       <FormLabel>
@@ -132,8 +223,12 @@ const Qualification = ({ qualification, setQualification }) => {
         }}
       >
         <Stack direction="row">
-          <Radio value="Yes">Yes</Radio>
-          <Radio value="No">No</Radio>
+          <Radio borderColor={"gray.400"} value="Yes">
+            Yes
+          </Radio>
+          <Radio borderColor={"gray.400"} value="No">
+            No
+          </Radio>
         </Stack>
       </RadioGroup>
 
@@ -147,6 +242,7 @@ const Qualification = ({ qualification, setQualification }) => {
           });
         }}
         mb={5}
+        borderColor={"gray"}
       />
     </Container>
   );

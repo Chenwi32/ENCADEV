@@ -6,7 +6,7 @@ const Success = () => {
 	 const router = useRouter()
 const [count, setCount] = useState(15)
 	
-	/* setInterval(() => {
+	setInterval(() => {
 		if(count <= 1)return
 		setCount(count - 1)
 	}, 1000)
@@ -14,7 +14,7 @@ const [count, setCount] = useState(15)
 	setTimeout(() => {
 
 		router.push("https://www.adaptive-elearn.com/");
-   }, 15000) */
+   }, 15000) 
 
 	return (
     <section>
@@ -27,7 +27,7 @@ const [count, setCount] = useState(15)
 
         <Heading fontSize={"1rem"}>
           You will be re-directed to ADES home page in{" "}
-          <Box fontSize={"1.5rem"}>{count}</Box> seconds
+          <Box fontSize={"1.5rem"}>{count}</Box> seconds. If you want to stay on the form, just refresh the page.
         </Heading>
       </article>
     </section>

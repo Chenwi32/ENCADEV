@@ -6,6 +6,7 @@ import {
   Select,
   Text,
 } from "@chakra-ui/react";
+import { useState } from "react";
 
 const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
   const getError = (validator) => {
@@ -18,6 +19,9 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
         </Text>
       );
   };
+
+  
+
   return (
     <>
       <Heading fontSize={"1.5rem"} mb={5}>

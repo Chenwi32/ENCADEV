@@ -25,10 +25,18 @@ const CivilStatus = ({civilStatus, setCivilStatus}) => {
         }}
       >
         <Stack direction="column">
-          <Radio value="Married">Married</Radio>
-          <Radio value="Single">Single</Radio>
-          <Radio value="Divorced">Divorced</Radio>
-          <Radio value="Widowed">Widowed</Radio>
+          <Radio borderColor={"gray.400"} value="Married">
+            Married
+          </Radio>
+          <Radio borderColor={"gray.400"} value="Single">
+            Single
+          </Radio>
+          <Radio borderColor={"gray.400"} value="Divorced">
+            Divorced
+          </Radio>
+          <Radio borderColor={"gray.400"} value="Widowed">
+            Widowed
+          </Radio>
         </Stack>
       </RadioGroup>
       <FormLabel>How many children do you have?</FormLabel>
@@ -41,6 +49,7 @@ const CivilStatus = ({civilStatus, setCivilStatus}) => {
           });
         }}
         mb={5}
+        borderColor={"gray"}
       />
       <FormLabel>what are their ages?</FormLabel>
       <Select
@@ -53,6 +62,7 @@ const CivilStatus = ({civilStatus, setCivilStatus}) => {
         }}
         placeholder="Select Age group"
         mb={5}
+        borderColor={"gray"}
       >
         <option value="1-5">1-5</option>
         <option value="6-10">6-10</option>
@@ -68,10 +78,16 @@ const CivilStatus = ({civilStatus, setCivilStatus}) => {
         }}
       >
         <Stack direction="column">
-          <Radio value="Yes, immediately">Yes, immediately</Radio>
-          <Radio value="Yes, later">Yes, later</Radio>
-          <Radio value="No">No</Radio>
-          <Radio value="I don't have a family yet">
+          <Radio borderColor={"gray.400"} value="Yes, immediately">
+            Yes, immediately
+          </Radio>
+          <Radio borderColor={"gray.400"} value="Yes, later">
+            Yes, later
+          </Radio>
+          <Radio borderColor={"gray.400"} value="No">
+            No
+          </Radio>
+          <Radio borderColor={"gray.400"} value="I don't have a family yet">
             I don't have a family yet
           </Radio>
         </Stack>
@@ -85,16 +101,28 @@ const CivilStatus = ({civilStatus, setCivilStatus}) => {
         }}
       >
         <Stack direction="column">
-          <Radio value="Active driver with a driver's license">
+          <Radio
+            borderColor={"gray.400"}
+            value="Active driver with a driver's license"
+          >
             Active driver with a driver's license
           </Radio>
-          <Radio value="Driver's license but not an active driver">
+          <Radio
+            borderColor={"gray.400"}
+            value="Driver's license but not an active driver"
+          >
             Driver's license but not an active driver
           </Radio>
-          <Radio value="Working toward a driver's license">
+          <Radio
+            borderColor={"gray.400"}
+            value="Working toward a driver's license"
+          >
             Working toward a driver's license
           </Radio>
-          <Radio value="I don't drive and I don't have a licenset">
+          <Radio
+            borderColor={"gray.400"}
+            value="I don't drive and I don't have a licenset"
+          >
             I don't drive and I don't have a license
           </Radio>
         </Stack>
@@ -110,10 +138,19 @@ const CivilStatus = ({civilStatus, setCivilStatus}) => {
         }}
       >
         <Stack direction="column">
-          <Radio value="Cameroon – Buea">Cameroon – Buea</Radio>
-          <Radio value="Cameroon – Douala">Cameroon – Douala</Radio>
-          <Radio value="Cameroon – Yaoundé">Cameroon – Yaoundé</Radio>
-          <Radio value="International - via Zoom or WhatsApp">
+          <Radio borderColor={"gray.400"} value="Cameroon – Buea">
+            Cameroon – Buea
+          </Radio>
+          <Radio borderColor={"gray.400"} value="Cameroon – Douala">
+            Cameroon – Douala
+          </Radio>
+          <Radio borderColor={"gray.400"} value="Cameroon – Yaoundé">
+            Cameroon – Yaoundé
+          </Radio>
+          <Radio
+            borderColor={"gray.400"}
+            value="International - via Zoom or WhatsApp"
+          >
             International - via Zoom or WhatsApp
           </Radio>
         </Stack>

@@ -27,6 +27,7 @@ const FinancialStatus = ({financialStatus, setFinancialStatus, updateFormData}) 
           });
         }}
         mb={5}
+        borderColor={"gray"}
       />
       <FormLabel>Date</FormLabel>
       <Input
@@ -40,6 +41,7 @@ const FinancialStatus = ({financialStatus, setFinancialStatus, updateFormData}) 
         }}
         type="date"
         mb={5}
+        borderColor={"gray"}
       />
     </Container>
   );
