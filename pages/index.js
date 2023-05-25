@@ -51,7 +51,7 @@ export default function Home() {
         date: "",
       },
     });
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(3);
 
   const updateFormData = (data) => {
     if (step == 1) {

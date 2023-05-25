@@ -51,8 +51,8 @@ const CivilStatus = ({civilStatus, setCivilStatus}) => {
         mb={5}
         borderColor={"gray"}
       />
-      <FormLabel>What are their ages?</FormLabel>
-      <Select
+      <FormLabel>What are their ages? (age limit is between 0 - 17)</FormLabel>
+      <Input
         value={civilStatus.ageGroup}
         onChange={(e) => {
           setCivilStatus({
@@ -60,15 +60,11 @@ const CivilStatus = ({civilStatus, setCivilStatus}) => {
             ageGroup: e.target.value,
           });
         }}
-        placeholder="Select Age group"
+        placeholder="e.g. 4, 10, 17"
         mb={5}
         borderColor={"gray"}
-      >
-        <option value="1-5">1-5</option>
-        <option value="6-10">6-10</option>
-        <option value="10-15">10-15</option>
-        <option value="16-17">16-17</option>
-      </Select>
+      />
+       
       <FormLabel>Do you intend to bring your family to the UK?</FormLabel>{" "}
       <RadioGroup
         mb={5}
