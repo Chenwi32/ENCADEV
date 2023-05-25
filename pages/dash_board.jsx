@@ -1,8 +1,11 @@
 import { Box, Container, Heading, Text, VStack } from "@chakra-ui/react";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "../firebase";
+import { useRouter } from "next/router";
 
 const Dash_board = (props) => {
+
+  const router = useRouter()
 
     const {results} = props
 
@@ -11,7 +14,11 @@ const Dash_board = (props) => {
         <Heading mb={5}>Names of Candidates</Heading>
         <VStack align={"left"}>
           {results.map((candit) => {
-            return <Text key={candit.personalInfo.phoneNumber}>{candit.personalInfo.name}</Text>;
+            return <Text key={candit.personalInfo.phoneNumber} cursor={"pointer"} onClick={
+              () => {
+                router.push(`/${candit.personalInfo.phoneNumber}`);
+              }
+            }>{candit.personalInfo.name}</Text>;
           })}
         </VStack>
       </Container>

@@ -51,7 +51,7 @@ const CivilStatus = ({civilStatus, setCivilStatus}) => {
         mb={5}
         borderColor={"gray"}
       />
-      <FormLabel>what are their ages?</FormLabel>
+      <FormLabel>What are their ages?</FormLabel>
       <Select
         value={civilStatus.ageGroup}
         onChange={(e) => {
@@ -127,34 +127,7 @@ const CivilStatus = ({civilStatus, setCivilStatus}) => {
           </Radio>
         </Stack>
       </RadioGroup>
-      <FormLabel>
-        Where would you like to attend your FREE Orientation Session?
-      </FormLabel>{" "}
-      <RadioGroup
-        mb={5}
-        value={civilStatus.sessionLocation}
-        onChange={(e) => {
-          setCivilStatus({ ...civilStatus, sessionLocation: e });
-        }}
-      >
-        <Stack direction="column">
-          <Radio borderColor={"gray.400"} value="Cameroon – Buea">
-            Cameroon – Buea
-          </Radio>
-          <Radio borderColor={"gray.400"} value="Cameroon – Douala">
-            Cameroon – Douala
-          </Radio>
-          <Radio borderColor={"gray.400"} value="Cameroon – Yaoundé">
-            Cameroon – Yaoundé
-          </Radio>
-          <Radio
-            borderColor={"gray.400"}
-            value="International - via Zoom or WhatsApp"
-          >
-            International - via Zoom or WhatsApp
-          </Radio>
-        </Stack>
-      </RadioGroup>
+    
     </Container>
   );
 };

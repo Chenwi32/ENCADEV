@@ -397,7 +397,7 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
         <option value="Zambia">Zambia</option>
         <option value="Zimbabwe">Zimbabwe</option>
       </Select>
-      <label>Province/Region/State</label>
+      <label>Province/Region</label>
       <Input
         borderColor={!validForm.hasValidPhoneNumber ? "red" : "gray"}
         value={personalInfo.province}

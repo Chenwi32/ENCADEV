@@ -45,7 +45,6 @@ export default function Home() {
         ageGroup: "",
         bringingThem: "",
         drivingSkills: "",
-        sessionLocation: "",
       },
       financialStatus: {
         signature: "",
