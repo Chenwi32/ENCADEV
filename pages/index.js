@@ -110,7 +110,7 @@ export default function Home() {
         <meta name="description" content="ADES-UK healthcare form" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container bg={"brand.300"} maxW={900} borderRadius={'xl'} p={isLargerThan700? 10 : 5} >
+      <Container boxShadow={'2xl'} bg={"brand.300"} maxW={900} borderRadius={'xl'} p={isLargerThan700? 10 : 5} >
         <Heading color={'brand.100'} fontFamily={"Andika"} mb={5} textAlign={"center"}>
           ADES Healthcare Form
         </Heading>

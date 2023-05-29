@@ -1,10 +1,10 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Container, Heading, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
 const Success = () => {
 	 const router = useRouter()
-const [count, setCount] = useState(15)
+const [count, setCount] = useState(30)
 	
 	setInterval(() => {
 		if(count <= 1)return
@@ -14,23 +14,26 @@ const [count, setCount] = useState(15)
 	setTimeout(() => {
 
 		router.push("https://www.adaptive-elearn.com/");
-   }, 15000) 
+   }, 30000)  
 
 	return (
-    <section>
+    <Container>
       <article>
-        <Heading fontFamily={'Andika'} fontSize={"1.5rem"}>Your Application has been sent </Heading>
-        <p>
-          Thanks for confirming your subscription! We hope you have fun using
-          our platform. If you ever need support, please feel free to
-        </p>
-
-        <Heading fontSize={"1rem"}>
-          You will be re-directed to ADES home page in{" "}
-          <Box fontSize={"1.5rem"}>{count}</Box> seconds. If you want to stay on the form, just refresh the page.
+        <Heading fontFamily={"Andika"} fontSize={"1.5rem"} mb={5}>
+          Your Application has been sucessfully sent!!{" "}
         </Heading>
+        <Text mb={5}>
+          Thanks for your interest in our services. We appreciate your trust.
+          Our team will carefully analyse your information and will get back to within 48 hours to let you know  the next step. Hang in there!!
+        </Text>
+
+        <Text fontSize={"1rem"}>
+          You will be re-directed to ADES home page in{" "}
+          <strong>{count}</strong> seconds. If you want to stay on
+          the form, just refresh the page.
+        </Text>
       </article>
-    </section>
+    </Container>
   );
 }
 

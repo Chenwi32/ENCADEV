@@ -8,7 +8,7 @@ const Nav = () => {
       color={"brand.300"}
       fontWeight={800}
       bg={"linear-gradient(126deg, rgba(255,255,255,1) 49%, #76c7ec 49%);"}
-      p={0}
+      p={2}
       boxShadow={"lg"}
       mb={5}
     >
@@ -25,7 +25,7 @@ const Nav = () => {
 
           color={"brand.200"}
         >
-          <Image src="/images/logo.png" w={70} />
+          <Image src="/images/logo.png" w={'4rem'} />
           <>ADES-Forns</>
         </HStack>
 
