@@ -58,7 +58,7 @@ const Qualification = ({ qualification, setQualification }) => {
 
   return (
     <Container maxW={"unset"} p={0}>
-      <Heading fontSize={"1.5rem"} mb={5}>
+      <Heading fontFamily={'Andika'} fontSize={"1.5rem"} mb={5}>
         Qualification
       </Heading>
 

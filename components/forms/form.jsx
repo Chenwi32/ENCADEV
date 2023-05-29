@@ -1,6 +1,12 @@
 import { useState } from "react";
 import PersonalData from "./personalData";
-import { Button, Container, Flex } from "@chakra-ui/react";
+import {
+  Button,
+  Container,
+  Flex,
+  ScaleFade,
+  useDisclosure,
+} from "@chakra-ui/react";
 import CivilStatus from "./civil_satus";
 import {
   emailRegex,
@@ -13,6 +19,8 @@ import Success from "./success";
 import Confirm from "../confirm";
 
 const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
+  const { isOpen, onToggle } = useDisclosure();
+
   // Handle Data
   const [personalInfo, setPersonalInfo] = useState({
     ...formData.personalInfo,
@@ -84,62 +92,70 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
 
   if (step != 6)
     return (
-      <Container>
+      <Container transition={"0.5s"}>
         {step === 1 && (
-          <PersonalData
-            personalInfo={personalInfo}
-            setPersonalInfo={setPersonalInfo}
-            validForm={validForm}
-          />
+          <ScaleFade initialScale={0.9} in={onToggle}>
+            <PersonalData
+              personalInfo={personalInfo}
+              setPersonalInfo={setPersonalInfo}
+              validForm={validForm}
+            />
+          </ScaleFade>
         )}
 
         {step === 2 && (
-          <Qualification
-            qualification={qualification}
-            setQualification={setQualification}
-          />
+          <ScaleFade initialScale={0.9} in={onToggle}>
+            <Qualification
+              qualification={qualification}
+              setQualification={setQualification}
+            />
+          </ScaleFade>
         )}
 
         {step === 3 && (
-          <CivilStatus
-            civilStatus={civilStatus}
-            setCivilStatus={setCivilStatus}
-          />
+          <ScaleFade initialScale={0.9} in={onToggle}>
+            <CivilStatus
+              civilStatus={civilStatus}
+              setCivilStatus={setCivilStatus}
+            />
+          </ScaleFade>
         )}
         {step === 4 && (
-          <FinancialStatus
-            financialStatus={financialStatus}
-            setFinancialStatus={setFinancialStatus}
-            updateFormData={updateFormData}
-          />
+          <ScaleFade initialScale={0.9} in={onToggle}>
+            <FinancialStatus
+              financialStatus={financialStatus}
+              setFinancialStatus={setFinancialStatus}
+              updateFormData={updateFormData}
+            />
+          </ScaleFade>
         )}
 
-        {step === 5 && <Confirm formData={formData} />}
+        {step === 5 && (
+          <ScaleFade initialScale={0.9} in={onToggle}>
+            <Confirm formData={formData} />
+          </ScaleFade>
+        )}
 
         <Flex justifyContent={"space-between"} mt={5}>
           <Button
             type="button"
-            borderColor={step >= 1 ? "blue" : "green"}
+            bg={"brand.200"}
+            color={"brand.300"}
             onClick={handleGoBack}
+            isDisabled={step <= 1}
           >
             Go Back
           </Button>
           <Button
             onClick={(e) => {
               handleSubmit(e);
+              onToggle();
             }}
             type="submit"
-            bg={step === 4 || hasValidPhoneNumber === true ? "blue" : "inherit"}
-            color={
-              step === 4 || hasValidPhoneNumber === true ? "white" : "black"
-            }
+            bg={"brand.100"}
+            color={"brand.300"}
             _hover={{
-              bg:
-                step === 4 || hasValidPhoneNumber === true ? "blue" : "inherit",
-              color:
-                step === 4 || hasValidPhoneNumber === true
-                  ? "white"
-                  : "inherit",
+              bg: "",
             }}
             isDisabled={hasValidPhoneNumber != true}
             display={step >= 5 ? "none" : "block"}
@@ -149,8 +165,8 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
 
           <Button
             display={step >= 5 ? "block" : "none"}
-            bg={"blue"}
-            color={"white"}
+            bg={"brand.100"}
+            color={"brand.300"}
             onClick={() => {
               sendData();
               setStep((s) => s + 1);

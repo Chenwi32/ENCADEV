@@ -1,4 +1,5 @@
 import {
+  Box,
   Flex,
   FormLabel,
   Heading,
@@ -23,8 +24,8 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
   
 
   return (
-    <>
-      <Heading fontSize={"1.5rem"} mb={5}>
+    <Box >
+      <Heading fontFamily={"Andika"} fontSize={"1.5rem"} mb={5}>
         Personal info
       </Heading>
       <Text mb={5}>
@@ -423,7 +424,7 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
         }}
         placeholder="e.g Douala"
       />
-    </>
+    </Box>
   );
 };
 

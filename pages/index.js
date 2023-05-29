@@ -110,16 +110,20 @@ export default function Home() {
         <meta name="description" content="ADES-UK healthcare form" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container maxW={1200} p={2}>
-        <Heading mb={5} textAlign={'center'}>ADES Healthcare Form</Heading>
-        <Flex flexDirection={isLargerThan700 ? "row" : "column"}>
+      <Container bg={"brand.300"} maxW={900} borderRadius={'xl'} p={isLargerThan700? 10 : 5} >
+        <Heading color={'brand.100'} fontFamily={"Andika"} mb={5} textAlign={"center"}>
+          ADES Healthcare Form
+        </Heading>
+        <Flex
+          
+          flexDirection={isLargerThan700 ? "row" : "column"}
+        >
           <aside>
             <Flex
               flexDirection={isLargerThan700 ? "column" : "row"}
               gap={5}
               justifyContent={"space-between"}
               mb={1}
-              
             >
               {stepTitles.map((title, i) => {
                 return (

@@ -7,7 +7,7 @@ export default function Step({ step, stepNumber, children }) {
   return (
     <article >
       <Button
-         bg={step === stepNumber || (step === 5 && stepNumber === 5)? 'blue'
+         bg={step === stepNumber || (step === 5 && stepNumber === 5)? 'brand.100'
           : 'gray'
         } 
         color={step === stepNumber || (step === 5 && stepNumber === 5)? 'white'

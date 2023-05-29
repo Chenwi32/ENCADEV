@@ -19,7 +19,7 @@ const [count, setCount] = useState(15)
 	return (
     <section>
       <article>
-        <Heading fontSize={"1.5rem"}>Your Application has been sent </Heading>
+        <Heading fontFamily={'Andika'} fontSize={"1.5rem"}>Your Application has been sent </Heading>
         <p>
           Thanks for confirming your subscription! We hope you have fun using
           our platform. If you ever need support, please feel free to

@@ -1,19 +1,19 @@
 import {
-  Checkbox,
+ 
   Container,
   FormLabel,
   Heading,
   Input,
   Radio,
   RadioGroup,
-  Select,
+
   Stack,
 } from "@chakra-ui/react";
 
 const CivilStatus = ({civilStatus, setCivilStatus}) => {
   return (
     <Container>
-      <Heading fontSize={"1.5rem"} mb={5}>
+      <Heading fontFamily={'Andika'} fontSize={"1.5rem"} mb={5}>
         Civil Status
       </Heading>
       <FormLabel>What is your marital status?</FormLabel>

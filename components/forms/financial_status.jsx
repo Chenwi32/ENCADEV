@@ -3,7 +3,7 @@ import { Container, FormLabel, Heading, Input, Text } from "@chakra-ui/react";
 const FinancialStatus = ({financialStatus, setFinancialStatus, updateFormData}) => {
   return (
     <Container>
-      <Heading fontSize={"1.5rem"} mb={5}>
+      <Heading fontSize={"1.5rem"} mb={5} fontFamily={'Andika'}>
         Financial Readiness
       </Heading>
       <Text mb={5}>
