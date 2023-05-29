@@ -10,15 +10,28 @@ const Dash_board = (props) => {
     const {results} = props
 
     return (
-      <Container p={5}>
-        <Heading mb={5}>Names of Candidates</Heading>
-        <VStack align={"left"}>
+      <Container bg={'brand.300'}  p={10} borderRadius={'xl'}>
+        <Heading fontFamily={'Andika'} mb={5}>Names of Candidates</Heading>
+        <Heading fontFamily={'Andika'} fontSize={'1.5rem'} mb={5}>Click on a candidate to view more information.</Heading>
+        <VStack align={"left"} gap={3}>
           {results.map((candit) => {
-            return <Text key={candit.personalInfo.phoneNumber} cursor={"pointer"} onClick={
-              () => {
-                router.push(`/${candit.personalInfo.phoneNumber}`);
-              }
-            }>{candit.personalInfo.name}</Text>;
+            return (
+              <Text
+                borderRadius={"xl"}
+                fontWeight={800}
+                p={2}
+                pl={5}
+                bg={"brand.100.1"}
+                color={"brand.200"}
+                key={candit.personalInfo.phoneNumber}
+                cursor={"pointer"}
+                onClick={() => {
+                  router.push(`/${candit.personalInfo.phoneNumber}`);
+                }}
+              >
+                {candit.personalInfo.name}
+              </Text>
+            );
           })}
         </VStack>
       </Container>
