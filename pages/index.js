@@ -51,7 +51,7 @@ export default function Home() {
         date: "",
       },
     });
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(6);
 
   const updateFormData = (data) => {
     if (step == 1) {
@@ -112,7 +112,8 @@ export default function Home() {
       </Head>
       <Container boxShadow={'2xl'} bg={"brand.300"} maxW={900} borderRadius={'xl'} p={isLargerThan700? 10 : 5} >
         <Heading color={'brand.100'} fontFamily={"Andika"} mb={5} textAlign={"center"}>
-          ADES Healthcare Form
+          {step === 6? "Success" : "ADES Healthcare Form"}
+          
         </Heading>
         <Flex
           

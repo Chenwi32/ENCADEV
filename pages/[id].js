@@ -3,6 +3,7 @@ import { db } from "../firebase";
 import {
   Box,
   Container,
+  Flex,
   HStack,
   Heading,
   Table,
@@ -15,20 +16,36 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
+import dynamic from "next/dynamic";
+import { useRef } from "react";
+
+const Generatepdf = dynamic(() => import("../components/generatepdf"), {
+  //this deactivates server side rendering since we need to initialize this only in the frontend
+  ssr: false,
+});
 
 const ViewCandData = (props) => {
   const { results } = props;
+
+  const ref = useRef();
+
   return (
     <Container maxW={900}>
       {results.map((canData) => {
         return (
-          <Box mb={10} key={canData.personalInfo.phoneNumber} mt={5}>
+          <Box ref={ref} mb={10} key={canData.personalInfo.phoneNumber} mt={5}>
             <Heading mb={5} fontSize={"1.5rem"}>
               {canData.personalInfo.name}
             </Heading>
 
-            <TableContainer maxW={'fit-content'}>
-              <Table size='sm' maxW={'100%'}  >
+            <TableContainer
+              whiteSpace={"break-spaces"}
+              bg={"brand.300"}
+              p={10}
+              maxW={"fit-content"}
+              borderRadius={"xl"}
+            >
+              <Table id="table_content" size="sm" maxW={"100%"}>
                 <Thead bg={"brand.100"}>
                   <Tr>
                     <Th
@@ -155,11 +172,15 @@ const ViewCandData = (props) => {
                     </Td>
                   </Tr>
                   <Tr>
-                    <Td  border={"1px"} borderColor={"gray"}>
+                    <Td border={"1px"} borderColor={"gray"}>
                       Experience
                     </Td>
-                    <Td border={"1px"} borderColor={"gray"}>
-                      {canData.qualification.experience}
+                    <Td
+                      whiteSpace={"break-spaces"}
+                      border={"1px"}
+                      borderColor={"gray"}
+                    >
+                      <Text>{canData.qualification.experience}</Text>
                     </Td>
                   </Tr>
                   <Tr>
@@ -212,34 +233,21 @@ const ViewCandData = (props) => {
                       borderBottom={"1px"}
                       borderColor={"gray"}
                     >
-                      <HStack gap={3}>
-                        <Text fontSize={"0.8rem"} fontWeight={"100"}>
-                          Signature:
-                        </Text>
-                        <Text borderBottom={"2px dotted"} w={"100%"}>
-                          {canData.financialStatus.signature}
-                        </Text>
-                      </HStack>
+                      Signature: {canData.financialStatus.signature}
                     </Th>
                     <Th
                       p={2}
-                      fontSize={"1rem"}
-                      borderBottom={"1px"}
                       borderColor={"gray"}
+                      borderBottom={"2px dotted"}
+                      fontSize={"0.9rem"}
                     >
-                      <HStack gap={3}>
-                        <Text fontSize={"0.8rem"} fontWeight={"100"}>
-                          Date:
-                        </Text>
-                        <Text borderBottom={"2px dotted"} w={"100%"}>
-                          {canData.financialStatus.date}
-                        </Text>
-                      </HStack>
+                      Date: {canData.financialStatus.date}
                     </Th>
                   </Tr>
                 </Tfoot>
               </Table>
             </TableContainer>
+            <Generatepdf html={ref} candidate={canData.personalInfo.name} />
           </Box>
         );
       })}
