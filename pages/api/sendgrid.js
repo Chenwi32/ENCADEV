@@ -10,7 +10,7 @@ async function sendEmail(req, res) {
       to: [
         "admin@adaptive-elearn.com",
         "ernestine.vegah@gmail.com",
-        "fuhnwirodriguez.me@gmail.com",
+        'chenwieugene.j@gmail.com'
       ], // email where messages will be received emails
       from: "chenwieugene.j@gmail.com", // your website email address here
       subject: `${data.personalInfo.name} has registered for the healthcare services`,
