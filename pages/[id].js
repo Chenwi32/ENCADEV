@@ -15,6 +15,7 @@ import {
   Th,
   Thead,
   Tr,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import { useRef } from "react";
@@ -29,8 +30,10 @@ const ViewCandData = (props) => {
 
   const ref = useRef();
 
+   const [isLargerThan700] = useMediaQuery("(min-width: 700px)");
+
   return (
-    <Container maxW={900}>
+    <Container maxW={900} p={ 'auto'}>
       {results.map((canData) => {
         return (
           <Box ref={ref} mb={10} key={canData.personalInfo.phoneNumber} mt={5}>
@@ -41,9 +44,9 @@ const ViewCandData = (props) => {
             <TableContainer
               whiteSpace={"break-spaces"}
               bg={"brand.300"}
-              p={10}
+              p={isLargerThan700? 10 : 0}
               maxW={"fit-content"}
-              borderRadius={"xl"}
+              borderRadius={isLargerThan700? 'xl' : 'none'}
             >
               <Table id="table_content" size="sm" maxW={"100%"}>
                 <Thead bg={"brand.100"}>

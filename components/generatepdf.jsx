@@ -1,4 +1,5 @@
 import { Button, Container, Flex } from "@chakra-ui/react";
+
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { useEffect, useState } from "react";
@@ -6,17 +7,18 @@ import { useEffect, useState } from "react";
 const Generatepdf = ({ candidate }) => {
   const [download, setDownload] = useState();
   const [preview, setPreview] = useState();
-  const [candidateName, setCandidateName] = useState(candidate) ;
+  const [candidateName, setCandidateName] = useState(candidate);
 
   const generateFile = () => {
     const doc = new jsPDF();
 
     autoTable(doc, {
       html: "#table_content",
-      footStyles: { fillColor: "#fff", textColor: "#252628", },
-      headStyles: {
-        
-      }
+      footStyles: { fillColor: "#fff", textColor: "#252628" },
+
+      tableWidth: doc.internal.pageSize.getWidth(),
+      margin: { right: 2, top: 0, left: 0 },
+    
     });
 
     if (download === true) {
@@ -24,9 +26,9 @@ const Generatepdf = ({ candidate }) => {
     } else if (preview === true) {
       doc.output("dataurlnewwindow");
     } else return;
-      
-      setDownload(false)
-      setPreview(false)
+
+    setDownload(false);
+    setPreview(false);
   };
 
   useEffect(() => {
@@ -39,7 +41,6 @@ const Generatepdf = ({ candidate }) => {
         <Button
           bg={"brand.200"}
           boxShadow={"xl"}
-       
           color={"brand.300"}
           border={"1px"}
           _hover={{

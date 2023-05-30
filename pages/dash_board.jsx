@@ -1,28 +1,29 @@
-import { Box, Container, Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, Container, Heading, Text, VStack, useMediaQuery } from "@chakra-ui/react";
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "../firebase";
 import { useRouter } from "next/router";
 
 const Dash_board = (props) => {
+    const [isLargerThan700] = useMediaQuery("(min-width: 700px)");
 
   const router = useRouter()
 
     const {results} = props
 
     return (
-      <Container bg={'brand.300'}  p={10} borderRadius={'xl'}>
+      <Container bg={'brand.300'}  p={isLargerThan700? 10 : 5} borderRadius={isLargerThan700? 'xl' : 'none'}>
         <Heading fontFamily={'Andika'} mb={5}>Names of Candidates</Heading>
-        <Heading fontFamily={'Andika'} fontSize={'1.5rem'} mb={5}>Click on a candidate to view more information.</Heading>
+        <Heading fontFamily={'Andika'} fontSize={'1.1rem'} mb={5}>Click on a candidate to view more information.</Heading>
         <VStack align={"left"} gap={3}>
           {results.map((candit) => {
             return (
               <Text
-                borderRadius={"xl"}
+                borderRadius={"lg"}
                 fontWeight={800}
                 p={2}
                 pl={5}
-                bg={"brand.100.1"}
-                color={"brand.200"}
+                bg={"brand.100"}
+                color={"brand.300"}
                 key={candit.personalInfo.phoneNumber}
                 cursor={"pointer"}
                 onClick={() => {
