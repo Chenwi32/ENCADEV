@@ -37,7 +37,7 @@ const ViewCandData = (props) => {
       {results.map((canData) => {
         return (
           <Box ref={ref} mb={10} key={canData.personalInfo.phoneNumber} mt={5}>
-            <Heading mb={5} fontSize={"1.5rem"}>
+            <Heading fontFamily={'Andika'} mb={5} fontSize={"1.5rem"}>
               {canData.personalInfo.name}
             </Heading>
 

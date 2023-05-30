@@ -19,6 +19,9 @@ const Dash_board = (props) => {
             return (
               <Text
                 borderRadius={"lg"}
+                border={'2px'}
+                borderColor={'brand.200'}
+                boxShadow={'xl'}
                 fontWeight={800}
                 p={2}
                 pl={5}
