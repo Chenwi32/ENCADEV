@@ -12,6 +12,8 @@
     "@chakra-ui/react": "^2.6.1",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "@sendgrid/mail": "^7.7.0",
+    "axios": "^1.4.0",
     "firebase": "^9.22.0",
     "framer-motion": "^10.12.12",
     "jspdf": "^2.5.1",

@@ -17,6 +17,7 @@ import Qualification from "./qualification";
 import FinancialStatus from "./financial_status";
 import Success from "./success";
 import Confirm from "../confirm";
+import axios from "axios";
 
 const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
   const { isOpen, onToggle } = useDisclosure();
@@ -46,7 +47,8 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
 
   let hasValidPhoneNumber = phoneNumberRegex.test(personalInfo.phoneNumber);
 
-  const formValidation = () => {
+  
+  const formValidation = (e) => {
     let hasValidName = nameRegex.test(personalInfo.name);
 
     let hasValidEmailAddress = emailRegex.test(personalInfo.email);
@@ -68,6 +70,7 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
         updateFormData(personalInfo);
       } else if (step === 2) {
         updateFormData(qualification);
+         
       } else if (step === 3) {
         updateFormData(civilStatus);
       } else if (step === 4) {
@@ -82,8 +85,10 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    formValidation();
+    formValidation(e);
   };
+
+  
 
   const handleGoBack = () => {
     if (step <= 1) return;
@@ -150,6 +155,7 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
             onClick={(e) => {
               handleSubmit(e);
               onToggle();
+             
             }}
             type="submit"
             bg={"brand.100"}
@@ -167,8 +173,8 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
             display={step >= 5 ? "block" : "none"}
             bg={"brand.100"}
             color={"brand.300"}
-            onClick={() => {
-              sendData();
+            onClick={(e) => {
+              sendData(e);
               setStep((s) => s + 1);
             }}
           >

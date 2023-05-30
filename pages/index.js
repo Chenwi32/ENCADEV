@@ -5,6 +5,7 @@ import Form from "../components/forms/form";
 import { Container, Flex, Heading, Text, Toast, useMediaQuery } from "@chakra-ui/react";
 import { db } from "../firebase";
 import { doc, setDoc } from "firebase/firestore";
+import axios from "axios";
 
 const stepTitles = [
   "Personal info",
@@ -81,7 +82,12 @@ export default function Home() {
     }
   };
 
-  const sendData = async () => {
+    const sendNotification = async ( data) => {
+  
+      const response = await axios.post("/api/sendgrid", data);
+    };
+
+  const sendData = async (e) => {
     const timestamp = Date.now().toString();
 
     const candidate = doc(db, `candidates/${timestamp}`);
@@ -90,14 +96,7 @@ export default function Home() {
 
     try {
       await setDoc(candidate, candidateData).then(() => {});
-      Toast(
-        "The information has been sent successfully. Thank you for the efforts",
-        {
-          hideProgressBar: true,
-          autoClose: 6000,
-          type: "success",
-        }
-      );
+         sendNotification(candidateData)
     } catch (error) {
       console.log(error);
     }
@@ -110,7 +109,7 @@ export default function Home() {
         <meta name="description" content="ADES-UK healthcare form" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container boxShadow={'2xl'} bg={"brand.300"} maxW={900} borderRadius={'xl'} p={isLargerThan700? 10 : 5} >
+      <Container boxShadow={'2xl'} bg={"brand.300"} maxW={900} borderRadius={isLargerThan700? 'xl' : 'unset'} p={isLargerThan700? 10 : 5} >
         <Heading color={'brand.100'} fontFamily={"Andika"} mb={5} textAlign={"center"}>
           {step === 6? "Success" : "ADES Healthcare Form"}
           
