@@ -33,7 +33,12 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
       </Text>
       <label htmlFor="name">
         <Flex justifyContent={"space-between"}>
-          <span>Name</span>
+          <Text>
+            <Text as="span" color="red">
+              *
+            </Text>{" "}
+            Name
+          </Text>
           {getError(validForm.hasValidName)}
           {console.log(validForm.hasValidName)}
         </Flex>
@@ -56,7 +61,12 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
       </label>
       <label htmlFor="email">
         <Flex justifyContent={"space-between"}>
-          <span>Email Address</span>
+          <Text>
+            <Text as="span" color="red">
+              *
+            </Text>{" "}
+            Email Address
+          </Text>
           {getError(validForm.hasValidEmailAddress)}
         </Flex>
         <Input
@@ -79,7 +89,12 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
         {" "}
         <div>
           <Flex justifyContent={"space-between"}>
-            <span>Phone Number</span>
+            <Text>
+              <Text as="span" color="red">
+                *
+              </Text>{" "}
+              Phone Number
+            </Text>
             {getError(validForm.hasValidPhoneNumber)}
           </Flex>
         </div>

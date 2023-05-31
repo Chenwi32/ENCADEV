@@ -4,7 +4,9 @@ import {
   Button,
   Container,
   Flex,
+  Heading,
   ScaleFade,
+  Text,
   useDisclosure,
 } from "@chakra-ui/react";
 import CivilStatus from "./civil_satus";
@@ -47,7 +49,6 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
 
   let hasValidPhoneNumber = phoneNumberRegex.test(personalInfo.phoneNumber);
 
-  
   const formValidation = (e) => {
     let hasValidName = nameRegex.test(personalInfo.name);
 
@@ -70,7 +71,6 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
         updateFormData(personalInfo);
       } else if (step === 2) {
         updateFormData(qualification);
-         
       } else if (step === 3) {
         updateFormData(civilStatus);
       } else if (step === 4) {
@@ -88,8 +88,6 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
     formValidation(e);
   };
 
-  
-
   const handleGoBack = () => {
     if (step <= 1) return;
     setStep((s) => s - 1);
@@ -98,6 +96,14 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
   if (step != 6)
     return (
       <Container transition={"0.5s"}>
+        <Text mb={5} display={step === 5 ? "none" : "block"}>
+          {" "}
+          All fields with an asterisk (
+          <Text as="span" color="red">
+            *
+          </Text>
+          )
+        </Text>
         {step === 1 && (
           <ScaleFade initialScale={0.9} in={onToggle}>
             <PersonalData
@@ -109,8 +115,12 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
         )}
 
         {step === 2 && (
-          <ScaleFade initialScale={0.9} in={onToggle}>
-            <Qualification
+          <ScaleFade
+            
+            initialScale={0.9}
+            in={onToggle}
+          >
+            <Qualification 
               qualification={qualification}
               setQualification={setQualification}
             />
@@ -155,7 +165,6 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
             onClick={(e) => {
               handleSubmit(e);
               onToggle();
-             
             }}
             type="submit"
             bg={"brand.100"}

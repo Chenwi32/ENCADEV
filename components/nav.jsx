@@ -1,4 +1,11 @@
-import { Container, Flex, Image, HStack } from "@chakra-ui/react";
+import {
+  Container,
+  Flex,
+  Image,
+  HStack,
+  Text,
+  Heading,
+} from "@chakra-ui/react";
 import Link from "next/link";
 
 const Nav = () => {
@@ -18,14 +25,8 @@ const Nav = () => {
         justifyContent={"space-between"}
         alignItems={"center"}
       >
-        <HStack
-          skewX={"50%"}
-          gap={3}
-          w={"50%"}
-
-          color={"brand.200"}
-        >
-          <Image src="/images/logo.png" w={'4rem'} />
+        <HStack skewX={"50%"} gap={3} w={"50%"} color={"brand.200"}>
+          <Image src="/images/logo.png" w={"4rem"} />
           <>ADES-Forns</>
         </HStack>
 

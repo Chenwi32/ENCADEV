@@ -1,5 +1,6 @@
-import { Box, Container, Heading, Text } from "@chakra-ui/react";
-import { useRouter } from "next/router";
+import { Box, Button, Container, Heading, Text } from "@chakra-ui/react";
+import Link from "next/link";
+
 import { useEffect, useState } from "react";
 import ReactConfetti from "react-confetti";
 
@@ -14,21 +15,19 @@ const Success = () => {
     setDimensions({ width, height });
   }, []);
 
-  const router = useRouter();
-  const [count, setCount] = useState(30);
+  const [showConfetti, setShowConfetti] = useState(true);
 
-  setInterval(() => {
-    if (count <= 1) return;
-    setCount(count - 1);
-  }, 1000);
   //code goes here
   setTimeout(() => {
-    router.push("https://www.adaptive-elearn.com/");
-  }, 30000);
+    setShowConfetti(false);
+  }, 6000);
 
   return (
     <Container>
-      <ReactConfetti width={dimensions.width} height={dimensions.height} />
+      <Box display={showConfetti === true ? "block" : "none"}>
+        <ReactConfetti width={dimensions.width} height={dimensions.height} />
+      </Box>
+
       <article>
         <Heading fontFamily={"Andika"} fontSize={"1.5rem"} mb={5}>
           Your Application has been sucessfully sent!!{" "}
@@ -36,12 +35,18 @@ const Success = () => {
         <Text mb={5}>
           Thanks for your interest in our services. We appreciate your trust.
           Our team will carefully analyse your information and will get back to
-          within 48 hours to let you know the next step. Hang in there!!
+          you within 48 hours to let you know the next step. Hang in there!!
         </Text>
 
         <Text fontSize={"1rem"}>
-          You will be re-directed to ADES home page in <strong>{count}</strong>{" "}
-          seconds. If you want to stay on the form, just refresh the page.
+          Go back to{" "}
+          <Text as={"span"} color={"brand.100"}>
+            <Link href={"https://www.adaptive-elearn.com/"}>
+              ADES home page &#x27A1;{" "}
+            </Link>
+          </Text>
+          . <br />
+          If you want to stay on the form, just refresh the page.
         </Text>
       </article>
     </Container>

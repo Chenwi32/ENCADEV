@@ -58,7 +58,7 @@ const Qualification = ({ qualification, setQualification }) => {
 
   return (
     <Container maxW={"unset"} p={0}>
-      <Heading fontFamily={'Andika'} fontSize={"1.5rem"} mb={5}>
+      <Heading fontFamily={"Andika"} fontSize={"1.5rem"} mb={5}>
         Qualification
       </Heading>
 
@@ -67,7 +67,12 @@ const Qualification = ({ qualification, setQualification }) => {
         certificate or a higher education qualification such as the HND,
         Bachelor's degree, etc., in any field.
       </Text>
-      <FormLabel>What is your highest qualification?</FormLabel>
+      <FormLabel>
+        <Text as="span" color="red">
+          *
+        </Text>{" "}
+        What is your highest qualification?
+      </FormLabel>
       <Select
         value={qualification.qualification}
         onChange={(e) => {
@@ -87,20 +92,25 @@ const Qualification = ({ qualification, setQualification }) => {
         <option value={"Others"}>Others</option>
       </Select>
 
-      <FormLabel>If you chosed others, please specify here:</FormLabel>
-      <Input
-        value={qualification.othersSpecific}
-        onChange={(e) => {
-          setQualification({
-            ...qualification,
-            othersSpecific: e.target.value,
-          });
-        }}
-        mb={5}
-        borderColor={"gray"}
-      />
+      <Box display={qualification.qualification != "Others" ? "none" : "block"}>
+        <FormLabel>If you chosed others, please specify here:</FormLabel>
+        <Input
+          value={qualification.othersSpecific}
+          onChange={(e) => {
+            setQualification({
+              ...qualification,
+              othersSpecific: e.target.value,
+            });
+          }}
+          mb={5}
+          borderColor={"gray"}
+        />
+      </Box>
 
       <FormLabel>
+        <Text as="span" color="red">
+          *
+        </Text>{" "}
         Upload Highest Certificate ( PDF or image( jpg, jpeg, png ) )
       </FormLabel>
       <Input
@@ -123,7 +133,6 @@ const Qualification = ({ qualification, setQualification }) => {
         {selectedFile && (
           <>
             <Heading mb={5} fontSize={"1.1rem"}>
-              {" "}
               Preview
             </Heading>
             {selectedFile.name.includes(".pdf") === true ? (
@@ -153,6 +162,9 @@ const Qualification = ({ qualification, setQualification }) => {
       </Box>
 
       <FormLabel>
+        <Text as="span" color="red">
+          *
+        </Text>{" "}
         What is the subject (specialization) of your diploma or degree?
       </FormLabel>
       <Input

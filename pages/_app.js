@@ -1,4 +1,4 @@
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme, withDefaultProps } from "@chakra-ui/react";
 import "../styles/globals.css";
 import Layout from "../components/layout";
 import Head from "next/head";
@@ -12,7 +12,10 @@ const theme = extendTheme({
       300: "#FFFFFF",
     },
   },
+
+ 
 });
+
 
 function MyApp({ Component, pageProps }) {
   return (

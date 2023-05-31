@@ -8,15 +8,21 @@ import {
   RadioGroup,
 
   Stack,
+  Text,
 } from "@chakra-ui/react";
 
 const CivilStatus = ({civilStatus, setCivilStatus}) => {
   return (
     <Container>
-      <Heading fontFamily={'Andika'} fontSize={"1.5rem"} mb={5}>
+      <Heading fontFamily={"Andika"} fontSize={"1.5rem"} mb={5}>
         Civil Status
       </Heading>
-      <FormLabel>What is your marital status?</FormLabel>
+      <FormLabel>
+        <Text as="span" color="red">
+          *
+        </Text>{" "}
+        What is your marital status?
+      </FormLabel>
       <RadioGroup
         mb={5}
         value={civilStatus.marital}
@@ -39,7 +45,12 @@ const CivilStatus = ({civilStatus, setCivilStatus}) => {
           </Radio>
         </Stack>
       </RadioGroup>
-      <FormLabel>How many children do you have?</FormLabel>
+      <FormLabel>
+        <Text as="span" color="red">
+          *
+        </Text>{" "}
+        How many children do you have?
+      </FormLabel>
       <Input
         value={civilStatus.numOfChildren}
         onChange={(e) => {
@@ -50,6 +61,7 @@ const CivilStatus = ({civilStatus, setCivilStatus}) => {
         }}
         mb={5}
         borderColor={"gray"}
+        type="number"
       />
       <FormLabel>What are their ages? (age limit is between 0 - 17)</FormLabel>
       <Input
@@ -64,8 +76,12 @@ const CivilStatus = ({civilStatus, setCivilStatus}) => {
         mb={5}
         borderColor={"gray"}
       />
-       
-      <FormLabel>Do you intend to bring your family to the UK?</FormLabel>{" "}
+      <FormLabel>
+        <Text as="span" color="red">
+          *
+        </Text>{" "}
+        Do you intend to bring your family to the UK?
+      </FormLabel>{" "}
       <RadioGroup
         mb={5}
         value={civilStatus.bringingThem}
@@ -123,7 +139,6 @@ const CivilStatus = ({civilStatus, setCivilStatus}) => {
           </Radio>
         </Stack>
       </RadioGroup>
-    
     </Container>
   );
 };

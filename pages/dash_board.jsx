@@ -30,7 +30,9 @@ const Dash_board = (props) => {
           Names of Candidates
         </Heading>
         <Heading fontFamily={"Andika"} fontSize={"1.1rem"} mb={5}>
-          Click on a candidate to view more information.
+          {
+            results.length === 0 ? "Sorry, no one has registered yet" : "Click on a candidate to view more information."
+         } 
         </Heading>
         <VStack align={"left"} gap={3}>
           {results.map((candit) => {

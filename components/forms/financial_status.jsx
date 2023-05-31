@@ -3,7 +3,7 @@ import { Container, FormLabel, Heading, Input, Text } from "@chakra-ui/react";
 const FinancialStatus = ({financialStatus, setFinancialStatus, updateFormData}) => {
   return (
     <Container>
-      <Heading fontSize={"1.5rem"} mb={5} fontFamily={'Andika'}>
+      <Heading fontSize={"1.5rem"} mb={5} fontFamily={"Andika"}>
         Financial Readiness
       </Heading>
       <Text mb={5}>
@@ -29,7 +29,12 @@ const FinancialStatus = ({financialStatus, setFinancialStatus, updateFormData}) 
         mb={5}
         borderColor={"gray"}
       />
-      <FormLabel>Date</FormLabel>
+      <FormLabel>
+        <Text as="span" color="red">
+          *
+        </Text>{" "}
+        Date
+      </FormLabel>
       <Input
         value={financialStatus.date}
         onChange={(e) => {
