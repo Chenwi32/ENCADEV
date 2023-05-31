@@ -109,7 +109,7 @@ export default function Home() {
         <meta name="description" content="ADES-UK healthcare form" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Container boxShadow={'2xl'} bg={"brand.300"} maxW={900} borderRadius={isLargerThan700? 'xl' : 'unset'} p={isLargerThan700? 10 : 5} >
+      <Container boxShadow={'2xl'} bg={"brand.300"} maxW={900} borderRadius={isLargerThan700? 'xl' : 'unset'} p={isLargerThan700? 10 : 3} >
         <Heading color={'brand.100'} fontFamily={"Andika"} mb={5} textAlign={"center"}>
           {step === 6? "Success" : "ADES Healthcare Form"}
           
@@ -121,7 +121,7 @@ export default function Home() {
           <aside>
             <Flex
               flexDirection={isLargerThan700 ? "column" : "row"}
-              gap={5}
+              gap={isLargerThan700? 5 : 2}
               justifyContent={"space-between"}
               mb={1}
             >

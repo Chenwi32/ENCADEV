@@ -16,6 +16,8 @@ export default function Step({ step, stepNumber, children }) {
         _hover={{
           bg: ''
         }}
+
+        
       >
         {stepNumber}
       </Button>
