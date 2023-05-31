@@ -4,11 +4,16 @@ import {
   Image,
   HStack,
   Text,
-  Heading,
+
+  useMediaQuery,
 } from "@chakra-ui/react";
 import Link from "next/link";
 
 const Nav = () => {
+
+  const [isLargerThan700] = useMediaQuery("(min-width: 700px)");
+
+
   return (
     <Container
       maxW={"unset"}
@@ -25,9 +30,9 @@ const Nav = () => {
         justifyContent={"space-between"}
         alignItems={"center"}
       >
-        <HStack skewX={"50%"} gap={3} w={"50%"} color={"brand.200"}>
-          <Image src="/images/logo.png" w={"4rem"} />
-          <>ADES-Forns</>
+        <HStack w={"50%"} color={"brand.200"}>
+          <Image src="/images/logo.png" w={ isLargerThan700? "4rem" : '2.5rem'} />
+          <Text as={'span'} fontSize={isLargerThan700? 'initial' : '0.75rem'}>ADES-Forns</Text>
         </HStack>
 
         <Flex width={"60%"} justifyContent={"space-evenly"}>
