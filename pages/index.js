@@ -52,7 +52,7 @@ export default function Home() {
         date: "",
       },
     });
-  const [step, setStep] = useState(6);
+  const [step, setStep] = useState(1);
 
   const updateFormData = (data) => {
     if (step == 1) {
