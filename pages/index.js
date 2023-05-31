@@ -2,7 +2,7 @@ import Head from "next/head";
 import Step from "../components/step";
 import { useState } from "react";
 import Form from "../components/forms/form";
-import { Container, Flex, Heading, Text, Toast, useMediaQuery } from "@chakra-ui/react";
+import { Container, Flex, Heading, Text, useMediaQuery } from "@chakra-ui/react";
 import { db } from "../firebase";
 import { doc, setDoc } from "firebase/firestore";
 import axios from "axios";

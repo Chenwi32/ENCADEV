@@ -2,6 +2,7 @@ import { Box, Container, Heading, Text, VStack, useMediaQuery } from "@chakra-ui
 import { collection, getDocs, query } from "firebase/firestore";
 import { db } from "../firebase";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const Dash_board = (props) => {
     const [isLargerThan700] = useMediaQuery("(min-width: 700px)");
@@ -10,18 +11,35 @@ const Dash_board = (props) => {
 
     const {results} = props
 
-    return (
-      <Container bg={'brand.300'}  p={isLargerThan700? 10 : 5} borderRadius={isLargerThan700? 'xl' : 'none'}>
-        <Heading fontFamily={'Andika'} mb={5}>Names of Candidates</Heading>
-        <Heading fontFamily={'Andika'} fontSize={'1.1rem'} mb={5}>Click on a candidate to view more information.</Heading>
+  return (
+    <>
+      <Head>
+        <title>ADES-UK Healthcare Candidates</title>
+        <meta
+          name="description"
+          content="ADES-UK healthcare List of candidates"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Container
+        bg={"brand.300"}
+        p={isLargerThan700 ? 10 : 5}
+        borderRadius={isLargerThan700 ? "xl" : "none"}
+      >
+        <Heading fontFamily={"Andika"} mb={5}>
+          Names of Candidates
+        </Heading>
+        <Heading fontFamily={"Andika"} fontSize={"1.1rem"} mb={5}>
+          Click on a candidate to view more information.
+        </Heading>
         <VStack align={"left"} gap={3}>
           {results.map((candit) => {
             return (
               <Text
                 borderRadius={"lg"}
-                border={'2px'}
-                borderColor={'brand.200'}
-                boxShadow={'xl'}
+                border={"2px"}
+                borderColor={"brand.200"}
+                boxShadow={"xl"}
                 fontWeight={800}
                 p={2}
                 pl={5}
@@ -39,7 +57,8 @@ const Dash_board = (props) => {
           })}
         </VStack>
       </Container>
-    );
+    </>
+  );
 }
 
 
