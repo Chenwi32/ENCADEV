@@ -59,7 +59,7 @@ const Login = () => {
           alignItems={"center"}
           m={"auto"}
           gap={3}
-          w={"50%"}
+          w={isLargerThan700? "50%" : '100%'}
           justifyContent={"center"}
           mb={10}
         >
