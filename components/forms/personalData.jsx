@@ -1,13 +1,5 @@
-import {
-  Box,
-  Flex,
-  FormLabel,
-  Heading,
-  Input,
-  Select,
-  Text,
-} from "@chakra-ui/react";
-import { useState } from "react";
+import { Box, Flex, Heading, Input, Select, Text } from "@chakra-ui/react";
+
 
 const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
   const getError = (validator) => {
@@ -21,10 +13,8 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
       );
   };
 
-  
-
   return (
-    <Box >
+    <Box>
       <Heading fontFamily={"Andika"} fontSize={"1.5rem"} mb={5}>
         Personal info
       </Heading>
@@ -112,7 +102,9 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
           mb={5}
           id="phoneNumber"
           name="phoneNumber"
+          aria-autocomplete="tel"
         />
+        
       </label>
       <Heading fontSize={"1.2rem"} mb={5}>
         Adress

@@ -102,7 +102,7 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
           <Text as="span" color="red">
             *
           </Text>
-          )
+          ) are mandatory.
         </Text>
         {step === 1 && (
           <ScaleFade initialScale={0.9} in={onToggle}>
@@ -115,12 +115,8 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
         )}
 
         {step === 2 && (
-          <ScaleFade
-            
-            initialScale={0.9}
-            in={onToggle}
-          >
-            <Qualification 
+          <ScaleFade initialScale={0.9} in={onToggle}>
+            <Qualification
               qualification={qualification}
               setQualification={setQualification}
             />
