@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, Input, Select, Text } from "@chakra-ui/react";
-
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 
 const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
   const getError = (validator) => {
@@ -29,10 +30,9 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
             </Text>{" "}
             Name (please avoid unnecessary blank spaces)
           </Text>
-          
         </Flex>
         <Input
-          borderColor={ "gray"}
+          borderColor={"gray"}
           type="text"
           value={personalInfo.name}
           onChange={(e) => {
@@ -82,26 +82,20 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
               <Text as="span" color="red">
                 *
               </Text>{" "}
-              Phone Number (please make sure to include the country code, e.g +237)
+              Phone Number (please make sure to include the country code)
             </Text>
             {getError(validForm.hasValidPhoneNumber)}
           </Flex>
         </div>
-        <Input
-          borderColor={!validForm.hasValidPhoneNumber ? "red" : "gray"}
-          type="tel"
-          placeholder="e.g. +236776567890"
+
+        <PhoneInput
+       name="phoneNumber"
+          defaultCountry="CM"
+          placeholder="e.g +23773767784"
           value={personalInfo.phoneNumber}
-          onChange={(e) => {
-            setPersonalInfo({
-              ...personalInfo,
-              phoneNumber: e.target.value,
-            });
-          }}
-          mb={5}
-          id="phoneNumber"
-          name="phoneNumber"
-          aria-autocomplete="tel"
+          onChange={(value) =>
+            setPersonalInfo({ ...personalInfo, phoneNumber: value })
+          }
         />
       </label>
       <Heading fontSize={"1.2rem"} mb={5}>

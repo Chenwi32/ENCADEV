@@ -24,3 +24,17 @@ a {
     background: rgb(33, 122, 163);
   }
 }
+
+.PhoneInput {
+  margin-bottom: 1rem;
+}
+
+.PhoneInputInput {
+  border: 1px solid gray;
+  padding: 0.4rem 1rem;
+  border-radius: 5px;
+}
+.PhoneInputInput:focus {
+  outline: none;
+  border: 2px solid #0282bf;
+}

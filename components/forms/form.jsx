@@ -148,6 +148,9 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
           <Button
             type="button"
             bg={"brand.200"}
+            _hover={{
+              bg: ''
+            }}
             color={"brand.300"}
             onClick={handleGoBack}
             isDisabled={step <= 1}
