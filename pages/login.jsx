@@ -17,6 +17,7 @@ import Announcement from "../components/Announcement";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 const Login = () => {
   const [isLargerThan700] = useMediaQuery("(min-width: 700px)");
@@ -59,7 +60,7 @@ const Login = () => {
           alignItems={"center"}
           m={"auto"}
           gap={3}
-          w={isLargerThan700? "50%" : '100%'}
+          w={isLargerThan700 ? "50%" : "100%"}
           justifyContent={"center"}
           mb={10}
         >
@@ -81,7 +82,12 @@ const Login = () => {
         )}
         <FormProvider {...methods}>
           <form action="" onSubmit={handleSubmit(onSubmit)}>
-            <Flex flexDirection={"column"} w={"100%"} alignItems={"center"} justifyContent={"center"} >
+            <Flex
+              flexDirection={"column"}
+              w={"100%"}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
               <Flex flexDirection={"column"} alignItems={"flex-start"} mb={5}>
                 <Text color="brand.600">Email:</Text>
                 <Input
@@ -94,7 +100,7 @@ const Login = () => {
                   type="email"
                   value={email}
                   required
-                  border={'1px'}
+                  border={"1px"}
                 />
 
                 {errors.email && (
@@ -104,7 +110,7 @@ const Login = () => {
                 )}
               </Flex>
 
-              <Flex flexDirection={"column"} alignItems={"flex-start"} mb={10}>
+              <Flex flexDirection={"column"} alignItems={"flex-start"} mb={5}>
                 <Text color="brand.600">Password:</Text>
 
                 <Flex gap={0} p={0} h="fit-content">
@@ -120,7 +126,7 @@ const Login = () => {
                     placeholder="Password"
                     className={`main_input `}
                     required
-                    border={'1px'}
+                    border={"1px"}
                   />
 
                   <Flex
@@ -152,6 +158,10 @@ const Login = () => {
                     <small>{errors.password.message}</small>{" "}
                   </Text>
                 )}
+
+                <Text mt={2} textAlign={"left"} w={"100%"} color={"brand.100"}>
+                  <Link href={"/resetPassword"}>Forgot Password</Link>
+                </Text>
               </Flex>
 
               <Button
