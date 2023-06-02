@@ -4,6 +4,7 @@ import Layout from "../components/layout";
 import Head from "next/head";
 import { AuthContextProvider } from "../components/authcontprov";
 
+
 const theme = extendTheme({
   colors: {
     brand: {
@@ -39,7 +40,8 @@ function MyApp({ Component, pageProps }) {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Andika:ital@0;1&family=Montserrat:wght@200&family=Poppins:wght@200;300&family=Roboto:wght@300&display=swap"
         />
-      </Head>
+        </Head>
+        
       <ChakraProvider theme={theme}>
         <Layout>
           <Component {...pageProps} />

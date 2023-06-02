@@ -27,13 +27,12 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
             <Text as="span" color="red">
               *
             </Text>{" "}
-            Name
+            Name (please avoid unnecessary blank spaces)
           </Text>
-          {getError(validForm.hasValidName)}
-          {console.log(validForm.hasValidName)}
+          
         </Flex>
         <Input
-          borderColor={!validForm.hasValidName ? "red" : "gray"}
+          borderColor={ "gray"}
           type="text"
           value={personalInfo.name}
           onChange={(e) => {
@@ -83,7 +82,7 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
               <Text as="span" color="red">
                 *
               </Text>{" "}
-              Phone Number
+              Phone Number (please make sure to include the country code, e.g +237)
             </Text>
             {getError(validForm.hasValidPhoneNumber)}
           </Flex>
@@ -104,7 +103,6 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
           name="phoneNumber"
           aria-autocomplete="tel"
         />
-        
       </label>
       <Heading fontSize={"1.2rem"} mb={5}>
         Adress

@@ -19,7 +19,7 @@ import Qualification from "./qualification";
 import FinancialStatus from "./financial_status";
 import Success from "./success";
 import Confirm from "../confirm";
-import axios from "axios";
+
 
 const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
   const { isOpen, onToggle } = useDisclosure();
@@ -42,7 +42,6 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
   });
 
   const [validForm, setValidForm] = useState({
-    hasValidName: true,
     hasValidEmailAddress: true,
     hasValidPhoneNumber: true,
   });
@@ -50,20 +49,18 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
   let hasValidPhoneNumber = phoneNumberRegex.test(personalInfo.phoneNumber);
 
   const formValidation = (e) => {
-    let hasValidName = nameRegex.test(personalInfo.name);
 
     let hasValidEmailAddress = emailRegex.test(personalInfo.email);
 
-    if (personalInfo.name === "") hasValidName = undefined;
+    
     if (personalInfo.email === "") hasValidEmailAddress = undefined;
     if (personalInfo.phoneNumber === "") hasValidPhoneNumber = undefined;
     setValidForm({
-      hasValidName,
       hasValidEmailAddress,
       hasValidPhoneNumber,
     });
     if (
-      [hasValidName, hasValidEmailAddress, hasValidPhoneNumber].every(
+      [ hasValidEmailAddress, hasValidPhoneNumber].every(
         (value) => value === true
       )
     ) {
