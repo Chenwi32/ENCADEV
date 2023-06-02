@@ -11,9 +11,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Announcement from "../components/Announcement";
+import { useRouter } from "next/router";
 
 const ResetPassword = () => {
-  const [email, setEmail] = useState("");
+    const [email, setEmail] = useState("");
+    const router = useRouter()
 
   const methods = useForm({ mode: "onBlur" });
 
@@ -27,7 +29,9 @@ const ResetPassword = () => {
 
   const submit = async () => {
     try {
-      await sendPasswordResetEmail(auth, email).then(() => {});
+        await sendPasswordResetEmail(auth, email).then(() => {
+          router.push("/reset_pswd_redirect");
+      });
     } catch (error) {
       setErrorMessage(error.message);
     }
