@@ -8,11 +8,13 @@ const FinancialStatus = ({financialStatus, setFinancialStatus, updateFormData}) 
       </Heading>
       <Text mb={5}>
         Please confirm that you have the financial ability to pay for the
-        service package that you are interested in. We do not offer
-        scholarships, and we do not have the possibility of bringing you to the
-        UK to pay us later. By submitting this form, you are agreeing to the
-        service fees outlined above and giving us permission to contact you for
-        follow-up.
+        service package, which ranges from Evaluation, Training, Certification,
+        and Recruitment to work in the UK. We do not offer scholarships, and we
+        do not have the possibility of bringing you to the UK to pay us later.
+        By submitting this form, you are giving us permission to contact you for
+        follow-up and agreeing to the service fees, as outlined above, for your
+        application assessment, training, and recruitment for healthcare and
+        Care Assistant roles with ADES-HealthCare in the UK.
       </Text>
 
       <FormLabel>

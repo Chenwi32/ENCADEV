@@ -38,14 +38,16 @@ const Success = () => {
           you within 48 hours to let you know the next step. Hang in there!!
         </Text>
 
-        <Text fontSize={"1rem"}>
-          Go back to{" "}
+        <Text fontSize={"1rem"} mb={5}>
+          Application Done, Return to {" "}
           <Text as={"span"} color={"brand.100"}>
             <Link href={"https://www.adaptive-elearn.com/"}>
-              ADES home page &#x27A1;{" "}
+              Home Page &#x27A1;
             </Link>
           </Text>
-          . <br />
+          
+        </Text>
+        <Text>
           If you want to stay on the form, just refresh the page.
         </Text>
       </article>
