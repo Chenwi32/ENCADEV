@@ -25,6 +25,15 @@ a {
   }
 }
 
+/* Active menue item */
+.active{
+  color: #0282BF;
+  background-color: #FFFFFF;
+  padding: 0.5rem 1rem;
+  border-radius: 7px;
+}
+
+/* Phone country code picker styles */
 .PhoneInput {
   margin-bottom: 1rem;
 }

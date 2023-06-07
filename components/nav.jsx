@@ -4,15 +4,19 @@ import {
   Image,
   HStack,
   Text,
-
   useMediaQuery,
 } from "@chakra-ui/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
+
+const menuItemText = ["Healthcare", "Solar Training"];
 
 const Nav = () => {
-
   const [isLargerThan700] = useMediaQuery("(min-width: 700px)");
+  const [menuItem, setMenuItem] = useState(0);
 
+  const router = useRouter();
 
   return (
     <Container
@@ -30,13 +34,34 @@ const Nav = () => {
         justifyContent={"space-between"}
         alignItems={"center"}
       >
-        <HStack w={"50%"} color={"brand.200"}>
-          <Image src="/images/logo.png" w={ isLargerThan700? "4rem" : '2.5rem'} />
-          <Text as={'span'} fontSize={isLargerThan700? 'initial' : '0.75rem'}>ADES-Forns</Text>
-        </HStack>
-
-        <Flex width={"60%"} justifyContent={"space-evenly"}>
-          <Link href={"/"}>Healthcare</Link>
+        <Link href={"/"}>
+          {" "}
+          <HStack w={"100%"} color={"brand.200"}>
+            <Image
+              src="/images/logo.png"
+              w={isLargerThan700 ? "4rem" : "2.5rem"}
+            />
+            <Text
+              as={"span"}
+              fontSize={isLargerThan700 ? "initial" : "0.75rem"}
+            >
+              ADES-Forns
+            </Text>
+          </HStack>{" "}
+        </Link>
+        <Flex width={"60%"} gap={5} justifyContent={"flex-end"} alignItems={'center'}>
+          <Link
+            href="/healthcare"
+            className={router.pathname == "/healthcare" ? "active" : ""}
+          >
+            Healthcare
+          </Link>
+          <Link
+            href="/solar_training"
+            className={router.pathname == "/solar_training" ? "active" : ""}
+          >
+            Healthcare
+          </Link>
         </Flex>
       </Flex>
     </Container>

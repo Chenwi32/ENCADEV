@@ -1,27 +1,12 @@
+import { Button, Container, Flex, ScaleFade, Text, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
+import { emailRegex, phoneNumberRegex } from "../../constants/regexConstants";
 import PersonalData from "./personalData";
-import {
-  Button,
-  Container,
-  Flex,
-  Heading,
-  ScaleFade,
-  Text,
-  useDisclosure,
-} from "@chakra-ui/react";
-import CivilStatus from "./civil_satus";
-import {
-  emailRegex,
-  nameRegex,
-  phoneNumberRegex,
-} from "../../constants/regexConstants";
-import Qualification from "./qualification";
-import FinancialStatus from "./financial_status";
-import Success from "./success";
 import Confirm from "../confirm";
+import Success from "./success";
+import Qualification from "./qualification";
 
-
-const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
+const SolarForm = ({ step, setStep, formData, updateFormData, sendData }) => {
   const { isOpen, onToggle } = useDisclosure();
 
   // Handle Data
@@ -49,10 +34,8 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
   let hasValidPhoneNumber = phoneNumberRegex.test(personalInfo.phoneNumber);
 
   const formValidation = (e) => {
-
     let hasValidEmailAddress = emailRegex.test(personalInfo.email);
 
-    
     if (personalInfo.email === "") hasValidEmailAddress = undefined;
     if (personalInfo.phoneNumber === "") hasValidPhoneNumber = undefined;
     setValidForm({
@@ -60,19 +43,19 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
       hasValidPhoneNumber,
     });
     if (
-      [ hasValidEmailAddress, hasValidPhoneNumber].every(
+      [hasValidEmailAddress, hasValidPhoneNumber].every(
         (value) => value === true
       )
     ) {
       if (step === 1) {
         updateFormData(personalInfo);
-      } else if (step === 2) {
+      } /* else if (step === 2) {
         updateFormData(qualification);
       } else if (step === 3) {
         updateFormData(civilStatus);
       } else if (step === 4) {
         updateFormData(financialStatus);
-      } /*else if (step === 5) {
+      } else if (step === 5) {
         
          sendData(); 
       }*/
@@ -116,30 +99,12 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
             <Qualification
               qualification={qualification}
               setQualification={setQualification}
-              component={'healthcare'}
+              component={"solartraining"}
             />
           </ScaleFade>
         )}
 
         {step === 3 && (
-          <ScaleFade initialScale={0.9} in={onToggle}>
-            <CivilStatus
-              civilStatus={civilStatus}
-              setCivilStatus={setCivilStatus}
-            />
-          </ScaleFade>
-        )}
-        {step === 4 && (
-          <ScaleFade initialScale={0.9} in={onToggle}>
-            <FinancialStatus
-              financialStatus={financialStatus}
-              setFinancialStatus={setFinancialStatus}
-              updateFormData={updateFormData}
-            />
-          </ScaleFade>
-        )}
-
-        {step === 5 && (
           <ScaleFade initialScale={0.9} in={onToggle}>
             <Confirm formData={formData} />
           </ScaleFade>
@@ -150,7 +115,7 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
             type="button"
             bg={"brand.200"}
             _hover={{
-              bg: ''
+              bg: "",
             }}
             color={"brand.300"}
             onClick={handleGoBack}
@@ -192,4 +157,4 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
   else return <Success />;
 };
 
-export default Form;
+export default SolarForm;
