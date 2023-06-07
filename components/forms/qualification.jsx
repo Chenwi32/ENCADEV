@@ -263,9 +263,60 @@ const Qualification = ({ qualification, setQualification, component }) => {
       ) : component === "solartraining" ? (
         <>
           <Text mb={5}>
-            Having good knowledge in electricity
+            Having good a knowledge in electricity or electronics is a great
+            advantage
           </Text>
-          <Input />
+
+          <FormLabel>What is your highest level of education?</FormLabel>
+          <Input
+            value={qualification.highestQual}
+            onChange={(e) => {
+              setQualification({
+                ...qualification,
+                highestQual: e.target.value,
+              });
+            }}
+            mb={5}
+            borderColor={"gray"}
+          />
+
+          <FormLabel>
+            Do you have any knowledge in electricity, electronics or any related
+            fields?
+          </FormLabel>
+          <RadioGroup
+            value={qualification.elecKnowledge}
+            onChange={(e) => {
+              setQualification({ ...qualification, elecKnowledge: e });
+            }}
+            mb={5}
+          >
+            <Stack direction="row">
+              <Radio borderColor={"gray.400"} value="Yes">
+                Yes
+              </Radio>
+              <Radio borderColor={"gray.400"} value="No">
+                No
+              </Radio>
+            </Stack>
+          </RadioGroup>
+
+          <Box
+            display={qualification.elecKnowledge != "Yes" ? "none" : "block"}
+          >
+            <FormLabel>What is your highest qualification obtained?</FormLabel>
+            <Input
+              value={qualification.highestQual}
+              onChange={(e) => {
+                setQualification({
+                  ...qualification,
+                  highestQual: e.target.value,
+                });
+              }}
+              mb={5}
+              borderColor={"gray"}
+            />
+          </Box>
         </>
       ) : (
         <></>

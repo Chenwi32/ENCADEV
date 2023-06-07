@@ -4,7 +4,6 @@ import { doc } from "firebase/firestore";
 import { useState } from "react";
 import { db } from "../firebase";
 import Head from "next/head";
-import Form from "../components/forms/form";
 import Step from "../components/step";
 import SolarForm from "../components/forms/solarForm";
 
@@ -28,7 +27,10 @@ const SolarTraining = () => {
         province: "",
         city: "",
       },
-     
+      qualification: {
+        elecKnowledge: "",
+        highestQual: "",
+      },
     });
     const [step, setStep] = useState(1);
 

@@ -18,9 +18,6 @@ const SolarForm = ({ step, setStep, formData, updateFormData, sendData }) => {
     ...formData.qualification,
   });
 
-  const [civilStatus, setCivilStatus] = useState({
-    ...formData.civilStatus,
-  });
 
   const [financialStatus, setFinancialStatus] = useState({
     ...formData.financialStatus,
