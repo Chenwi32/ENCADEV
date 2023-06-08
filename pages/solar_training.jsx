@@ -84,8 +84,8 @@ const SolarTraining = () => {
   return (
     <>
       <Head>
-        <title>ADES-UK Healthcare</title>
-        <meta name="description" content="ADES-UK healthcare form" />
+        <title>ADES-UK-Forms | Solar </title>
+        <meta name="description" content="ADES-UK Solar training form" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container

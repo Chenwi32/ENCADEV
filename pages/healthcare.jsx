@@ -104,7 +104,7 @@ const Healthcare = () => {
   return (
     <>
       <Head>
-        <title>ADES-UK Healthcare</title>
+        <title>ADES-UK-Foms | Healthcare</title>
         <meta name="description" content="ADES-UK healthcare form" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

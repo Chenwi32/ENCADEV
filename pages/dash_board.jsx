@@ -59,7 +59,7 @@ const Dash_board = (props) => {
     <>
       <ProtectedRoute>
         <Head>
-          <title>ADES-UK Healthcare Candidates</title>
+          <title>ADES-UK-Forms | Healthcare Candidates</title>
           <meta
             name="description"
             content="ADES-UK healthcare List of candidates"

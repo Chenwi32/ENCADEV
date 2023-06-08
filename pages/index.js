@@ -15,8 +15,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>ADES-UK Healthcare</title>
-        <meta name="description" content="ADES-UK healthcare form" />
+        <title>ADES-UK | Forms</title>
+        <meta name="description" content="ADES-UK forms" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container maxW={1000}>
