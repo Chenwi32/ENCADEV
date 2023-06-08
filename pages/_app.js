@@ -22,7 +22,7 @@ const theme = extendTheme({
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <AuthContextProvider>
+      
         <Head>
           <title>ADES-UK | Forms</title>
           <meta name="description" content="ADES-UK forms" />
@@ -44,7 +44,7 @@ function MyApp({ Component, pageProps }) {
             href="https://fonts.googleapis.com/css2?family=Andika:ital@0;1&family=Montserrat:wght@200&family=Poppins:wght@200;300&family=Roboto:wght@300&display=swap"
           />
         </Head>
-
+<AuthContextProvider>
         <ChakraProvider theme={theme}>
           <Layout>
             <Component {...pageProps} />

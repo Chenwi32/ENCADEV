@@ -13,7 +13,7 @@ export default function Home() {
   const [isLargerThan700] = useMediaQuery("(min-width: 700px)");
 
   return (
-    <div>
+    <>
       <Head>
         <title>ADES-UK | Forms</title>
         <meta name="description" content="ADES-UK forms" />
@@ -119,6 +119,6 @@ export default function Home() {
           </Link>
         </Flex>
       </Container>
-    </div>
+    </>
   );
 }
