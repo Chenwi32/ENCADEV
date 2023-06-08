@@ -3,9 +3,11 @@ import axios from "axios";
 import { doc } from "firebase/firestore";
 import { useState } from "react";
 import { db } from "../firebase";
-import Head from "next/head";
+
 import Step from "../components/step";
 import SolarForm from "../components/forms/solarForm";
+import Head from "next/head";
+
 
 const stepTitles = [
   "Personal info",

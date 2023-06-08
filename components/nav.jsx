@@ -13,13 +13,11 @@ import {
   IconButton,
   Box,
 } from "@chakra-ui/react";
-import { faBars, fas } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-
-const menuItemText = ["Healthcare", "Solar Training"];
 
 const Nav = () => {
   const [isLargerThan700] = useMediaQuery("(min-width: 700px)");
@@ -80,9 +78,19 @@ const Nav = () => {
         </Flex>
 
         <Menu>
-          <MenuButton display={isLargerThan700 ? "none" : "block"} p={1} mr={3}>
-            <FontAwesomeIcon icon={faBars} />
-          </MenuButton>
+          <MenuButton
+            color={"brand.300"}
+            p={2}
+            bg={"inherit"}
+            as={IconButton}
+            display={isLargerThan700 ? "none" : "block"}
+            icon={<FontAwesomeIcon icon={faBars} />}
+            mr={3}
+            _hover={{
+              bg: "",
+            }}
+            _active={{ bg: "brand.100.2" }}
+          />
           <MenuList color={"brand.100"} p={4}>
             <Link href="/healthcare">
               <MenuItem
@@ -91,6 +99,15 @@ const Nav = () => {
                   router.pathname === "/healthcare" ? "brand.300" : "inherit"
                 }
                 borderRadius={"lg"}
+                mb={3}
+                _hover={
+                  router.pathname === "/healthcare"
+                    ? ""
+                    : {
+                        bg: "brand.100.2",
+                        color: "brand.300",
+                      }
+                }
               >
                 Healthcare
               </MenuItem>
@@ -109,6 +126,14 @@ const Nav = () => {
                     : "inherit"
                 }
                 borderRadius={"lg"}
+                _hover={
+                  router.pathname === "/solar_training"
+                    ? ""
+                    : {
+                        bg: "brand.100.2",
+                        color: "brand.300",
+                      }
+                }
               >
                 solar Training
               </MenuItem>{" "}
