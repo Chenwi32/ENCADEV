@@ -29,16 +29,20 @@ export default function Home() {
         >
           ADES Forms
         </Heading>
-        <Flex gap={5} justifyContent={"space-evenly"}>
+        <Flex
+          gap={5}
+          flexDirection={isLargerThan700 ? "row" : "column"}
+          justifyContent={"space-evenly"}
+        >
           <Link href={"healthcare"}>
             <Flex
               boxShadow={"xl"}
               flexDirection={"column"}
               justifyContent={"space-evenly"}
               bg={"brand.300"}
-              p={"2rem"}
+              p={isLargerThan700 ? "2rem" : "1.2rem"}
               borderRadius={"lg"}
-              h={250}
+              h={isLargerThan700 ? 250 : "fit-content"}
             >
               <Heading
                 color={"brand.200"}
@@ -60,10 +64,11 @@ export default function Home() {
                 alignItems={"center"}
                 color={"brand.100"}
                 justifyContent={"space-between"}
-                w={"80%"}
+                w={isLargerThan700 ? "80%" : "100%"}
               >
                 <Text fontFamily={"Andika"}>
-                  fill and Submit your application for the ADES healthcare services
+                  fill and Submit your application for the ADES healthcare
+                  services
                 </Text>
                 <Text ml={3} fontSize={"1.5rem"}>
                   &#x27A1;
@@ -76,9 +81,9 @@ export default function Home() {
               flexDirection={"column"}
               justifyContent={"space-evenly"}
               bg={"brand.300"}
-              p={"2rem"}
+              p={isLargerThan700 ? "2rem" : "1.2rem"}
               borderRadius={"lg"}
-              h={250}
+              h={isLargerThan700 ? 250 : "fit-content"}
               boxShadow={"xl"}
             >
               <Heading
@@ -101,10 +106,10 @@ export default function Home() {
                 alignItems={"center"}
                 color={"brand.100"}
                 justifyContent={"space-between"}
-                w={"80%"}
+                w={isLargerThan700 ? "80%" : "100%"}
               >
                 <Text fontFamily={"Andika"}>
-                 Fill and Submit your application for the ADES Solar Training
+                  Fill and Submit your application for the ADES Solar Training
                 </Text>
                 <Text ml={3} fontSize={"1.5rem"}>
                   &#x27A1;

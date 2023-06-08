@@ -107,8 +107,8 @@ const SolarTraining = () => {
           <aside>
             <Flex
               flexDirection={isLargerThan700 ? "column" : "row"}
-              gap={isLargerThan700 ? 5 : 2}
-              justifyContent={"space-between"}
+              gap={isLargerThan700 ? 5 : 3}
+              
               mb={1}
             >
               {stepTitles.map((title, i) => {

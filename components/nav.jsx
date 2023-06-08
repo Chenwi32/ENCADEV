@@ -1,3 +1,4 @@
+import { HamburgerIcon } from "@chakra-ui/icons";
 import {
   Container,
   Flex,
@@ -5,7 +6,15 @@ import {
   HStack,
   Text,
   useMediaQuery,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  IconButton,
+  Box,
 } from "@chakra-ui/react";
+import { faBars, fas } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -49,7 +58,13 @@ const Nav = () => {
             </Text>
           </HStack>{" "}
         </Link>
-        <Flex width={"60%"} gap={5} justifyContent={"flex-end"} alignItems={'center'}>
+        <Flex
+          display={isLargerThan700 ? "flex" : "none"}
+          width={"60%"}
+          gap={5}
+          justifyContent={"flex-end"}
+          alignItems={"center"}
+        >
           <Link
             href="/healthcare"
             className={router.pathname == "/healthcare" ? "active" : ""}
@@ -60,9 +75,46 @@ const Nav = () => {
             href="/solar_training"
             className={router.pathname == "/solar_training" ? "active" : ""}
           >
-            Healthcare
+            solar Training
           </Link>
         </Flex>
+
+        <Menu>
+          <MenuButton display={isLargerThan700 ? "none" : "block"} p={1} mr={3}>
+            <FontAwesomeIcon icon={faBars} />
+          </MenuButton>
+          <MenuList color={"brand.100"} p={4}>
+            <Link href="/healthcare">
+              <MenuItem
+                bg={router.pathname === "/healthcare" ? "brand.100" : "inherit"}
+                color={
+                  router.pathname === "/healthcare" ? "brand.300" : "inherit"
+                }
+                borderRadius={"lg"}
+              >
+                Healthcare
+              </MenuItem>
+            </Link>
+
+            <Link href="/solar_training">
+              <MenuItem
+                bg={
+                  router.pathname === "/solar_training"
+                    ? "brand.100"
+                    : "inherit"
+                }
+                color={
+                  router.pathname === "/solar_training"
+                    ? "brand.300"
+                    : "inherit"
+                }
+                borderRadius={"lg"}
+              >
+                solar Training
+              </MenuItem>{" "}
+            </Link>
+          </MenuList>
+        </Menu>
       </Flex>
     </Container>
   );
