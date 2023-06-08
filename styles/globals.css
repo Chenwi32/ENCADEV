@@ -26,9 +26,9 @@ a {
 }
 
 /* Active menue item */
-.active{
-  color: #0282BF;
-  background-color: #FFFFFF;
+.active {
+  color: #0282bf;
+  background-color: #ffffff;
   padding: 0.5rem 1rem;
   border-radius: 7px;
 }
@@ -46,4 +46,9 @@ a {
 .PhoneInputInput:focus {
   outline: none;
   border: 2px solid #0282bf;
+}
+
+.PhoneInputCountryIcon {
+  width: 3rem !important;
+  height: 2.1rem !important;
 }
