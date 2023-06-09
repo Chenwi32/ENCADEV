@@ -31,7 +31,7 @@ const Nav = () => {
       color={"brand.300"}
       fontWeight={800}
       bg={"linear-gradient(126deg, rgba(255,255,255,1) 49%, #76c7ec 49%);"}
-      p={2}
+      p={isLargerThan700 ? 2 : 0}
       boxShadow={"lg"}
       mb={5}
     >
@@ -41,24 +41,16 @@ const Nav = () => {
         justifyContent={"space-between"}
         alignItems={"center"}
       >
-        <Link href={"/"}>
-          {" "}
-          <HStack w={"100%"} color={"brand.200"}>
-            <Image
-              src="/images/logo.png"
-              w={isLargerThan700 ? "4rem" : "2.5rem"}
-            />
-            <Text
-              as={"span"}
-              fontSize={isLargerThan700 ? "initial" : "0.75rem"}
-            >
-              ADES-Forns
-            </Text>
-          </HStack>{" "}
-        </Link>
+        {" "}
+        <Box w={"50%"} color={"brand.200"}>
+          <Link href={"https://www.adaptive-elearn.com/"}>
+            {" "}
+            <Image src="/images/logo.png" w={isLargerThan700 ? 300 : 250} />
+          </Link>
+        </Box>
         <Flex
           display={isLargerThan700 ? "flex" : "none"}
-          width={"60%"}
+          width={"fit-content"}
           gap={5}
           justifyContent={"flex-end"}
           alignItems={"center"}
@@ -76,7 +68,6 @@ const Nav = () => {
             solar Training
           </Link>
         </Flex>
-
         <Menu>
           <MenuButton
             color={"brand.300"}
