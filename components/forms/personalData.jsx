@@ -1,7 +1,7 @@
 import { Box, Flex, Heading, Input, Select, Text } from "@chakra-ui/react";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
-import { useState } from "react";
+
 
 const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
 
@@ -32,7 +32,7 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
             <Text as="span" color="red">
               *
             </Text>{" "}
-            Name (please avoid unnecessary blank spaces)
+            Name:
           </Text>
         </Flex>
         <Input
@@ -46,7 +46,7 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
             });
           }}
           mb={5}
-        /*   placeholder="e.g. John Doe" */
+         placeholder="e.g. John Doe"
           id="name"
           name="name"
           maxLength={32}
@@ -58,7 +58,7 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
             <Text as="span" color="red">
               *
             </Text>{" "}
-            Email Address
+            Email Address:
           </Text>
           {getError(validForm.hasValidEmailAddress)}
         </Flex>
@@ -86,7 +86,7 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
               <Text as="span" color="red">
                 *
               </Text>{" "}
-              Phone Number (please make sure to include the country code)
+              Phone Number:
             </Text>
             {getError(validForm.hasValidPhoneNumber)}
           </Flex>
@@ -104,7 +104,7 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
       <Heading fontSize={"1.2rem"} mb={5}>
         Adress
       </Heading>
-      <label>Country</label>
+      <label>Country:</label>
       <Select
         borderColor={"gray"}
         value={personalInfo.country}
@@ -400,7 +400,7 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
         <option value="Zambia">Zambia</option>
         <option value="Zimbabwe">Zimbabwe</option>
       </Select>
-      <label>Province/Region</label>
+      <label>Province/Region:</label>
       <Input
         borderColor={!validForm.hasValidPhoneNumber ? "red" : "gray"}
         value={personalInfo.province}
@@ -413,7 +413,7 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
         mb={5}
         placeholder="e.g North West"
       />
-      <label>City/Town</label>
+      <label>City/Town:</label>
       <Input
         borderColor={!validForm.hasValidPhoneNumber ? "red" : "gray"}
         mb={5}
