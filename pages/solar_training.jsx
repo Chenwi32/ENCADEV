@@ -1,4 +1,4 @@
-import { Container, Flex, Heading, Text, useMediaQuery } from "@chakra-ui/react";
+import { Container, Flex, Heading, Text, useMediaQuery, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { doc } from "firebase/firestore";
 import { useEffect, useState } from "react";
@@ -17,7 +17,7 @@ const stepTitles = [
   
 const SolarTraining = () => {
   
-  
+   const toast = useToast();
 
     const [isLargerThan700] = useMediaQuery("(min-width: 700px)");
 
@@ -93,7 +93,7 @@ const SolarTraining = () => {
       console.log(data);
       setFormData(data);
     }
-  }, [])
+  }, [formData])
   
   const handleLocalSave = () => {
   if (typeof window !== "undefined" && window.localStorage) {
@@ -102,6 +102,14 @@ const SolarTraining = () => {
     const data = JSON.parse(localStorage.getItem("formData"));
 
     setFormData(data)
+
+    toast({
+      title: "Account created.",
+      description: "We've created your account for you.",
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
   }
   }
 
