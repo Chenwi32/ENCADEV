@@ -1,8 +1,12 @@
 import { Box, Flex, Heading, Input, Select, Text } from "@chakra-ui/react";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
+import { useState } from "react";
 
 const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
+
+
+
   const getError = (validator) => {
     if (!validator)
       return (
@@ -42,7 +46,7 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
             });
           }}
           mb={5}
-          placeholder="e.g. John Doe"
+        /*   placeholder="e.g. John Doe" */
           id="name"
           name="name"
           maxLength={32}
@@ -87,9 +91,8 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
             {getError(validForm.hasValidPhoneNumber)}
           </Flex>
         </div>
-
         <PhoneInput
-       name="phoneNumber"
+          name="phoneNumber"
           defaultCountry="CM"
           placeholder="e.g +23773767784"
           value={personalInfo.phoneNumber}

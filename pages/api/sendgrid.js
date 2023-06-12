@@ -22,7 +22,7 @@ async function sendEmail(req, res) {
       
         <title>The HTML5 Herald</title>
         <meta name="description" content="ADES-UK registeration">
-        <meta name="author" content="https://ades-healthcare-form.vercel.app/">
+        <meta name="author" content="https://ades-forms.vercel.app/">
       <meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
       
         <link rel="stylesheet" href="css/styles.css?v=1.0">
@@ -38,7 +38,7 @@ async function sendEmail(req, res) {
               <p>${req.body.personalInfo.name} has shown an interest in our healthcare services and is waiting for feedback.
               </p>
               <br>
-              <p>Please go to the <a href="https://ades-healthcare-form.vercel.app/dash_board">dashboard</a> and review his/her information</p>
+              <p>Please go to the <a href="https://ades-forms.vercel.app/dash_board">dashboard</a> and review his/her information</p>
               <br>
               </div>
              

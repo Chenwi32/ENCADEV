@@ -1,12 +1,28 @@
-import { Button, Container, Flex, ScaleFade, Text, useDisclosure } from "@chakra-ui/react";
-import { useState } from "react";
+import {
+  Button,
+  Container,
+  Flex,
+  ScaleFade,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
+import {  useState } from "react";
 import { emailRegex, phoneNumberRegex } from "../../constants/regexConstants";
 import PersonalData from "./personalData";
 import Confirm from "../confirm";
 import Success from "./success";
 import Qualification from "./qualification";
 
-const SolarForm = ({ step, setStep, formData, updateFormData, sendData }) => {
+const SolarForm = ({
+  step,
+  setStep,
+
+  formData,
+  updateFormData,
+  sendData,
+  handleLocalSave,
+}) => {
+  
   const { isOpen, onToggle } = useDisclosure();
 
   // Handle Data
@@ -17,7 +33,6 @@ const SolarForm = ({ step, setStep, formData, updateFormData, sendData }) => {
   const [qualification, setQualification] = useState({
     ...formData.qualification,
   });
-
 
   const [financialStatus, setFinancialStatus] = useState({
     ...formData.financialStatus,
@@ -106,6 +121,8 @@ const SolarForm = ({ step, setStep, formData, updateFormData, sendData }) => {
             <Confirm formData={formData} />
           </ScaleFade>
         )}
+
+        <Button onClick={handleLocalSave}>Save and continue Later </Button>
 
         <Flex justifyContent={"space-between"} mt={5}>
           <Button

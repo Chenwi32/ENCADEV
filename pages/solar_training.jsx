@@ -1,7 +1,7 @@
 import { Container, Flex, Heading, Text, useMediaQuery } from "@chakra-ui/react";
 import axios from "axios";
 import { doc } from "firebase/firestore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { db } from "../firebase";
 
 import Step from "../components/step";
@@ -16,7 +16,8 @@ const stepTitles = [
 
   
 const SolarTraining = () => {
-
+  
+  
 
     const [isLargerThan700] = useMediaQuery("(min-width: 700px)");
 
@@ -34,8 +35,7 @@ const SolarTraining = () => {
         highestQual: "",
       },
     });
-    const [step, setStep] = useState(1);
-
+  const [step, setStep] = useState(3);
     const updateFormData = (data) => {
       if (step == 1) {
         setFormData({
@@ -62,6 +62,9 @@ const SolarTraining = () => {
           financialStatus: data,
         });
       }
+      
+
+      
     };
 
     const sendNotification = async (data) => {
@@ -82,6 +85,25 @@ const SolarTraining = () => {
         console.log(error);
       }
     };
+  
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.localStorage) {
+      
+      const data = JSON.parse(localStorage.getItem("formData"));
+      console.log(data);
+      setFormData(data);
+    }
+  }, [])
+  
+  const handleLocalSave = () => {
+  if (typeof window !== "undefined" && window.localStorage) {
+    localStorage.setItem("formData", JSON.stringify(formData));
+
+    const data = JSON.parse(localStorage.getItem("formData"));
+    console.log(data)
+    setFormData(data)
+  }
+  }
 
   return (
     <>
@@ -131,6 +153,8 @@ const SolarTraining = () => {
             formData={formData}
             updateFormData={updateFormData}
             sendData={sendData}
+            handleLocalSave={handleLocalSave}
+           
           />
         </Flex>
       </Container>
@@ -138,8 +162,7 @@ const SolarTraining = () => {
   );
 };
 
-
-
+ 
 
 
 export default SolarTraining;

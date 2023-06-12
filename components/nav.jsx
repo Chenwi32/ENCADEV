@@ -1,10 +1,8 @@
-import { HamburgerIcon } from "@chakra-ui/icons";
+
 import {
   Container,
   Flex,
   Image,
-  HStack,
-  Text,
   useMediaQuery,
   Menu,
   MenuButton,
@@ -17,12 +15,11 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+
 
 const Nav = () => {
   const [isLargerThan700] = useMediaQuery("(min-width: 700px)");
-  const [menuItem, setMenuItem] = useState(0);
-
+ 
   const router = useRouter();
 
   return (
