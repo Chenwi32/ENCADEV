@@ -20,25 +20,31 @@ import FinancialStatus from "./financial_status";
 import Success from "./success";
 import Confirm from "../confirm";
 
-
-const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
+const Form = ({
+  step,
+  setStep,
+  formData,
+  updateFormData,
+  sendData,
+  handleLocalSave,
+}) => {
   const { isOpen, onToggle } = useDisclosure();
 
   // Handle Data
   const [personalInfo, setPersonalInfo] = useState({
-    ...formData.personalInfo,
+    ...formData?.personalInfo,
   });
 
   const [qualification, setQualification] = useState({
-    ...formData.qualification,
+    ...formData?.qualification,
   });
 
   const [civilStatus, setCivilStatus] = useState({
-    ...formData.civilStatus,
+    ...formData?.civilStatus,
   });
 
   const [financialStatus, setFinancialStatus] = useState({
-    ...formData.financialStatus,
+    ...formData?.financialStatus,
   });
 
   const [validForm, setValidForm] = useState({
@@ -46,13 +52,11 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
     hasValidPhoneNumber: true,
   });
 
-  let hasValidPhoneNumber = phoneNumberRegex.test(personalInfo.phoneNumber);
+  let hasValidPhoneNumber = phoneNumberRegex.test(personalInfo?.phoneNumber);
 
   const formValidation = (e) => {
+    let hasValidEmailAddress = emailRegex.test(personalInfo?.email);
 
-    let hasValidEmailAddress = emailRegex.test(personalInfo.email);
-
-    
     if (personalInfo.email === "") hasValidEmailAddress = undefined;
     if (personalInfo.phoneNumber === "") hasValidPhoneNumber = undefined;
     setValidForm({
@@ -60,7 +64,7 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
       hasValidPhoneNumber,
     });
     if (
-      [ hasValidEmailAddress, hasValidPhoneNumber].every(
+      [hasValidEmailAddress, hasValidPhoneNumber].every(
         (value) => value === true
       )
     ) {
@@ -116,7 +120,8 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
             <Qualification
               qualification={qualification}
               setQualification={setQualification}
-              component={'healthcare'}
+              component={"healthcare"}
+              handleLocalSave={handleLocalSave}
             />
           </ScaleFade>
         )}
@@ -150,7 +155,7 @@ const Form = ({ step, setStep, formData, updateFormData, sendData }) => {
             type="button"
             bg={"brand.200"}
             _hover={{
-              bg: ''
+              bg: "",
             }}
             color={"brand.300"}
             onClick={handleGoBack}

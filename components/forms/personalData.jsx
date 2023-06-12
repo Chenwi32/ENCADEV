@@ -1,10 +1,15 @@
-import { Box, Flex, Heading, Input, Select, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, HStack, Heading, Input, Select, Text } from "@chakra-ui/react";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
+import { useEffect } from "react";
 
-
-const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
-
+const PersonalData = ({
+  personalInfo,
+  setPersonalInfo,
+  validForm,
+  formData,
+  handleLocalSave
+}) => {
 
 
   const getError = (validator) => {
@@ -38,7 +43,7 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
         <Input
           borderColor={"gray"}
           type="text"
-          value={personalInfo.name}
+          value={personalInfo?.name}
           onChange={(e) => {
             setPersonalInfo({
               ...personalInfo,
@@ -46,7 +51,7 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
             });
           }}
           mb={5}
-         placeholder="e.g. John Doe"
+          placeholder="e.g. John Doe"
           id="name"
           name="name"
           maxLength={32}
@@ -65,7 +70,7 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
         <Input
           borderColor={!validForm.hasValidEmailAddress ? "red" : "gray"}
           type="email"
-          value={personalInfo.email}
+          value={personalInfo?.email}
           onChange={(e) => {
             setPersonalInfo({
               ...personalInfo,
@@ -95,7 +100,7 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
           name="phoneNumber"
           defaultCountry="CM"
           placeholder="e.g +23773767784"
-          value={personalInfo.phoneNumber}
+          value={!personalInfo? '' : personalInfo.phoneNumber}
           onChange={(value) =>
             setPersonalInfo({ ...personalInfo, phoneNumber: value })
           }
@@ -107,7 +112,7 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
       <label>Country:</label>
       <Select
         borderColor={"gray"}
-        value={personalInfo.country}
+        value={personalInfo?.country}
         onChange={(e) => {
           setPersonalInfo({
             ...personalInfo,
@@ -403,7 +408,7 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
       <label>Province/Region:</label>
       <Input
         borderColor={!validForm.hasValidPhoneNumber ? "red" : "gray"}
-        value={personalInfo.province}
+        value={personalInfo?.province}
         onChange={(e) => {
           setPersonalInfo({
             ...personalInfo,
@@ -417,7 +422,7 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
       <Input
         borderColor={!validForm.hasValidPhoneNumber ? "red" : "gray"}
         mb={5}
-        value={personalInfo.city}
+        value={personalInfo?.city}
         onChange={(e) => {
           setPersonalInfo({
             ...personalInfo,
@@ -426,6 +431,8 @@ const PersonalData = ({ personalInfo, setPersonalInfo, validForm }) => {
         }}
         placeholder="e.g Douala"
       />
+
+     
     </Box>
   );
 };

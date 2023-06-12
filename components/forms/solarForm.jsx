@@ -61,6 +61,10 @@ const SolarForm = ({
     ) {
       if (step === 1) {
         updateFormData(personalInfo);
+        /* if (typeof window !== "undefined" && window.localStorage) {
+         const data = JSON.parse(localStorage.setItem("formData"));
+         
+       } */
       } /* else if (step === 2) {
         updateFormData(qualification);
       } else if (step === 3) {
@@ -72,6 +76,8 @@ const SolarForm = ({
          sendData(); 
       }*/
       setStep((s) => s + 1);
+
+       
     }
   };
 
@@ -102,6 +108,7 @@ const SolarForm = ({
               personalInfo={personalInfo}
               setPersonalInfo={setPersonalInfo}
               validForm={validForm}
+              formData={formData}
             />
           </ScaleFade>
         )}
@@ -122,7 +129,7 @@ const SolarForm = ({
           </ScaleFade>
         )}
 
-        <Button onClick={handleLocalSave}>Save and continue Later </Button>
+       {/*  <Button onClick={handleLocalSave}>Save and continue Later </Button> */}
 
         <Flex justifyContent={"space-between"} mt={5}>
           <Button

@@ -1,7 +1,7 @@
 import { Container, Flex, Heading, Text, useMediaQuery } from "@chakra-ui/react";
 import axios from "axios";
 import { doc, setDoc } from "firebase/firestore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import Head from "next/head";
 import Step from "../components/step";
@@ -101,6 +101,24 @@ const Healthcare = () => {
     }
   };
 
+  const handleLocalSave = () => {
+    if (typeof window !== "undefined" && window.localStorage) {
+      localStorage.setItem("healthFormData", JSON.stringify(formData));
+
+      const data = JSON.parse(localStorage.getItem("healthFormData"));
+
+      setFormData(data);
+    }
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.localStorage) {
+      const data = JSON.parse(localStorage.getItem("healthFormData"));
+      console.log(data);
+      setFormData(data);
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -149,6 +167,7 @@ const Healthcare = () => {
             formData={formData}
             updateFormData={updateFormData}
             sendData={sendData}
+            handleLocalSave={handleLocalSave}
           />
         </Flex>
       </Container>

@@ -35,7 +35,7 @@ const SolarTraining = () => {
         highestQual: "",
       },
     });
-  const [step, setStep] = useState(3);
+  const [step, setStep] = useState(1);
     const updateFormData = (data) => {
       if (step == 1) {
         setFormData({
@@ -100,7 +100,7 @@ const SolarTraining = () => {
     localStorage.setItem("formData", JSON.stringify(formData));
 
     const data = JSON.parse(localStorage.getItem("formData"));
-    console.log(data)
+
     setFormData(data)
   }
   }

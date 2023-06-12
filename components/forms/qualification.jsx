@@ -4,6 +4,7 @@ import {
   Checkbox,
   Container,
   FormLabel,
+  HStack,
   Heading,
   Image,
   Input,
@@ -17,7 +18,12 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useEffect, useState } from "react";
 import storage from "../../firebase";
 
-const Qualification = ({ qualification, setQualification, component }) => {
+const Qualification = ({
+  qualification,
+  setQualification,
+  component,
+  handleLocalSave,
+}) => {
   // File upload functionality
 
   const [selectedFile, setSelectedFile] = useState();
@@ -38,6 +44,17 @@ const Qualification = ({ qualification, setQualification, component }) => {
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl);
   }, [selectedFile]);
+
+  const getError = (validator) => {
+    if (!validator)
+      return (
+        <Text color={"red"}>
+          {validator === undefined
+            ? "This field is required"
+            : "Invalid format"}
+        </Text>
+      );
+  };
 
   const handleUpload = () => {
     const mountainsRef = ref(storage, "canditCertif/" + selectedFile.name);
@@ -259,6 +276,12 @@ const Qualification = ({ qualification, setQualification, component }) => {
             mb={5}
             borderColor={"gray"}
           />
+
+      {/*     <HStack>
+            <Button onClick={() => handleLocalSave()}>
+              Save and continue Later
+            </Button>
+          </HStack> */}
         </>
       ) : component === "solartraining" ? (
         <>
@@ -317,6 +340,12 @@ const Qualification = ({ qualification, setQualification, component }) => {
               borderColor={"gray"}
             />
           </Box>
+
+          {/* <HStack>
+            <Button onClick={() => handleLocalSave()}>
+              Save and continue Later
+            </Button>
+          </HStack> */}
         </>
       ) : (
         <></>
