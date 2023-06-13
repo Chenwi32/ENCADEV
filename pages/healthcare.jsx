@@ -111,14 +111,6 @@ const Healthcare = () => {
     }
   };
 
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.localStorage) {
-      const data = JSON.parse(localStorage.getItem("healthFormData"));
-      console.log(data);
-      setFormData(data);
-    }
-  }, []);
-
   return (
     <>
       <Head>

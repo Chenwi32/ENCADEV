@@ -16,7 +16,7 @@ const stepTitles = [
 
   
 const SolarTraining = () => {
-  
+
    const toast = useToast();
 
     const [isLargerThan700] = useMediaQuery("(min-width: 700px)");
@@ -86,14 +86,6 @@ const SolarTraining = () => {
       }
     };
   
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.localStorage) {
-      
-      const data = JSON.parse(localStorage.getItem("formData"));
-      console.log(data);
-      setFormData(data);
-    }
-  }, [formData])
   
   const handleLocalSave = () => {
   if (typeof window !== "undefined" && window.localStorage) {
