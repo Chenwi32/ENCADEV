@@ -37,7 +37,7 @@ const Success = () => {
         <Text mb={5}>
           Thanks for your interest in our services. We appreciate your trust.
           Our team will carefully analyse your information and will get back to
-          you within 48 hours to let you know the next step. Hang in there!!
+          you within 4 working days to let you know the next step. <br /> <strong>Hang in there!!</strong>
         </Text>
 
         <Text fontSize={"1rem"} mb={5}>

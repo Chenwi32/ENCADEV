@@ -35,7 +35,7 @@ const SolarTraining = () => {
         highestQual: "",
       },
     });
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(6);
     const updateFormData = (data) => {
       if (step == 1) {
         setFormData({
