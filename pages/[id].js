@@ -275,7 +275,7 @@ const ViewCandData = (props) => {
                   src={canData.qualification.certificate}
                   width={300}
                   height={300}
-                  alt="Uploaded Id card image"
+                  alt="Looks like there's a problem with this image."
                   mb={10}
                 />
               )}
