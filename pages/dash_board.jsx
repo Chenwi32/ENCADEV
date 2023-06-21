@@ -27,6 +27,7 @@ import { useAuth } from "../components/authcontprov";
 const Dash_board = (props) => {
   const { user, logOut } = useAuth();
 
+
   const [userName, setUserName] = useState("");
 
   const [isLargerThan700] = useMediaQuery("(min-width: 700px)");
@@ -96,7 +97,8 @@ const Dash_board = (props) => {
                 : "Click on a candidate to view more information."}
             </Heading>
             <VStack align={"left"} gap={3}>
-              {results.map((candit) => {
+              {results.map((candit, i) => {
+                const canNumber = i + 1
                 return (
                   <Text
                     borderRadius={"lg"}
@@ -114,7 +116,7 @@ const Dash_board = (props) => {
                       router.push(`/${candit.personalInfo.phoneNumber}`);
                     }}
                   >
-                    {candit.personalInfo.name}
+                  ({canNumber}) {' '} {candit.personalInfo.name}
                   </Text>
                 );
               })}

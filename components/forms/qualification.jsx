@@ -27,7 +27,9 @@ const Qualification = ({
   // File upload functionality
 
   const [selectedFile, setSelectedFile] = useState();
+  const [selectedCv, setSelectedCv] = useState();
   const [preview, setPreview] = useState("");
+  const [previewCV, setPreviewCV] = useState("");
 
   const [downloadUrl, setDownloadUrl] = useState("");
   const [uploadbtnText, setUploadBtntext] = useState("Upload");
@@ -41,9 +43,13 @@ const Qualification = ({
     const objectUrl = URL.createObjectURL(selectedFile);
     setPreview(objectUrl);
 
+    const cvUrl = URL.createObjectURL(selectedCv)
+
+    setPreviewCV(cvUrl)
+
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl);
-  }, [selectedFile]);
+  }, [selectedFile, selectedCv]);
 
   const getError = (validator) => {
     if (!validator)
@@ -277,11 +283,45 @@ const Qualification = ({
             borderColor={"gray"}
           />
 
-        {/*   <HStack>
+          {/*   <HStack>
             <Button onClick={() => handleLocalSave()}>
               Save and continue Later
             </Button>
           </HStack> */}
+
+          <FormLabel>
+            <Text as="span" color="red">
+              *
+            </Text>{" "}
+            Upload Your CV ( PDF or image( jpg, jpeg, png ) )
+          </FormLabel>
+          <Input
+            onChange={(e) => {
+              if (!e.target.files || e.target.files.length === 0) {
+                setSelectedCv(undefined);
+                return;
+              }
+
+              // Selects just one file
+
+              setSelectedCv(e.target.files[0]);
+            }}
+            mb={5}
+            border={"none"}
+            type="file"
+          />
+
+          {selectedFile?.name.includes(".pdf") === true ? (
+            <iframe src={previewCV} />
+          ) : (
+            <Image
+              src={previewCV}
+              width={300}
+              height={300}
+              alt="Uploaded Id card image"
+              mb={10}
+            />
+          )}
         </>
       ) : component === "solartraining" ? (
         <>
@@ -345,7 +385,7 @@ const Qualification = ({
             <Button onClick={() => handleLocalSave()}>
               Save and continue Later
             </Button>
-          </HStack> 
+          </HStack>
         </>
       ) : (
         <></>
