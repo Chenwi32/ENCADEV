@@ -42,9 +42,14 @@ const Qualification = ({
   const [uploadCvbtnText, setUploadCvBtntext] = useState("Upload");
 
   const {
-    isOpen,
+    isOpen: isVisible,
     onClose,
     onOpen,
+  } = useDisclosure({ defaultIsOpen: true });
+  const {
+    isOpen: isVisible2,
+    onClose: onClose2,
+    onOpen: onOpen2,
   } = useDisclosure({ defaultIsOpen: true });
 
   // create a preview as a side effect, whenever selected file is changed
@@ -186,6 +191,26 @@ const Qualification = ({
             </Text>{" "}
             Upload Highest Certificate ( PDF or image( jpg, jpeg, png ) )
           </FormLabel>
+
+          {isVisible2 ? (
+            <Alert status="warning" mb={10}>
+              <AlertIcon />
+              <Box>
+                <AlertDescription>
+                  Please don't forget to click on the upload button
+                </AlertDescription>
+              </Box>
+              <CloseButton
+                alignSelf="flex-start"
+                position="absolute"
+                right={0}
+                top={0}
+                onClick={onClose2}
+              />
+            </Alert>
+          ) : (
+            <></>
+          )}
           <Input
             onChange={(e) => {
               if (!e.target.files || e.target.files.length === 0) {
@@ -342,16 +367,6 @@ const Qualification = ({
             </Text>{" "}
             Upload Your CV ( PDF or image( jpg, jpeg, png ) )
           </FormLabel>
-          <Alert>
-            <AlertDescription></AlertDescription>
-            <CloseButton
-              alignSelf="flex-start"
-              position="relative"
-              right={-1}
-              top={-1}
-              onClick={onClose}
-            />
-          </Alert>
 
           {isVisible ? (
             <Alert status="warning" mb={10}>
@@ -363,10 +378,10 @@ const Qualification = ({
               </Box>
               <CloseButton
                 alignSelf="flex-start"
-                position="relative"
-                right={-1}
-                top={-1}
-                onClick={onClose2}
+                position="absolute"
+                right={0}
+                top={0}
+                onClick={onClose}
               />
             </Alert>
           ) : (
