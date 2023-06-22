@@ -28,6 +28,8 @@ const Healthcare = () => {
   const [formData, setFormData] = useState({
     personalInfo: {
       name: "",
+      dateOfBirth: "",
+      sex: "",
       email: "",
       phoneNumber: "",
       country: "",
@@ -58,7 +60,7 @@ const Healthcare = () => {
       date: "",
     },
   });
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
 
   const updateFormData = (data) => {
     if (step == 1) {

@@ -188,7 +188,7 @@ export const getServerSideProps = async () => {
   // Query all Id cards
   const candidateQuery = query(
     candidatescollection,
-    limit(10)
+    /* limit(10) */
   );
 
   // get id cards

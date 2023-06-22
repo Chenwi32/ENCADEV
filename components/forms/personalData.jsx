@@ -1,4 +1,4 @@
-import { Box, Button, Flex, HStack, Heading, Input, Select, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, FormLabel, HStack, Heading, Input, Select, Text } from "@chakra-ui/react";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { useEffect } from "react";
@@ -57,6 +57,41 @@ const PersonalData = ({
           maxLength={32}
         />
       </label>
+      <FormLabel>Date of birth:</FormLabel>
+      <Input
+        value={personalInfo.dateOfBirth}
+        onChange={(e) => {
+          setQualification({
+            ...personalInfo,
+            dateOfBirth: e.target.value,
+          });
+        }}
+        type={"date"}
+        mb={5}
+        borderColor={"gray"}
+      />
+
+      <FormLabel>Sex:</FormLabel>
+      <Select
+        borderColor={"gray"}
+        value={personalInfo?.sex}
+        onChange={(e) => {
+          setPersonalInfo({
+            ...personalInfo,
+            sex: e.target.value,
+          });
+        }}
+        mb={5}
+        placeholder="Select Sex"
+      >
+        <option value="Afghanistan">Male</option>
+        <option value="Aland Islands">Female</option>
+        <option value="Albania">Prefer not to disclose</option>
+      </Select>
+
+      <Heading fontSize={"1.2rem"} mb={5}>
+        Adress
+      </Heading>
       <label htmlFor="email">
         <Flex justifyContent={"space-between"}>
           <Text>
@@ -100,15 +135,12 @@ const PersonalData = ({
           name="phoneNumber"
           defaultCountry="CM"
           placeholder="e.g +23773767784"
-          value={!personalInfo? '' : personalInfo.phoneNumber}
+          value={!personalInfo ? "" : personalInfo.phoneNumber}
           onChange={(value) =>
             setPersonalInfo({ ...personalInfo, phoneNumber: value })
           }
         />
       </label>
-      <Heading fontSize={"1.2rem"} mb={5}>
-        Adress
-      </Heading>
       <label>Country:</label>
       <Select
         borderColor={"gray"}
@@ -431,8 +463,6 @@ const PersonalData = ({
         }}
         placeholder="e.g Douala"
       />
-
-     
     </Box>
   );
 };
