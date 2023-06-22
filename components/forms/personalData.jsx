@@ -485,7 +485,7 @@ const PersonalData = ({
           <RadioGroup
             value={personalInfo.move}
             onChange={(e) => {
-              setPersonalInfo({ ...qualification, move: e });
+              setPersonalInfo({ ...personalInfo, move: e });
             }}
           >
             <Stack direction="row">
