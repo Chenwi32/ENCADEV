@@ -35,6 +35,7 @@ const Healthcare = () => {
       country: "",
       province: "",
       city: "",
+      move: "",
     },
     qualification: {
       qualification: "",

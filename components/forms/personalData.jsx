@@ -1,4 +1,4 @@
-import { Box, Button, Flex, FormLabel, HStack, Heading, Input, Select, Text } from "@chakra-ui/react";
+import { Alert, AlertIcon, Box, Button, Flex, FormLabel, HStack, Heading, Input, Radio, RadioGroup, Select, Stack, Text } from "@chakra-ui/react";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { useEffect } from "react";
@@ -10,6 +10,8 @@ const PersonalData = ({
   formData,
   handleLocalSave
 }) => {
+
+  const cityChar = ["Yaounde", "Yaoundé", "*YAOUNDE"];
 
 
   const getError = (validator) => {
@@ -61,7 +63,7 @@ const PersonalData = ({
       <Input
         value={personalInfo.dateOfBirth}
         onChange={(e) => {
-          setQualification({
+          setPersonalInfo({
             ...personalInfo,
             dateOfBirth: e.target.value,
           });
@@ -92,6 +94,11 @@ const PersonalData = ({
       <Heading fontSize={"1.2rem"} mb={5}>
         Adress
       </Heading>
+
+      <Alert status="info" mb={5}>
+        {" "}
+        <AlertIcon /> Please provide your current address
+      </Alert>
       <label htmlFor="email">
         <Flex justifyContent={"space-between"}>
           <Text>
@@ -458,11 +465,40 @@ const PersonalData = ({
         onChange={(e) => {
           setPersonalInfo({
             ...personalInfo,
-            city: e.target.value,
+            city: e.target.value.toUpperCase(),
           });
         }}
         placeholder="e.g Douala"
       />
+
+      {
+        <Box
+          display={
+            personalInfo.city != "YAOUNDE" && personalInfo.city != "YAOUNDÉ" && personalInfo.city != ''
+              ? "block"
+              : "none"
+          }
+        >
+          <FormLabel>
+            Could you move to Yaounde Cameroon for the training?
+          </FormLabel>
+          <RadioGroup
+            value={personalInfo.move}
+            onChange={(e) => {
+              setPersonalInfo({ ...qualification, move: e });
+            }}
+          >
+            <Stack direction="row">
+              <Radio borderColor={"gray.400"} value="Yes">
+                Yes
+              </Radio>
+              <Radio borderColor={"gray.400"} value="No">
+                No
+              </Radio>
+            </Stack>
+          </RadioGroup>
+        </Box>
+      }
     </Box>
   );
 };
