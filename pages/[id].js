@@ -95,6 +95,30 @@ const ViewCandData = (props) => {
                     </Tr>
                     <Tr>
                       <Td border={"1px"} borderColor={"gray"}>
+                        Date of birth
+                      </Td>
+                      <Td border={"1px"} borderColor={"gray"}>
+                        {canData.personalInfo.dateOfBirth}
+                      </Td>
+                    </Tr>
+                    <Tr>
+                      <Td border={"1px"} borderColor={"gray"}>
+                        Sex
+                      </Td>
+                      <Td border={"1px"} borderColor={"gray"}>
+                        {canData.personalInfo.sex}
+                      </Td>
+                    </Tr>
+                    <Tr>
+                      <Td border={"1px"} borderColor={"gray"}>
+                        Willing to move?
+                      </Td>
+                      <Td border={"1px"} borderColor={"gray"}>
+                        {canData.personalInfo.move}
+                      </Td>
+                    </Tr>
+                    <Tr>
+                      <Td border={"1px"} borderColor={"gray"}>
                         Email
                       </Td>
                       <Td border={"1px"} borderColor={"gray"}>
@@ -267,9 +291,14 @@ const ViewCandData = (props) => {
               </TableContainer>
               <Generatepdf html={ref} candidate={canData.personalInfo.name} />
 
-              <Heading fontSize={'1.2rem'} fontFamily={'Andika'} mb={5}>Certificate</Heading>
+              <Heading fontSize={"1.2rem"} fontFamily={"Andika"} mb={5}>
+                Certificate
+              </Heading>
               {canData.qualification.certificate.includes(".pdf") === true ? (
-                <iframe className="iframe" src={canData.qualification.certificate} />
+                <iframe
+                  className="iframe"
+                  src={canData.qualification.certificate}
+                />
               ) : (
                 <Image
                   src={canData.qualification.certificate}
@@ -279,7 +308,20 @@ const ViewCandData = (props) => {
                   mb={10}
                 />
               )}
-            
+              <Heading fontSize={"1.2rem"} mt={10} fontFamily={"Andika"} mb={5}>
+                CV
+              </Heading>
+              {canData.qualification.CV?.includes(".pdf") === true ? (
+                <iframe className="iframe" src={canData.qualification.CV} />
+              ) : (
+                <Image
+                  src={canData.qualification.CV}
+                  width={300}
+                  height={300}
+                  alt="Looks like there's a problem with this image."
+                  mb={10}
+                />
+              )}
             </Box>
           );
         })}

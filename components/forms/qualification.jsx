@@ -17,6 +17,7 @@ import {
   Select,
   Stack,
   Text,
+  Textarea,
   useDisclosure,
 } from "@chakra-ui/react";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
@@ -197,7 +198,7 @@ const Qualification = ({
               <AlertIcon />
               <Box>
                 <AlertDescription>
-                  Please don't forget to click on the upload button
+                  Please don't forget to click on the upload button after selecting your certificate.
                 </AlertDescription>
               </Box>
               <CloseButton
@@ -342,8 +343,21 @@ const Qualification = ({
             </Stack>
           </RadioGroup>
 
-          <FormLabel>Briefly describe any work experience you have</FormLabel>
+          <FormLabel>What position are applying for?</FormLabel>
           <Input
+            value={qualification.position}
+            onChange={(e) => {
+              setQualification({
+                ...qualification,
+                position: e.target.value,
+              });
+            }}
+            mb={5}
+            borderColor={"gray"}
+          />
+
+          <FormLabel>Briefly describe any work experience you have</FormLabel>
+          <Textarea
             value={qualification.experience}
             onChange={(e) => {
               setQualification({
@@ -373,7 +387,7 @@ const Qualification = ({
               <AlertIcon />
               <Box>
                 <AlertDescription>
-                  Please don't forget to click on the upload button
+                  Please don't forget to click on the upload button after selecting your CV.
                 </AlertDescription>
               </Box>
               <CloseButton

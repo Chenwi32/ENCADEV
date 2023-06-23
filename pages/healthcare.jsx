@@ -47,6 +47,7 @@ const Healthcare = () => {
       date: "",
       lanOfInstruct: "",
       englishProff: "",
+      position: "",
       experience: "",
     },
     civilStatus: {

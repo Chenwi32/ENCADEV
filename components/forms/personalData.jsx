@@ -468,7 +468,7 @@ const PersonalData = ({
             city: e.target.value.toUpperCase(),
           });
         }}
-        placeholder="e.g Douala"
+        placeholder="e.g Bamenda"
       />
 
       {
