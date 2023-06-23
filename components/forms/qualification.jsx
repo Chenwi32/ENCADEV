@@ -198,7 +198,8 @@ const Qualification = ({
               <AlertIcon />
               <Box>
                 <AlertDescription>
-                  Please don't forget to click on the upload button after selecting your certificate.
+                  Please don't forget to click on the upload button after
+                  selecting your certificate.
                 </AlertDescription>
               </Box>
               <CloseButton
@@ -344,7 +345,8 @@ const Qualification = ({
           </RadioGroup>
 
           <FormLabel>What position are applying for?</FormLabel>
-          <Input
+          
+          <Select
             value={qualification.position}
             onChange={(e) => {
               setQualification({
@@ -353,8 +355,12 @@ const Qualification = ({
               });
             }}
             mb={5}
+            placeholder="Select Position"
             borderColor={"gray"}
-          />
+          >
+            <option value={"Care Assistant"}>Care Assistant</option>
+            <option value={"Healthcare Assistant"}>Healthcare Assistant</option>
+          </Select>
 
           <FormLabel>Briefly describe any work experience you have</FormLabel>
           <Textarea
@@ -387,7 +393,8 @@ const Qualification = ({
               <AlertIcon />
               <Box>
                 <AlertDescription>
-                  Please don't forget to click on the upload button after selecting your CV.
+                  Please don't forget to click on the upload button after
+                  selecting your CV.
                 </AlertDescription>
               </Box>
               <CloseButton
