@@ -52,6 +52,7 @@ const Healthcare = () => {
     },
     civilStatus: {
       marital: "",
+      children: "",
       numOfChildren: "",
       ageGroup: "",
       bringingThem: "",
