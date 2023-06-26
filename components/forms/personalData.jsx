@@ -86,9 +86,9 @@ const PersonalData = ({
         mb={5}
         placeholder="Select Sex"
       >
-        <option value="Afghanistan">Male</option>
-        <option value="Aland Islands">Female</option>
-        <option value="Albania">Prefer not to disclose</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Prefer not to disclose">Prefer not to disclose</option>
       </Select>
 
       <Heading fontSize={"1.2rem"} mb={5}>
@@ -474,7 +474,9 @@ const PersonalData = ({
       {
         <Box
           display={
-            personalInfo.city != "YAOUNDE" && personalInfo.city != "YAOUNDÉ" && personalInfo.city != ''
+            personalInfo.city != "YAOUNDE" &&
+            personalInfo.city != "YAOUNDÉ" &&
+            personalInfo.city != ""
               ? "block"
               : "none"
           }
