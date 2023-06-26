@@ -36,6 +36,8 @@ const Qualification = ({
   const [selectedCv, setSelectedCv] = useState();
   const [preview, setPreview] = useState("");
   const [previewCV, setPreviewCV] = useState("");
+  const [uploadError, setUploadError] = useState("");
+  const [uploadCetError, setUploadCetError] = useState("");
 
   const [downloadUrl, setDownloadUrl] = useState("");
   const [cvDownloadUrl, setCvDownloadUrl] = useState("");
@@ -55,33 +57,47 @@ const Qualification = ({
 
   // create a preview as a side effect, whenever selected file is changed
   useEffect(() => {
-    if (!selectedFile || !selectedCv) {
+    if (!selectedFile) {
       return;
     }
 
     const objectUrl = URL.createObjectURL(selectedFile);
-    setPreview(objectUrl);
 
-    const cvUrl = URL.createObjectURL(selectedCv);
-
-    setPreviewCV(cvUrl);
+    if (
+      selectedFile.name.includes("pdf") === true ||
+      selectedFile.name.includes("png") === true ||
+      selectedFile.name.includes("jpg") === true ||
+      selectedFile.name.includes("jpeg") === true
+    ) {
+      setUploadCetError("");
+      setPreview(objectUrl);
+    } else {
+      setUploadCetError("Invalid file format");
+    }
 
     // free memory when ever this component is unmounted
     return () => {
       URL.revokeObjectURL(objectUrl);
-      URL.revokeObjectURL(cvUrl);
     };
-  }, [selectedFile, selectedCv]);
+  }, [selectedFile]);
 
   // create a preview as a side effect, whenever selected file is changed
   useEffect(() => {
     if (!selectedCv) {
       return;
     }
-
     const cvUrl = URL.createObjectURL(selectedCv);
-
-    setPreviewCV(cvUrl);
+    if (
+      selectedCv.name.includes("pdf") === true ||
+      selectedCv.name.includes("png") === true ||
+      selectedCv.name.includes("jpg") === true ||
+      selectedCv.name.includes("jpeg") === true
+    ) {
+      setUploadError("");
+      setPreviewCV(cvUrl);
+    } else {
+      setUploadError("Invalid file format");
+    }
 
     // free memory when ever this component is unmounted
     return () => {
@@ -117,6 +133,7 @@ const Qualification = ({
 
   const handleUploadCv = () => {
     const mountainsRef = ref(storage, "canditCertif/" + selectedCv.name);
+
     uploadBytesResumable(mountainsRef, selectedCv).then((snapshot) => {
       setUploadCvBtntext("Uploading...");
       getDownloadURL(snapshot.ref).then((downloadURL) => {
@@ -213,6 +230,8 @@ const Qualification = ({
           ) : (
             <></>
           )}
+
+          <Text color={"red"}>{uploadCetError}</Text>
           <Input
             onChange={(e) => {
               if (!e.target.files || e.target.files.length === 0) {
@@ -230,7 +249,10 @@ const Qualification = ({
           />
 
           <Box mt={5} mb={5} w={"100%"}>
-            {selectedFile && (
+            {(selectedFile?.name.includes("pdf") === true ||
+              selectedFile?.name.includes("png") === true ||
+              selectedFile?.name.includes("jpg") === true ||
+              selectedFile?.name.includes("jpeg") === true) && (
               <>
                 <Heading mb={5} fontSize={"1.1rem"}>
                   Preview
@@ -345,7 +367,7 @@ const Qualification = ({
           </RadioGroup>
 
           <FormLabel>What position are applying for?</FormLabel>
-          
+
           <Select
             value={qualification.position}
             onChange={(e) => {
@@ -408,6 +430,7 @@ const Qualification = ({
           ) : (
             <></>
           )}
+          <Text color={"red"}>{uploadError}</Text>
           <Input
             onChange={(e) => {
               if (!e.target.files || e.target.files.length === 0) {
@@ -425,7 +448,10 @@ const Qualification = ({
           />
 
           <Box mt={5} mb={5} w={"100%"}>
-            {selectedCv && (
+            {(selectedCv?.name.includes("pdf") === true ||
+              selectedCv?.name.includes("png") === true ||
+              selectedCv?.name.includes("jpg") === true ||
+              selectedCv?.name.includes("jpeg") === true) && (
               <>
                 <Heading mb={5} fontSize={"1.1rem"}>
                   Preview

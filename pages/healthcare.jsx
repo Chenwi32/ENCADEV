@@ -63,7 +63,7 @@ const Healthcare = () => {
       date: "",
     },
   });
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
 
   const updateFormData = (data) => {
     if (step == 1) {
