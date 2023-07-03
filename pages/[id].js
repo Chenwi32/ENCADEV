@@ -227,6 +227,18 @@ const ViewCandData = (props) => {
                     </Tr>
                     <Tr>
                       <Td border={"1px"} borderColor={"gray"}>
+                        Applying for?
+                      </Td>
+                      <Td
+                        whiteSpace={"break-spaces"}
+                        border={"1px"}
+                        borderColor={"gray"}
+                      >
+                        <Text>{canData.qualification.position}</Text>
+                      </Td>
+                    </Tr>
+                    <Tr>
+                      <Td border={"1px"} borderColor={"gray"}>
                         Marital Status
                       </Td>
                       <Td border={"1px"} borderColor={"gray"}>
