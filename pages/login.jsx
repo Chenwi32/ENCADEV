@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Checkbox,
   Container,
   Flex,
   Heading,
@@ -28,7 +29,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const methods = useForm({ mode: "onBlur" });
-  const { logIn } = useAuth();
+  /* const { logIn, rememberMe, setRememberMe } = useAuth(); */
   const router = useRouter();
 
   const {
@@ -159,6 +160,15 @@ const Login = () => {
                   </Text>
                 )}
 
+                {/*  <Text>Remember Me</Text>
+                <Checkbox
+                  isChecked={rememberMe}
+                  value={rememberMe}
+                  onChange={(e) => {
+                    setRememberMe(e.target.checked);
+                  }}
+                />
+                 */}
                 <Text mt={2} textAlign={"left"} w={"100%"} color={"brand.100"}>
                   <Link href={"/resetPassword"}>Forgot Password</Link>
                 </Text>

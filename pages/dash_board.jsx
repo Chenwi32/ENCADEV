@@ -25,7 +25,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../components/authcontprov";
 
 const Dash_board = (props) => {
-  const { user, logOut } = useAuth();
+  const { user, logOut, rememberMe } = useAuth();
 
   const [userName, setUserName] = useState("");
 
@@ -57,7 +57,7 @@ const Dash_board = (props) => {
 
   return (
     <>
-      <ProtectedRoute>
+      <ProtectedRoute rememberMe={rememberMe}>
         <Head>
           <title>ADES-UK-Forms | Healthcare Candidates</title>
           <meta
