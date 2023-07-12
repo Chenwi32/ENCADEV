@@ -29,7 +29,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const methods = useForm({ mode: "onBlur" });
-  /* const { logIn, rememberMe, setRememberMe } = useAuth(); */
+  const { logIn, rememberMe, setRememberMe } = useAuth();
   const router = useRouter();
 
   const {
