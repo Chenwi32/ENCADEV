@@ -1,5 +1,6 @@
 import {
  
+  Box,
   Container,
   FormLabel,
   Heading,
@@ -45,65 +46,96 @@ const CivilStatus = ({civilStatus, setCivilStatus}) => {
           </Radio>
         </Stack>
       </RadioGroup>
-      <FormLabel>
-        <Text as="span" color="red">
-          *
-        </Text>{" "}
-        How many children do you have?
-      </FormLabel>
-      <Input
-        value={civilStatus.numOfChildren}
-        onChange={(e) => {
-          setCivilStatus({
-            ...civilStatus,
-            numOfChildren: e.target.value,
-          });
-        }}
-        mb={5}
-        borderColor={"gray"}
-        type="number"
-      />
-      <FormLabel>What are their ages? (age limit is between 0 - 17)</FormLabel>
-      <Input
-        value={civilStatus.ageGroup}
-        onChange={(e) => {
-          setCivilStatus({
-            ...civilStatus,
-            ageGroup: e.target.value,
-          });
-        }}
-        placeholder="e.g. 4, 10, 17"
-        mb={5}
-        borderColor={"gray"}
-      />
-      <FormLabel>
-        <Text as="span" color="red">
-          *
-        </Text>{" "}
-        Do you intend to bring your family to the UK?
-      </FormLabel>{" "}
-      <RadioGroup
-        mb={5}
-        value={civilStatus.bringingThem}
-        onChange={(e) => {
-          setCivilStatus({ ...civilStatus, bringingThem: e });
-        }}
+      <Box
+        display={
+          civilStatus.marital !== "Single" && civilStatus.marital !== ""
+            ? "block"
+            : "none"
+        }
       >
-        <Stack direction="column">
-          <Radio borderColor={"gray.400"} value="Yes, immediately">
-            Yes, immediately
-          </Radio>
-          <Radio borderColor={"gray.400"} value="Yes, later">
-            Yes, later
-          </Radio>
-          <Radio borderColor={"gray.400"} value="No">
-            No
-          </Radio>
-          <Radio borderColor={"gray.400"} value="I don't have a family yet">
-            I don't have a family yet
-          </Radio>
-        </Stack>
-      </RadioGroup>
+        <FormLabel>
+          <Text as="span" color="red">
+            *
+          </Text>{" "}
+          Do you have any children?
+        </FormLabel>{" "}
+        <RadioGroup
+          mb={5}
+          value={civilStatus.children}
+          onChange={(e) => {
+            setCivilStatus({ ...civilStatus, children: e });
+          }}
+        >
+          <Stack direction="column">
+            <Radio borderColor={"gray.400"} value="Yes">
+              Yes
+            </Radio>
+            <Radio borderColor={"gray.400"} value="No">
+              No
+            </Radio>
+          </Stack>
+        </RadioGroup>
+        <Box display={civilStatus.children === "Yes" ? "block" : "none"}>
+          <FormLabel>
+            <Text as="span" color="red">
+              *
+            </Text>{" "}
+            How many children do you have?
+          </FormLabel>
+          <Input
+            value={civilStatus.numOfChildren}
+            onChange={(e) => {
+              setCivilStatus({
+                ...civilStatus,
+                numOfChildren: e.target.value,
+              });
+            }}
+            mb={5}
+            borderColor={"gray"}
+            type="number"
+          />
+          <FormLabel>
+            What are their ages? (age limit is between 0 - 17)
+          </FormLabel>
+          <Input
+            value={civilStatus.ageGroup}
+            onChange={(e) => {
+              setCivilStatus({
+                ...civilStatus,
+                ageGroup: e.target.value,
+              });
+            }}
+            placeholder="e.g. 4, 10, 17"
+            mb={5}
+            borderColor={"gray"}
+          />
+        </Box>
+        <FormLabel>
+          <Text as="span" color="red">
+            *
+          </Text>{" "}
+          Do you intend to bring your family to the UK?
+        </FormLabel>{" "}
+        <RadioGroup
+          mb={5}
+          value={civilStatus.bringingThem}
+          onChange={(e) => {
+            setCivilStatus({ ...civilStatus, bringingThem: e });
+          }}
+        >
+          <Stack direction="column">
+            <Radio borderColor={"gray.400"} value="Yes, immediately">
+              Yes, immediately
+            </Radio>
+            <Radio borderColor={"gray.400"} value="Yes, later">
+              Yes, later
+            </Radio>
+            <Radio borderColor={"gray.400"} value="No">
+              No
+            </Radio>
+          </Stack>
+        </RadioGroup>
+      </Box>
       <FormLabel>How would you rate your driving?</FormLabel>{" "}
       <RadioGroup
         mb={5}

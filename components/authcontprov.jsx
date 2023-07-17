@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { createUserWithEmailAndPassword,  onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../firebase";
+import Cookies from "js-cookie";
 
 
 const AuthContext = createContext({});
@@ -10,6 +11,7 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState({ email: null, uid: null });
   const [loading, setLoading] = useState(true);
+  const [rememberMe, setRememberMe] = useState(true);
 
   useEffect(() => {
     
@@ -27,6 +29,10 @@ export const AuthContextProvider = ({ children }) => {
 
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    Cookies.set('rememberMe', rememberMe)
+  }, [rememberMe])
 
     const signUp = (email, password) => {
       
@@ -51,7 +57,7 @@ export const AuthContextProvider = ({ children }) => {
 
 
   return (
-    <AuthContext.Provider value={{ user, signUp, logIn, logOut }}>
+    <AuthContext.Provider value={{ user, signUp, logIn, logOut, rememberMe, setRememberMe }}>
       {loading ? null : children}
     </AuthContext.Provider>
   );

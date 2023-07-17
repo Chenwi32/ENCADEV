@@ -1,7 +1,11 @@
 import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
   Box,
   Button,
   Checkbox,
+  CloseButton,
   Container,
   FormLabel,
   HStack,
@@ -13,6 +17,8 @@ import {
   Select,
   Stack,
   Text,
+  Textarea,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useEffect, useState } from "react";
@@ -27,10 +33,27 @@ const Qualification = ({
   // File upload functionality
 
   const [selectedFile, setSelectedFile] = useState();
+  const [selectedCv, setSelectedCv] = useState();
   const [preview, setPreview] = useState("");
+  const [previewCV, setPreviewCV] = useState("");
+  const [uploadError, setUploadError] = useState("");
+  const [uploadCetError, setUploadCetError] = useState("");
 
   const [downloadUrl, setDownloadUrl] = useState("");
+  const [cvDownloadUrl, setCvDownloadUrl] = useState("");
   const [uploadbtnText, setUploadBtntext] = useState("Upload");
+  const [uploadCvbtnText, setUploadCvBtntext] = useState("Upload");
+
+  const {
+    isOpen: isVisible,
+    onClose,
+    onOpen,
+  } = useDisclosure({ defaultIsOpen: true });
+  const {
+    isOpen: isVisible2,
+    onClose: onClose2,
+    onOpen: onOpen2,
+  } = useDisclosure({ defaultIsOpen: true });
 
   // create a preview as a side effect, whenever selected file is changed
   useEffect(() => {
@@ -39,11 +62,48 @@ const Qualification = ({
     }
 
     const objectUrl = URL.createObjectURL(selectedFile);
-    setPreview(objectUrl);
+
+    if (
+      selectedFile.name.includes("pdf") === true ||
+      selectedFile.name.includes("png") === true ||
+      selectedFile.name.includes("jpg") === true ||
+      selectedFile.name.includes("jpeg") === true
+    ) {
+      setUploadCetError("");
+      setPreview(objectUrl);
+    } else {
+      setUploadCetError("Invalid file format");
+    }
 
     // free memory when ever this component is unmounted
-    return () => URL.revokeObjectURL(objectUrl);
+    return () => {
+      URL.revokeObjectURL(objectUrl);
+    };
   }, [selectedFile]);
+
+  // create a preview as a side effect, whenever selected file is changed
+  useEffect(() => {
+    if (!selectedCv) {
+      return;
+    }
+    const cvUrl = URL.createObjectURL(selectedCv);
+    if (
+      selectedCv.name.includes("pdf") === true ||
+      selectedCv.name.includes("png") === true ||
+      selectedCv.name.includes("jpg") === true ||
+      selectedCv.name.includes("jpeg") === true
+    ) {
+      setUploadError("");
+      setPreviewCV(cvUrl);
+    } else {
+      setUploadError("Invalid file format");
+    }
+
+    // free memory when ever this component is unmounted
+    return () => {
+      URL.revokeObjectURL(cvUrl);
+    };
+  }, [selectedCv]);
 
   const getError = (validator) => {
     if (!validator)
@@ -67,6 +127,22 @@ const Qualification = ({
           certificate: downloadURL,
         });
         setUploadBtntext("Uploaded");
+      });
+    });
+  };
+
+  const handleUploadCv = () => {
+    const mountainsRef = ref(storage, "canditCertif/" + selectedCv.name);
+
+    uploadBytesResumable(mountainsRef, selectedCv).then((snapshot) => {
+      setUploadCvBtntext("Uploading...");
+      getDownloadURL(snapshot.ref).then((downloadURL) => {
+        setCvDownloadUrl(downloadURL);
+        setQualification({
+          ...qualification,
+          CV: downloadURL,
+        });
+        setUploadCvBtntext("Uploaded");
       });
     });
   };
@@ -133,6 +209,29 @@ const Qualification = ({
             </Text>{" "}
             Upload Highest Certificate ( PDF or image( jpg, jpeg, png ) )
           </FormLabel>
+
+          {isVisible2 ? (
+            <Alert status="warning" mb={10}>
+              <AlertIcon />
+              <Box>
+                <AlertDescription>
+                  Please don't forget to click on the upload button after
+                  selecting your certificate.
+                </AlertDescription>
+              </Box>
+              <CloseButton
+                alignSelf="flex-start"
+                position="absolute"
+                right={0}
+                top={0}
+                onClick={onClose2}
+              />
+            </Alert>
+          ) : (
+            <></>
+          )}
+
+          <Text color={"red"}>{uploadCetError}</Text>
           <Input
             onChange={(e) => {
               if (!e.target.files || e.target.files.length === 0) {
@@ -150,7 +249,10 @@ const Qualification = ({
           />
 
           <Box mt={5} mb={5} w={"100%"}>
-            {selectedFile && (
+            {(selectedFile?.name.includes("pdf") === true ||
+              selectedFile?.name.includes("png") === true ||
+              selectedFile?.name.includes("jpg") === true ||
+              selectedFile?.name.includes("jpeg") === true) && (
               <>
                 <Heading mb={5} fontSize={"1.1rem"}>
                   Preview
@@ -162,7 +264,7 @@ const Qualification = ({
                     src={preview}
                     width={300}
                     height={300}
-                    alt="Uploaded Id card image"
+                    alt="There seems to be a problem with the file you selected"
                     mb={10}
                   />
                 )}
@@ -264,8 +366,26 @@ const Qualification = ({
             </Stack>
           </RadioGroup>
 
+          <FormLabel>What position are applying for?</FormLabel>
+
+          <Select
+            value={qualification.position}
+            onChange={(e) => {
+              setQualification({
+                ...qualification,
+                position: e.target.value,
+              });
+            }}
+            mb={5}
+            placeholder="Select Position"
+            borderColor={"gray"}
+          >
+            <option value={"Care Assistant"}>Care Assistant</option>
+            <option value={"Healthcare Assistant"}>Healthcare Assistant</option>
+          </Select>
+
           <FormLabel>Briefly describe any work experience you have</FormLabel>
-          <Input
+          <Textarea
             value={qualification.experience}
             onChange={(e) => {
               setQualification({
@@ -277,11 +397,90 @@ const Qualification = ({
             borderColor={"gray"}
           />
 
-      {/*     <HStack>
+          {/*   <HStack>
             <Button onClick={() => handleLocalSave()}>
               Save and continue Later
             </Button>
           </HStack> */}
+
+          <FormLabel>
+            <Text as="span" color="red">
+              *
+            </Text>{" "}
+            Upload Your CV ( PDF or image( jpg, jpeg, png ) )
+          </FormLabel>
+
+          {isVisible ? (
+            <Alert status="warning" mb={10}>
+              <AlertIcon />
+              <Box>
+                <AlertDescription>
+                  Please don't forget to click on the upload button after
+                  selecting your CV.
+                </AlertDescription>
+              </Box>
+              <CloseButton
+                alignSelf="flex-start"
+                position="absolute"
+                right={0}
+                top={0}
+                onClick={onClose}
+              />
+            </Alert>
+          ) : (
+            <></>
+          )}
+          <Text color={"red"}>{uploadError}</Text>
+          <Input
+            onChange={(e) => {
+              if (!e.target.files || e.target.files.length === 0) {
+                setSelectedCv(undefined);
+                return;
+              }
+
+              // Selects just one file
+
+              setSelectedCv(e.target.files[0]);
+            }}
+            mb={5}
+            border={"none"}
+            type="file"
+          />
+
+          <Box mt={5} mb={5} w={"100%"}>
+            {(selectedCv?.name.includes("pdf") === true ||
+              selectedCv?.name.includes("png") === true ||
+              selectedCv?.name.includes("jpg") === true ||
+              selectedCv?.name.includes("jpeg") === true) && (
+              <>
+                <Heading mb={5} fontSize={"1.1rem"}>
+                  Preview
+                </Heading>
+                {selectedCv.name.includes(".pdf") === true ? (
+                  <iframe src={previewCV} />
+                ) : (
+                  <Image
+                    src={previewCV}
+                    width={300}
+                    height={300}
+                    alt="There seems to be a problem with the file you selected"
+                    mb={10}
+                  />
+                )}
+                <Button
+                  mt={5}
+                  bg={"brand.100"}
+                  color={"white"}
+                  _hover={{
+                    bg: "default",
+                  }}
+                  onClick={handleUploadCv}
+                >
+                  {uploadCvbtnText}
+                </Button>
+              </>
+            )}
+          </Box>
         </>
       ) : component === "solartraining" ? (
         <>
@@ -341,11 +540,11 @@ const Qualification = ({
             />
           </Box>
 
-          {/* <HStack>
+          <HStack>
             <Button onClick={() => handleLocalSave()}>
               Save and continue Later
             </Button>
-          </HStack> */}
+          </HStack>
         </>
       ) : (
         <></>
