@@ -1,18 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PersonalData from "./personalData";
 import {
   Button,
   Container,
   Flex,
   Heading,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   ScaleFade,
   Text,
   useDisclosure,
+
 } from "@chakra-ui/react";
 import CivilStatus from "./civil_satus";
 import {
   emailRegex,
-  nameRegex,
   phoneNumberRegex,
 } from "../../constants/regexConstants";
 import Qualification from "./qualification";
@@ -28,7 +35,12 @@ const Form = ({
   sendData,
   handleLocalSave,
 }) => {
-  const { isOpen, onToggle } = useDisclosure();
+
+  useEffect(() => {
+    onOpen()
+  }, [])
+
+  const { onOpen, onClose, isOpen, onToggle } = useDisclosure();
 
   // Handle Data
   const [personalInfo, setPersonalInfo] = useState({
@@ -165,8 +177,9 @@ const Form = ({
           </Button>
           <Button
             onClick={(e) => {
-              handleSubmit(e);
-              onToggle();
+              onOpen();
+              /* handleSubmit(e);
+              onToggle(); */
             }}
             type="submit"
             bg={"brand.100"}
@@ -191,6 +204,28 @@ const Form = ({
           >
             send
           </Button>
+
+          <Modal onClose={onClose} isOpen={isOpen} isCentered>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>Application Closed</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <Text>
+                  Thank you for your interest in ADES-UK healthcare services.
+                Unfortunately, we have concluded recruitment for this hiring
+                session; therefore, we are no longer receiving applications.
+                </Text>
+                <Text>
+                  Our next hiring session will be comunicated on our website.  
+                </Text>
+                
+              </ModalBody>
+              <ModalFooter>
+                <Button onClick={onClose}>Close</Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
         </Flex>
       </Container>
     );
