@@ -208,7 +208,7 @@ const Form = ({
           <Modal onClose={onClose} isOpen={isOpen} isCentered>
             <ModalOverlay />
             <ModalContent>
-              <ModalHeader>Modal Title</ModalHeader>
+              <ModalHeader>Application Closed</ModalHeader>
               <ModalCloseButton />
               <ModalBody>
                 <Text>
