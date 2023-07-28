@@ -213,13 +213,12 @@ const Form = ({
               <ModalBody>
                 <Text>
                   Thank you for your interest in ADES-UK healthcare services.
-                Unfortunately, we have concluded recruitment for this hiring
-                session; therefore, we are no longer receiving applications.
+                  Unfortunately, we have concluded recruitment for this hiring
+                  session; therefore, we are no longer receiving applications.
                 </Text>
                 <Text>
-                  Our next hiring session will be comunicated on our website.  
+                  Our next hiring session will be communicated on our website.
                 </Text>
-                
               </ModalBody>
               <ModalFooter>
                 <Button onClick={onClose}>Close</Button>
