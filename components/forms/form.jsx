@@ -15,13 +15,9 @@ import {
   ScaleFade,
   Text,
   useDisclosure,
-
 } from "@chakra-ui/react";
 import CivilStatus from "./civil_satus";
-import {
-  emailRegex,
-  phoneNumberRegex,
-} from "../../constants/regexConstants";
+import { emailRegex, phoneNumberRegex } from "../../constants/regexConstants";
 import Qualification from "./qualification";
 import FinancialStatus from "./financial_status";
 import Success from "./success";
@@ -35,10 +31,9 @@ const Form = ({
   sendData,
   handleLocalSave,
 }) => {
-
   useEffect(() => {
-    onOpen()
-  }, [])
+    onOpen();
+  }, []);
 
   const { onOpen, onClose, isOpen, onToggle } = useDisclosure();
 
@@ -217,7 +212,11 @@ const Form = ({
                   session; therefore, we are no longer receiving applications.
                 </Text>
                 <Text>
-                  Our next hiring session will be communicated on our website.
+                  Our next hiring session will be communicated on{" "}
+                  <Text as="span" color={"brand.100"}>
+                    <a href="https://www.adaptive-elearn.com/">our website</a>
+                  </Text>
+                  .
                 </Text>
               </ModalBody>
               <ModalFooter>
