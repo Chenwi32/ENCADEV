@@ -193,6 +193,7 @@ const Form = ({
             display={step >= 5 ? "block" : "none"}
             bg={"brand.100"}
             color={"brand.300"}
+            _hover={{ bg: "" }}
             onClick={() => {
               onOpen();
             }}
@@ -215,28 +216,36 @@ const Form = ({
                 </Text>
               </ModalBody>
               <ModalFooter>
-              {step === 1 && <Button onClick={onClose}>Close</Button> } 
+                {step === 1 && (
+                  <Button _hover={{ bg: "" }} onClick={onClose}>
+                    Close
+                  </Button>
+                )}
 
                 {step === 5 && (
-
                   <Flex>
-                     <Button onClick={()=>{
-                      onClose()
-                      router.push('/')
-                     } }>Cancel</Button>
+                    <Button
+                      onClick={() => {
+                        onClose();
+                        router.push("/");
+                      }}
+                      _hover={{ bg: "" }}
+                    >
+                      Cancel
+                    </Button>
 
-                  <Button
-                    onClick={() => {
-                      sendData();
-                      setStep((s) => s + 1);
-                    }}
-                    bg={"brand.100"}
-                    color={"brand.300"}
-                  >
-                    Send
-                  </Button>
+                    <Button
+                      onClick={() => {
+                        sendData();
+                        setStep((s) => s + 1);
+                      }}
+                      bg={"brand.100"}
+                      color={"brand.300"}
+                      _hover={{ bg: "" }}
+                    >
+                      Send
+                    </Button>
                   </Flex>
-                 
                 )}
               </ModalFooter>
             </ModalContent>
