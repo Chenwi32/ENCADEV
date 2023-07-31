@@ -22,6 +22,7 @@ import Qualification from "./qualification";
 import FinancialStatus from "./financial_status";
 import Success from "./success";
 import Confirm from "../confirm";
+import { useRouter } from "next/router";
 
 const Form = ({
   step,
@@ -34,6 +35,8 @@ const Form = ({
   useEffect(() => {
     onOpen();
   }, []);
+
+  const router = useRouter()
 
   const { onOpen, onClose, isOpen, onToggle } = useDisclosure();
 
@@ -212,9 +215,16 @@ const Form = ({
                 </Text>
               </ModalBody>
               <ModalFooter>
-                <Button onClick={onClose}>Cancel</Button>
+              {step === 1 && <Button onClick={onClose}>Close</Button> } 
 
                 {step === 5 && (
+
+                  <Flex>
+                     <Button onClick={()=>{
+                      onClose()
+                      router.push('/')
+                     } }>Cancel</Button>
+
                   <Button
                     onClick={() => {
                       sendData();
@@ -225,6 +235,8 @@ const Form = ({
                   >
                     Send
                   </Button>
+                  </Flex>
+                 
                 )}
               </ModalFooter>
             </ModalContent>
