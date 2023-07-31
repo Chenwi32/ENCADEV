@@ -172,9 +172,7 @@ const Form = ({
           </Button>
           <Button
             onClick={(e) => {
-              onOpen();
-              /* handleSubmit(e);
-              onToggle(); */
+              handleSubmit(e);
             }}
             type="submit"
             bg={"brand.100"}
@@ -192,9 +190,8 @@ const Form = ({
             display={step >= 5 ? "block" : "none"}
             bg={"brand.100"}
             color={"brand.300"}
-            onClick={(e) => {
-              sendData(e);
-              setStep((s) => s + 1);
+            onClick={() => {
+              onOpen();
             }}
           >
             send
@@ -203,24 +200,32 @@ const Form = ({
           <Modal onClose={onClose} isOpen={isOpen} isCentered>
             <ModalOverlay />
             <ModalContent>
-              <ModalHeader>Application Closed</ModalHeader>
+              <ModalHeader>Please note</ModalHeader>
               <ModalCloseButton />
               <ModalBody>
                 <Text>
-                  Thank you for your interest in ADES-UK healthcare services.
-                  Unfortunately, we have concluded recruitment for this hiring
-                  session; therefore, we are no longer receiving applications.
-                </Text>
-                <Text>
-                  Our next hiring session will be communicated on{" "}
-                  <Text as="span" color={"brand.100"}>
-                    <a href="https://www.adaptive-elearn.com/">our website</a>
-                  </Text>
-                  .
+                  This is a special hiring session to replace candidates who
+                  were dropped because of their inability to meet up with the
+                  financial requirements. You may proceed with your application
+                  if you have the financial ability to pay for the service
+                  package.
                 </Text>
               </ModalBody>
               <ModalFooter>
-                <Button onClick={onClose}>Close</Button>
+                <Button onClick={onClose}>Cancel</Button>
+
+                {step === 5 && (
+                  <Button
+                    onClick={() => {
+                      sendData();
+                      setStep((s) => s + 1);
+                    }}
+                    bg={"brand.100"}
+                    color={"brand.300"}
+                  >
+                    Send
+                  </Button>
+                )}
               </ModalFooter>
             </ModalContent>
           </Modal>

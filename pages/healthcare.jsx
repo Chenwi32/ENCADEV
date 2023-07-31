@@ -97,7 +97,7 @@ const Healthcare = () => {
     const response = await axios.post("/api/sendgrid", data);
   };
 
-  const sendData = async (e) => {
+  const sendData = async () => {
     const timestamp = Date.now().toString();
 
     const candidate = doc(db, `candidates/${timestamp}`);
