@@ -100,7 +100,7 @@ const Healthcare = () => {
   const sendData = async () => {
     const timestamp = Date.now().toString();
 
-    const candidate = doc(db, `candidates/${timestamp}`);
+    const candidate = doc(db, `august-session-candidates/${timestamp}`);
 
     const candidateData = formData;
 
