@@ -1,38 +1,14 @@
-import {
-  Box,
-  Button,
-  Container,
-  HStack,
-  Heading,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalOverlay,
-  Text,
-  VStack,
-  useDisclosure,
-  useMediaQuery,
-} from "@chakra-ui/react";
-import {
-  collection,
-  getDocs,
-  limit,
-  orderBy,
-  query,
-  startAt,
-} from "firebase/firestore";
-import { db } from "../firebase";
-import { useRouter } from "next/router";
-import Head from "next/head";
-
-import ProtectedRoute from "../components/protectedroute";
 import { useEffect, useState } from "react";
 import { useAuth } from "../components/authcontprov";
+import { Button, Container, HStack, Heading, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalOverlay, Text, VStack, useDisclosure, useMediaQuery } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import ProtectedRoute from "../components/protectedroute";
+import Head from "next/head";
 import Link from "next/link";
+import { collection, getDocs, query } from "firebase/firestore";
+import { db } from "../firebase";
 
-const Dash_board = (props) => {
+const OlderCandidates = (props) => {
   const { user, logOut, rememberMe } = useAuth();
 
   const [userName, setUserName] = useState("");
@@ -44,7 +20,7 @@ const Dash_board = (props) => {
 
   const router = useRouter();
 
-  const { results } = props;
+  const { july_results } = props;
 
   useEffect(() => {
     if (user.email !== null) {
@@ -65,7 +41,7 @@ const Dash_board = (props) => {
 
   return (
     <>
-      <ProtectedRoute rememberMe={rememberMe}>
+      {/* <ProtectedRoute rememberMe={rememberMe}> */}
         <Head>
           <title>ADES-UK-Forms | Healthcare Candidates</title>
           <meta
@@ -77,9 +53,9 @@ const Dash_board = (props) => {
 
         <Container maxW={1200}>
           <HStack mb={5} gap={5} justifyContent={"flex-end"}>
-            <Link href={"/older-candidates"}>
+            <Link href={"/dash_board"}>
               <Button bg={"brand.100"} color={"brand.300"} _hover={{ bg: "" }}>
-                See Older Candidates
+                See New Candidates
               </Button>
             </Link>
 
@@ -102,15 +78,16 @@ const Dash_board = (props) => {
               Hey {userName}, welcome back
             </Heading>
             <Heading fontFamily={"Andika"} mb={5}>
-              Names of Candidates
+              Here are the names of Candidates of our last hiring session
             </Heading>
             <Heading fontFamily={"Andika"} fontSize={"1.1rem"} mb={5}>
-              {results.length === 0
+              {july_results.length === 0
                 ? "Sorry, no one has registered yet"
-                : "Click on a candidate to view more information."}
+                : "Click on a candidate to view their data"}
             </Heading>
-            <VStack align={"left"} gap={3}>
-              {results.map((candit, i) => {
+                      <VStack
+                          align={"left"} gap={3}>
+              {july_results.map((candit, i) => {
                 const canNumber = i + 1;
                 return (
                   <Text
@@ -192,39 +169,39 @@ const Dash_board = (props) => {
             </ModalContent>
           </Modal>
         </Container>
-      </ProtectedRoute>
+   {/*    </ProtectedRoute> */}
     </>
   );
-};
+}
 
 export const getServerSideProps = async () => {
-  const candidatescollection = collection(db, "august-session-candidates");
 
+  const july_candidatescollection = collection(db, "candidates");
   // Query all Id cards
-  const candidateQuery = query(
-    candidatescollection
+ 
+  const july_candidateQuery = query(
+    july_candidatescollection
     /* limit(10) */
   );
-  
 
   // get id cards
-  const querySnapshot = await getDocs(candidateQuery);
- ;
+  
+  const july_querySnapshot = await getDocs(july_candidateQuery);
 
   // Map through the ids and add them to a new array
-  const results = [];
+  
+  const july_results = [];
+
  
-  querySnapshot.forEach((snapshot) => {
-    results.push(snapshot.data());
+  july_querySnapshot.forEach((snapshot) => {
+    july_results.push(snapshot.data());
   });
- 
 
   return {
     props: {
-      results: JSON.parse(JSON.stringify(results)),
-     
+      july_results: JSON.parse(JSON.stringify(july_results)),
     },
   };
 };
 
-export default Dash_board;
+export default OlderCandidates;
