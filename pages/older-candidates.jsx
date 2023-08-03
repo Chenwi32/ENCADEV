@@ -102,7 +102,9 @@ const OlderCandidates = (props) => {
                     key={candit.personalInfo.phoneNumber}
                     cursor={"pointer"}
                     onClick={() => {
-                      router.push(`/${candit.personalInfo.phoneNumber}`);
+                      router.push(
+                        `/older-candidates/${candit.personalInfo.phoneNumber}`
+                      );
                     }}
                   >
                     <Button
