@@ -39,7 +39,10 @@ const ViewCandData = (props) => {
     <>
       <Head>
         <title>ADES-UK Healthcare Candidate</title>
-        <meta name="description" content="ADES-UK healthcare candidate information page" />
+        <meta
+          name="description"
+          content="ADES-UK healthcare candidate information page"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -303,7 +306,10 @@ const ViewCandData = (props) => {
               </TableContainer>
               <Generatepdf html={ref} candidate={canData.personalInfo.name} />
 
-              <Heading fontSize={"1.2rem"} fontFamily={"Andika"} mb={5}>
+              
+              <Flex h={"100%"} gap={10} alignItems={'flex-start'} flexDirection={isLargerThan700? 'row' : 'column'}>
+                <Box h={'100%'}>
+                  <Heading fontSize={"1.2rem"} fontFamily={"Andika"} mb={5}>
                 Certificate
               </Heading>
               {canData.qualification.certificate.includes(".pdf") === true ? (
@@ -319,8 +325,11 @@ const ViewCandData = (props) => {
                   alt="Looks like there's a problem with this image."
                   mb={10}
                 />
-              )}
-              <Heading fontSize={"1.2rem"} mt={10} fontFamily={"Andika"} mb={5}>
+              )} 
+                </Box>
+
+                <Box h={'100%'}>
+                  <Heading fontSize={"1.2rem"} mt={isLargerThan700? 0 : 10} fontFamily={"Andika"} mb={5}>
                 CV
               </Heading>
               {canData.qualification.CV?.includes(".pdf") === true ? (
@@ -333,7 +342,11 @@ const ViewCandData = (props) => {
                   alt="Looks like there's a problem with this image."
                   mb={10}
                 />
-              )}
+              )} 
+                </Box>
+              </Flex>
+             
+             
             </Box>
           );
         })}
