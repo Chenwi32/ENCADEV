@@ -1,5 +1,4 @@
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../firebase";
+
 import {
   Box,
   Container,
@@ -21,18 +20,21 @@ import {
 import dynamic from "next/dynamic";
 import { useRef } from "react";
 import Head from "next/head";
+import { db } from "../../firebase";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
-const Generatepdf = dynamic(() => import("../components/generatepdf"), {
+
+const Generatepdf = dynamic(() => import("../../components/generatepdf"), {
   //this deactivates server side rendering since we need to initialize this only in the frontend
   ssr: false,
 });
 
-const ViewCandData = (props) => {
+const ViewOlderCandData = (props) => {
   const { results } = props;
 
   const ref = useRef();
 
-  const [isLargerThan700] = useMediaQuery("(min-width: 700px)");
+   const [isLargerThan700] = useMediaQuery("(min-width: 700px)");
 
   return (
     <>
@@ -305,55 +307,47 @@ const ViewCandData = (props) => {
               </TableContainer>
               <Generatepdf html={ref} candidate={canData.personalInfo.name} />
 
-              <Flex
-                h={"100%"}
-                gap={10}
-                alignItems={"flex-start"}
-                flexDirection={isLargerThan700 ? "row" : "column"}
-              >
-                <Box h={"100%"}>
+              
+              <Flex h={"100%"} gap={10} alignItems={'flex-start'} flexDirection={isLargerThan700? 'row' : 'column'}>
+                <Box h={'100%'}>
                   <Heading fontSize={"1.2rem"} fontFamily={"Andika"} mb={5}>
-                    Certificate
-                  </Heading>
-                  {canData.qualification.certificate.includes(".pdf") ===
-                  true ? (
-                    <iframe
-                      className="iframe"
-                      src={canData.qualification.certificate}
-                    />
-                  ) : (
-                    <Image
-                      src={canData.qualification.certificate}
-                      width={300}
-                      height={300}
-                      alt="Looks like there's a problem with this image."
-                      mb={10}
-                    />
-                  )}
+                Certificate
+              </Heading>
+              {canData.qualification.certificate.includes(".pdf") === true ? (
+                <iframe
+                  className="iframe"
+                  src={canData.qualification.certificate}
+                />
+              ) : (
+                <Image
+                  src={canData.qualification.certificate}
+                  width={300}
+                  height={300}
+                  alt="Looks like there's a problem with this image."
+                  mb={10}
+                />
+              )} 
                 </Box>
 
-                <Box h={"100%"}>
-                  <Heading
-                    fontSize={"1.2rem"}
-                    mt={isLargerThan700 ? 0 : 10}
-                    fontFamily={"Andika"}
-                    mb={5}
-                  >
-                    CV
-                  </Heading>
-                  {canData.qualification.CV?.includes(".pdf") === true ? (
-                    <iframe className="iframe" src={canData.qualification.CV} />
-                  ) : (
-                    <Image
-                      src={canData.qualification.CV}
-                      width={300}
-                      height={300}
-                      alt="Looks like there's a problem with this image."
-                      mb={10}
-                    />
-                  )}
+                <Box h={'100%'}>
+                  <Heading fontSize={"1.2rem"} mt={isLargerThan700? 0 : 10} fontFamily={"Andika"} mb={5}>
+                CV
+              </Heading>
+              {canData.qualification.CV?.includes(".pdf") === true ? (
+                <iframe className="iframe" src={canData.qualification.CV} />
+              ) : (
+                <Image
+                  src={canData.qualification.CV}
+                  width={300}
+                  height={300}
+                  alt="Looks like there's a problem with this image."
+                  mb={10}
+                />
+              )} 
                 </Box>
               </Flex>
+             
+             
             </Box>
           );
         })}
@@ -363,13 +357,13 @@ const ViewCandData = (props) => {
 };
 
 export const getServerSideProps = async (context) => {
-  const { id } = context.query;
+  const { oldid } = context.query;
 
-  const candidatescollection = collection(db, "august-session-candidates");
+  const candidatescollection = collection(db, "candidates");
   // Query all Id cards
   const candidateQuery = query(
     candidatescollection,
-    where("personalInfo.phoneNumber", "==", id)
+    where("personalInfo.phoneNumber", "==", oldid)
   );
 
   // get id cards
@@ -389,4 +383,4 @@ export const getServerSideProps = async (context) => {
   };
 };
 
-export default ViewCandData;
+export default ViewOlderCandData;
