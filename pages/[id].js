@@ -345,7 +345,7 @@ const ViewCandData = (props) => {
 export const getServerSideProps = async (context) => {
   const { id } = context.query;
 
-  const candidatescollection = collection(db, "candidates");
+  const candidatescollection = collection(db, "august-session-candidates");
   // Query all Id cards
   const candidateQuery = query(
     candidatescollection,
