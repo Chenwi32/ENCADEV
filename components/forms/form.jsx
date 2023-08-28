@@ -222,30 +222,29 @@ const Form = ({
                   session; therefore, we are no longer receiving applications.
                 </Text>
                 <Text>
-                  Our next hiring session will be comunicated on our website.
+                  Our next hiring session will be communicated on our website.
                 </Text>
               </ModalBody>
               <ModalFooter>
-               {/*  {step === 1 && (
+                {/*  {step === 1 && (
                   <Button _hover={{ bg: "" }} onClick={onClose}>
                     Close
                   </Button>
                 )} */}
 
                 {/* {step === 5 && ( */}
-                  <Flex>
-                    <Button
-                      onClick={() => {
-                        router.push("/");
-                        onClose();
-                        
-                      }}
-                      _hover={{ bg: "" }}
-                    >
-                      {/*  Cancel */} Close
-                    </Button>
+                <Flex>
+                  <Button
+                    onClick={() => {
+                      router.push("/");
+                      onClose();
+                    }}
+                    _hover={{ bg: "" }}
+                  >
+                    {/*  Cancel */} Close
+                  </Button>
 
-                    {/* <Button
+                  {/* <Button
                       onClick={() => {
                         sendData();
                         setStep((s) => s + 1);
@@ -256,7 +255,7 @@ const Form = ({
                     >
                       Send
                     </Button> */}
-                  </Flex>
+                </Flex>
                 {/* )} */}
               </ModalFooter>
             </ModalContent>
