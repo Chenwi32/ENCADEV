@@ -357,8 +357,7 @@ const ViewOlderCandData = (props) => {
 };
 
 export const getServerSideProps = async (context) => {
-  const { oldid } = context.query;
-
+const { oldid } = context.query;
   const candidatescollection = collection(db, "candidates");
   // Query all Id cards
   const candidateQuery = query(

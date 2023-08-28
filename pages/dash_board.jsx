@@ -22,8 +22,9 @@ import {
   orderBy,
   query,
   startAt,
+  where,
 } from "firebase/firestore";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 import { useRouter } from "next/router";
 import Head from "next/head";
 
@@ -198,11 +199,12 @@ const Dash_board = (props) => {
 };
 
 export const getServerSideProps = async () => {
-  const candidatescollection = collection(db, "august-session-candidates");
+  const user = auth.currentUser;
+  const candidatescollection = collection(db, "august-session-candidates", );
 
   // Query all Id cards
   const candidateQuery = query(
-    candidatescollection
+    candidatescollection,
     /* limit(10) */
   );
   

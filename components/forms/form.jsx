@@ -36,7 +36,7 @@ const Form = ({
     onOpen();
   }, []);
 
-  const router = useRouter()
+  const router = useRouter();
 
   const { onOpen, onClose, isOpen, onToggle } = useDisclosure();
 
@@ -175,7 +175,8 @@ const Form = ({
           </Button>
           <Button
             onClick={(e) => {
-              handleSubmit(e);
+              onOpen();
+              /* handleSubmit(e);*/
             }}
             type="submit"
             bg={"brand.100"}
@@ -204,37 +205,47 @@ const Form = ({
           <Modal onClose={onClose} isOpen={isOpen} isCentered>
             <ModalOverlay />
             <ModalContent>
-              <ModalHeader>Please note</ModalHeader>
+              <ModalHeader>Applications temporarily closed</ModalHeader>
               <ModalCloseButton />
               <ModalBody>
-                <Text>
+                {/*  <Text>
                   This is a special hiring session to replace candidates who
                   were dropped because of their inability to meet up with the
                   financial requirements. You may proceed with your application
                   if you have the financial ability to pay for the service
                   package.
+                </Text> */}
+
+                <Text>
+                  Thank you for your interest in ADES-UK healthcare services.
+                  Unfortunately, we have concluded recruitment for this hiring
+                  session; therefore, we are no longer receiving applications.
+                </Text>
+                <Text>
+                  Our next hiring session will be comunicated on our website.
                 </Text>
               </ModalBody>
               <ModalFooter>
-                {step === 1 && (
+               {/*  {step === 1 && (
                   <Button _hover={{ bg: "" }} onClick={onClose}>
                     Close
                   </Button>
-                )}
+                )} */}
 
-                {step === 5 && (
+                {/* {step === 5 && ( */}
                   <Flex>
                     <Button
                       onClick={() => {
-                        onClose();
                         router.push("/");
+                        onClose();
+                        
                       }}
                       _hover={{ bg: "" }}
                     >
-                      Cancel
+                      {/*  Cancel */} Close
                     </Button>
 
-                    <Button
+                    {/* <Button
                       onClick={() => {
                         sendData();
                         setStep((s) => s + 1);
@@ -244,9 +255,9 @@ const Form = ({
                       _hover={{ bg: "" }}
                     >
                       Send
-                    </Button>
+                    </Button> */}
                   </Flex>
-                )}
+                {/* )} */}
               </ModalFooter>
             </ModalContent>
           </Modal>
