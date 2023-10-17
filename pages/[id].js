@@ -111,14 +111,7 @@ const ViewCandData = (props) => {
                         {canData.personalInfo.sex}
                       </Td>
                     </Tr>
-                    <Tr>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        Willing to move?
-                      </Td>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        {canData.personalInfo.move}
-                      </Td>
-                    </Tr>
+                
                     <Tr>
                       <Td border={"1px"} borderColor={"gray"}>
                         Email
@@ -135,14 +128,7 @@ const ViewCandData = (props) => {
                         {canData.personalInfo.phoneNumber}{" "}
                       </Td>
                     </Tr>
-                    <Tr>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        Country
-                      </Td>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        {canData.personalInfo.country}{" "}
-                      </Td>
-                    </Tr>
+                    
                     <Tr>
                       <Td border={"1px"} borderColor={"gray"}>
                         Province/Region
@@ -167,14 +153,7 @@ const ViewCandData = (props) => {
                         {canData.qualification.qualification}{" "}
                       </Td>
                     </Tr>
-                    <Tr>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        Other Qualification description
-                      </Td>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        {canData.qualification.othersSpecific}
-                      </Td>
-                    </Tr>
+                   
                     <Tr>
                       <Td border={"1px"} borderColor={"gray"}>
                         Subject
@@ -183,177 +162,26 @@ const ViewCandData = (props) => {
                         {canData.qualification.subject}
                       </Td>
                     </Tr>
+                  
                     <Tr>
                       <Td border={"1px"} borderColor={"gray"}>
-                        Institution
-                      </Td>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        {canData.qualification.institution}
-                      </Td>
-                    </Tr>
-                    <Tr>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        Year
-                      </Td>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        {canData.qualification.date}
-                      </Td>
-                    </Tr>
-                    <Tr>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        Is English the Language of Studies?
-                      </Td>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        {canData.qualification.lanOfInstruct}
-                      </Td>
-                    </Tr>
-                    <Tr>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        Has English Language Profficiency Certificate?
-                      </Td>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        {canData.qualification.englishProff}
-                      </Td>
-                    </Tr>
-                    <Tr>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        Experience
+                        Expectations
                       </Td>
                       <Td
                         whiteSpace={"break-spaces"}
                         border={"1px"}
                         borderColor={"gray"}
                       >
-                        <Text>{canData.qualification.experience}</Text>
+                        <Text>{canData.qualification.expectations}</Text>
                       </Td>
                     </Tr>
-                    <Tr>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        Applying for?
-                      </Td>
-                      <Td
-                        whiteSpace={"break-spaces"}
-                        border={"1px"}
-                        borderColor={"gray"}
-                      >
-                        <Text>{canData.qualification.position}</Text>
-                      </Td>
-                    </Tr>
-                    <Tr>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        Marital Status
-                      </Td>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        {canData.civilStatus.marital}
-                      </Td>
-                    </Tr>
-                    <Tr>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        Number of Children
-                      </Td>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        {canData.civilStatus.numOfChildren}
-                      </Td>
-                    </Tr>
-                    <Tr>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        Children's Ages
-                      </Td>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        {canData.civilStatus.ageGroup}
-                      </Td>
-                    </Tr>
-                    <Tr>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        Traveling with the Children
-                      </Td>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        {canData.civilStatus.bringingThem}
-                      </Td>
-                    </Tr>
-                    <Tr>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        Driving Skills
-                      </Td>
-                      <Td border={"1px"} borderColor={"gray"}>
-                        {canData.civilStatus.drivingSkills}
-                      </Td>
-                    </Tr>
+                    
                   </Tbody>
 
-                  <Tfoot>
-                    <Tr>
-                      <Th
-                        p={2}
-                        fontSize={"1rem"}
-                        borderBottom={"1px"}
-                        borderColor={"gray"}
-                      >
-                        Signature: {canData.financialStatus.signature}
-                      </Th>
-                      <Th
-                        p={2}
-                        borderColor={"gray"}
-                        borderBottom={"2px dotted"}
-                        fontSize={"0.9rem"}
-                      >
-                        Date: {canData.financialStatus.date}
-                      </Th>
-                    </Tr>
-                  </Tfoot>
                 </Table>
               </TableContainer>
               <Generatepdf html={ref} candidate={canData.personalInfo.name} />
 
-              <Flex
-                h={"100%"}
-                gap={10}
-                alignItems={"flex-start"}
-                flexDirection={isLargerThan700 ? "row" : "column"}
-              >
-                <Box h={"100%"}>
-                  <Heading fontSize={"1.2rem"} fontFamily={"Andika"} mb={5}>
-                    Certificate
-                  </Heading>
-                  {canData.qualification.certificate.includes(".pdf") ===
-                  true ? (
-                    <iframe
-                      className="iframe"
-                      src={canData.qualification.certificate}
-                    />
-                  ) : (
-                    <Image
-                      src={canData.qualification.certificate}
-                      width={300}
-                      height={300}
-                      alt="Looks like there's a problem with this image."
-                      mb={10}
-                    />
-                  )}
-                </Box>
-
-                <Box h={"100%"}>
-                  <Heading
-                    fontSize={"1.2rem"}
-                    mt={isLargerThan700 ? 0 : 10}
-                    fontFamily={"Andika"}
-                    mb={5}
-                  >
-                    CV
-                  </Heading>
-                  {canData.qualification.CV?.includes(".pdf") === true ? (
-                    <iframe className="iframe" src={canData.qualification.CV} />
-                  ) : (
-                    <Image
-                      src={canData.qualification.CV}
-                      width={300}
-                      height={300}
-                      alt="Looks like there's a problem with this image."
-                      mb={10}
-                    />
-                  )}
-                </Box>
-              </Flex>
             </Box>
           );
         })}

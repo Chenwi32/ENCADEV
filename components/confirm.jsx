@@ -21,6 +21,10 @@ const Confirm = ({ formData }) => {
                 <b>{formData.personalInfo.name}</b>
               </Text>
               <Text>
+                <span style={{ fontSize: "0.8rem" }}>Date:</span>{" "}
+                {formData.personalInfo.dateOfBirth}
+              </Text>
+              <Text>
                 <span style={{ fontSize: "0.8rem" }}>Email:</span>{" "}
                 <b>{formData.personalInfo.email}</b>
               </Text>

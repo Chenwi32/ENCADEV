@@ -19,7 +19,7 @@ const ProtectedRoute = ({ children }) => {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if  (user){
-        router.push("/dash_board");
+        router.push("/dashboard");
       } else {
         toast({
           title: "Warning!!",

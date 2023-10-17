@@ -32,7 +32,6 @@ const FormPage = () => {
       phoneNumber: "",
       province: "",
       city: "",
-      move: "",
     },
     qualification: {
       qualification: "",

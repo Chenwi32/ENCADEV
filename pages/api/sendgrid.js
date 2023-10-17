@@ -7,9 +7,7 @@ async function sendEmail(req, res) {
 
   try {
     await sendgrid.send({
-      to: [
-        "chenwi.webdev@gmail.com"
-      ], // email where messages will be received emails
+      to: ["chenwi.webdev@gmail.com"], // email where messages will be received emails
       from: "chenwieugene.j@gmail.com", // your website email address here
       subject: `${data.personalInfo.name} has registered for the healthcare services`,
       html: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -32,10 +30,10 @@ async function sendEmail(req, res) {
               <div class="container" style="margin-left: 20px;margin-right: 20px;">
               <h3>${data.personalInfo.name} has registered. </h3>
               <div style="font-size: 16px;">
-              <p>${req.body.personalInfo.name} has shown an interest in our healthcare services and is waiting for feedback.
+              <p>${req.body.personalInfo.name} has shown an interest services and is waiting for feedback.
               </p>
               <br>
-              <p>Please go to the <a href="">dashboard</a> and review his/her information</p>
+              <p>Please go to the <a href="https://encadev.vercel.app/dashboard">dashboard</a> and review his/her information</p>
               <br>
               </div>
              
