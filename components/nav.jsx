@@ -43,7 +43,7 @@ const Nav = () => {
           <Link href={"/"}>
             {" "}
             {/* <Image src="/images/logo.png" w={isLargerThan700 ? 300 : 250} /> */}
-            <Text fontWeight={"1000"} color={"brand.200"}>
+            <Text p={2} fontWeight={"1000"} color={"brand.200"}>
               ENCADEV
             </Text>
           </Link>
@@ -70,9 +70,9 @@ const Nav = () => {
             Join Us
           </Link>
         </Flex>
-        {/*      <Menu>
+        <Menu>
           <MenuButton
-            color={"brand.300"}
+            
             p={2}
             bg={"inherit"}
             as={IconButton}
@@ -82,57 +82,33 @@ const Nav = () => {
             _hover={{
               bg: "",
             }}
-            _active={{ bg: "brand.100.2" }}
+           
           />
-          <MenuList color={"brand.100"} p={4}>
-            <Link href="/healthcare">
+          <MenuList  p={4}>
+            <Link href="/form">
               <MenuItem
-                bg={router.pathname === "/healthcare" ? "brand.100" : "inherit"}
-                color={
-                  router.pathname === "/healthcare" ? "brand.300" : "inherit"
-                }
-                borderRadius={"lg"}
+                className={router.pathname == "/form" ? "active" : ""}
                 mb={3}
-                _hover={
-                  router.pathname === "/healthcare"
-                    ? ""
-                    : {
-                        bg: "brand.100.2",
-                        color: "brand.300",
-                      }
-                }
+                _hover={{
+                  bg: "",
+                }}
               >
-                Healthcare
+                Join Us
               </MenuItem>
             </Link>
 
-            <Link href="/solar_training">
+            <Link href="/about">
               <MenuItem
-                bg={
-                  router.pathname === "/solar_training"
-                    ? "brand.100"
-                    : "inherit"
-                }
-                color={
-                  router.pathname === "/solar_training"
-                    ? "brand.300"
-                    : "inherit"
-                }
-                borderRadius={"lg"}
-                _hover={
-                  router.pathname === "/solar_training"
-                    ? ""
-                    : {
-                        bg: "brand.100.2",
-                        color: "brand.300",
-                      }
-                }
+                _hover={{
+                  bg: "",
+                }}
+                className={router.pathname == "/about" ? "active" : ""}
               >
-                solar Training
+                About Us
               </MenuItem>{" "}
             </Link>
           </MenuList>
-        </Menu> */}
+        </Menu>
       </Flex>
     </Container>
   );

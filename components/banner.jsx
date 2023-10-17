@@ -39,13 +39,16 @@ const Banner = () => {
         <Flex
           flexDirection={"column"}
           w={isLargerThan800 ? "50%" : "100%"}
-          p={isLargerThan800 ? "0" : "0.5rem"}
+          p={isLargerThan800 ? "0" : "2rem"}
           mr={5}
-          textAlign={isLargerThan800 ? "initial" : "center"}
-          alignItems={isLargerThan800 ? "initial" : "center"}
+          textAlign={isLargerThan800 ? "initial" : "left"}
+          alignItems={isLargerThan800 ? "initial" : "flex-start"}
         >
-          <Heading fontFamily={"Andika"} color="brand.200" mb={5}>
-            We are here to help you prepare for a rewarding career in future
+          <Heading fontFamily={"Andika"} color="brand.100" mb={5} fontSize={'2rem'}>
+          ENCADEV
+          </Heading>
+          <Heading fontFamily={"Andika"} color="brand.200" mb={5} fontSize={'1.5rem'}>
+          Here to help you prepare for a rewarding career in future
           </Heading>
           <Text fontFamily={"Poppins"} mb={5} color="brand.400">
             The future of work is fast changing, get up to speed and be ready to
