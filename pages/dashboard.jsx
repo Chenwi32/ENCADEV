@@ -18,6 +18,7 @@ import {
 import {
   collection,
   getDocs,
+  query,
 } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { useRouter } from "next/router";
