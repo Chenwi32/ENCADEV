@@ -119,86 +119,85 @@ const Qualification = ({
       <Heading fontFamily={"Andika"} fontSize={"1.5rem"} mb={5}>
         Qualification
       </Heading>
-      
-          <Text mb={5}>
-            At the moment, we are providing training to aspiring civil
-            engineers, architectural engineers, and software engineers in the
-            early stages of their career development process, to give them a
-            solid base for the future.
-          </Text>
-          <FormLabel>
-            <Text as="span" color="red">
-              *
-            </Text>{" "}
-            What is your highest qualification?
-          </FormLabel>
-          <Input
-            value={qualification.qualification}
-            onChange={(e) => {
-              setQualification({
-                ...qualification,
-                qualification: e.target.value,
-              });
-            }}
-            mb={5}
-            placeholder="e.g. FSLC "
-            borderColor={"gray"}
-          />
 
-          <FormLabel>
-            <Text as="span" color="red">
-              *
-            </Text>{" "}
-            What are you aspiring for, or what is your specialty?
-          </FormLabel>
+      <Text mb={5}>
+        At the moment, we are providing training to aspiring civil engineers,
+        architectural engineers, and software engineers in the early stages of
+        their career development process, to give them a solid base for the
+        future.
+      </Text>
+      <FormLabel>
+        <Text as="span" color="red">
+          *
+        </Text>{" "}
+        What is your highest qualification?
+      </FormLabel>
+      <Input
+        value={qualification.qualification}
+        onChange={(e) => {
+          setQualification({
+            ...qualification,
+            qualification: e.target.value,
+          });
+        }}
+        mb={5}
+        placeholder="e.g. FSLC "
+        borderColor={"gray"}
+      />
 
-          <Select
-            value={qualification.subject}
-            onChange={(e) => {
-              setQualification({
-                ...qualification,
-                subject: e.target.value,
-              });
-            }}
-            mb={5}
-            placeholder="Select Field"
-            borderColor={"gray"}
-          >
-            <option value={"Civil Engineering"}>Civil Engineering</option>
-            <option value={"Architectural Engineering"}>
-              Architectural Engineering
-            </option>
-            <option value={"Software Engineering"}>Software Engineering</option>
-          </Select>
+      <FormLabel>
+        <Text as="span" color="red">
+          *
+        </Text>{" "}
+        What are you aspiring for, or what is your specialty?
+      </FormLabel>
 
-          <FormLabel>What is your current status?</FormLabel>
-          <Textarea
-            value={qualification.status}
-            onChange={(e) => {
-              setQualification({
-                ...qualification,
-                status: e.target.value,
-              });
-            }}
-            type={"text"}
-            placeholder="e.g. I am studying at..."
-            mb={5}
-            borderColor={"gray"}
-          />
+      <Select
+        value={qualification.subject}
+        onChange={(e) => {
+          setQualification({
+            ...qualification,
+            subject: e.target.value,
+          });
+        }}
+        mb={5}
+        placeholder="Select Field"
+        borderColor={"gray"}
+      >
+        <option value={"Civil Engineering"}>Civil Engineering</option>
+        <option value={"Architectural Engineering"}>
+          Architectural Engineering
+        </option>
+        <option value={"Software Engineering"}>Software Engineering</option>
+      </Select>
 
-          <FormLabel>Please briefly describe your expectations</FormLabel>
-          <Textarea
-            value={qualification.experience}
-            onChange={(e) => {
-              setQualification({
-                ...qualification,
-                experience: e.target.value,
-              });
-            }}
-            mb={5}
-            borderColor={"gray"}
-          />
-         
+      <FormLabel>What is your current status?</FormLabel>
+      <Textarea
+        value={qualification.status}
+        onChange={(e) => {
+          setQualification({
+            ...qualification,
+            status: e.target.value,
+          });
+        }}
+        type={"text"}
+        placeholder="e.g. I am studying at..."
+        mb={5}
+        borderColor={"gray"}
+      />
+
+      <FormLabel>Please briefly describe your expectations</FormLabel>
+      <Textarea
+        value={qualification.expectations}
+        onChange={(e) => {
+          setQualification({
+            ...qualification,
+            expectations: e.target.value,
+          });
+        }}
+        mb={5}
+        borderColor={"gray"}
+      />
     </Container>
   );
 };

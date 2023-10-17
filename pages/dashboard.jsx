@@ -18,11 +18,6 @@ import {
 import {
   collection,
   getDocs,
-  limit,
-  orderBy,
-  query,
-  startAt,
-  where,
 } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { useRouter } from "next/router";
@@ -31,7 +26,6 @@ import Head from "next/head";
 import ProtectedRoute from "../components/protectedroute";
 import { useEffect, useState } from "react";
 import { useAuth } from "../components/authcontprov";
-import Link from "next/link";
 
 const Dashboard = (props) => {
   const { user, logOut, rememberMe } = useAuth();
