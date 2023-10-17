@@ -27,17 +27,13 @@ import storage from "../../firebase";
 const Qualification = ({
   qualification,
   setQualification,
-  component,
-  handleLocalSave,
 }) => {
   // File upload functionality
 
   const [selectedFile, setSelectedFile] = useState();
   const [selectedCv, setSelectedCv] = useState();
-  const [preview, setPreview] = useState("");
   const [previewCV, setPreviewCV] = useState("");
   const [uploadError, setUploadError] = useState("");
-  const [uploadCetError, setUploadCetError] = useState("");
 
   const [downloadUrl, setDownloadUrl] = useState("");
   const [cvDownloadUrl, setCvDownloadUrl] = useState("");
@@ -49,37 +45,6 @@ const Qualification = ({
     onClose,
     onOpen,
   } = useDisclosure({ defaultIsOpen: true });
-  const {
-    isOpen: isVisible2,
-    onClose: onClose2,
-    onOpen: onOpen2,
-  } = useDisclosure({ defaultIsOpen: true });
-
-  // create a preview as a side effect, whenever selected file is changed
-  useEffect(() => {
-    if (!selectedFile) {
-      return;
-    }
-
-    const objectUrl = URL.createObjectURL(selectedFile);
-
-    if (
-      selectedFile.name.includes("pdf") === true ||
-      selectedFile.name.includes("png") === true ||
-      selectedFile.name.includes("jpg") === true ||
-      selectedFile.name.includes("jpeg") === true
-    ) {
-      setUploadCetError("");
-      setPreview(objectUrl);
-    } else {
-      setUploadCetError("Invalid file format");
-    }
-
-    // free memory when ever this component is unmounted
-    return () => {
-      URL.revokeObjectURL(objectUrl);
-    };
-  }, [selectedFile]);
 
   // create a preview as a side effect, whenever selected file is changed
   useEffect(() => {
@@ -154,12 +119,12 @@ const Qualification = ({
       <Heading fontFamily={"Andika"} fontSize={"1.5rem"} mb={5}>
         Qualification
       </Heading>
-      {component === "healthcare" ? (
-        <>
+      
           <Text mb={5}>
-            To qualify for this program, you must have at least a high school
-            certificate or a higher education qualification such as the HND,
-            Bachelor's degree, etc., in any field.
+            At the moment, we are providing training to aspiring civil
+            engineers, architectural engineers, and software engineers in the
+            early stages of their career development process, to give them a
+            solid base for the future.
           </Text>
           <FormLabel>
             <Text as="span" color="red">
@@ -167,7 +132,7 @@ const Qualification = ({
             </Text>{" "}
             What is your highest qualification?
           </FormLabel>
-          <Select
+          <Input
             value={qualification.qualification}
             onChange={(e) => {
               setQualification({
@@ -176,120 +141,18 @@ const Qualification = ({
               });
             }}
             mb={5}
-            placeholder="Select Qualification"
+            placeholder="e.g. FSLC "
             borderColor={"gray"}
-          >
-            <option value={"GCE A-level"}>GCE A-level</option>
-            <option value={"Brevet"}>Brevet</option>
-            <option value={"HND"}>HND</option>
-            <option value={"BSC"}>BSC</option>
-            <option value={"Others"}>Others</option>
-          </Select>
-
-          <Box
-            display={qualification.qualification != "Others" ? "none" : "block"}
-          >
-            <FormLabel>If you chosed others, please specify here:</FormLabel>
-            <Input
-              value={qualification.othersSpecific}
-              onChange={(e) => {
-                setQualification({
-                  ...qualification,
-                  othersSpecific: e.target.value,
-                });
-              }}
-              mb={5}
-              borderColor={"gray"}
-            />
-          </Box>
-
-          <FormLabel>
-            <Text as="span" color="red">
-              *
-            </Text>{" "}
-            Upload Highest Certificate ( PDF or image( jpg, jpeg, png ) )
-          </FormLabel>
-
-          {isVisible2 ? (
-            <Alert status="warning" mb={10}>
-              <AlertIcon />
-              <Box>
-                <AlertDescription>
-                  Please don't forget to click on the upload button after
-                  selecting your certificate.
-                </AlertDescription>
-              </Box>
-              <CloseButton
-                alignSelf="flex-start"
-                position="absolute"
-                right={0}
-                top={0}
-                onClick={onClose2}
-              />
-            </Alert>
-          ) : (
-            <></>
-          )}
-
-          <Text color={"red"}>{uploadCetError}</Text>
-          <Input
-            onChange={(e) => {
-              if (!e.target.files || e.target.files.length === 0) {
-                setSelectedFile(undefined);
-                return;
-              }
-
-              // Selects just one file
-
-              setSelectedFile(e.target.files[0]);
-            }}
-            mb={5}
-            border={"none"}
-            type="file"
           />
 
-          <Box mt={5} mb={5} w={"100%"}>
-            {(selectedFile?.name.includes("pdf") === true ||
-              selectedFile?.name.includes("png") === true ||
-              selectedFile?.name.includes("jpg") === true ||
-              selectedFile?.name.includes("jpeg") === true) && (
-              <>
-                <Heading mb={5} fontSize={"1.1rem"}>
-                  Preview
-                </Heading>
-                {selectedFile.name.includes(".pdf") === true ? (
-                  <iframe src={preview} />
-                ) : (
-                  <Image
-                    src={preview}
-                    width={300}
-                    height={300}
-                    alt="There seems to be a problem with the file you selected"
-                    mb={10}
-                  />
-                )}
-                <Button
-                  mt={5}
-                  bg={"brand.100"}
-                  color={"white"}
-                  _hover={{
-                    bg: "default",
-                  }}
-                  onClick={handleUpload}
-                >
-                  {uploadbtnText}
-                </Button>
-              </>
-            )}
-          </Box>
-
           <FormLabel>
             <Text as="span" color="red">
               *
             </Text>{" "}
-            What is the subject (specialization) of your diploma or degree?
+            What are you aspiring for, or what is your specialty?
           </FormLabel>
-          <Input
+
+          <Select
             value={qualification.subject}
             onChange={(e) => {
               setQualification({
@@ -298,93 +161,32 @@ const Qualification = ({
               });
             }}
             mb={5}
-            borderColor={"gray"}
-          />
-          <FormLabel>
-            In which institution(s) did you obtain your qualification(s)?
-          </FormLabel>
-          <Input
-            value={qualification.institution}
-            onChange={(e) => {
-              setQualification({
-                ...qualification,
-                institution: e.target.value,
-              });
-            }}
-            mb={5}
-            borderColor={"gray"}
-          />
-          <FormLabel>In what year did you graduate?</FormLabel>
-          <Input
-            value={qualification.date}
-            onChange={(e) => {
-              setQualification({
-                ...qualification,
-                date: e.target.value,
-              });
-            }}
-            type={"date"}
-            mb={5}
-            borderColor={"gray"}
-          />
-          <FormLabel>
-            Was English your language of instruction and are your transcripts
-            and certificates issued in English?*
-          </FormLabel>
-          <RadioGroup
-            value={qualification.lanOfInstruct}
-            onChange={(e) => {
-              setQualification({ ...qualification, lanOfInstruct: e });
-            }}
-          >
-            <Stack direction="row">
-              <Radio borderColor={"gray.400"} value="Yes">
-                Yes
-              </Radio>
-              <Radio borderColor={"gray.400"} value="No">
-                No
-              </Radio>
-            </Stack>
-          </RadioGroup>
-          <FormLabel>
-            Do you have a valid English language profficiency certificate?
-          </FormLabel>
-          <RadioGroup
-            mb={5}
-            value={qualification.englishProff}
-            onChange={(e) => {
-              setQualification({ ...qualification, englishProff: e });
-            }}
-          >
-            <Stack direction="row">
-              <Radio borderColor={"gray.400"} value="Yes">
-                Yes
-              </Radio>
-              <Radio borderColor={"gray.400"} value="No">
-                No
-              </Radio>
-            </Stack>
-          </RadioGroup>
-
-          <FormLabel>What position are applying for?</FormLabel>
-
-          <Select
-            value={qualification.position}
-            onChange={(e) => {
-              setQualification({
-                ...qualification,
-                position: e.target.value,
-              });
-            }}
-            mb={5}
-            placeholder="Select Position"
+            placeholder="Select Field"
             borderColor={"gray"}
           >
-            <option value={"Care Assistant"}>Care Assistant</option>
-            <option value={"Healthcare Assistant"}>Healthcare Assistant</option>
+            <option value={"Civil Engineering"}>Civil Engineering</option>
+            <option value={"Architectural Engineering"}>
+              Architectural Engineering
+            </option>
+            <option value={"Software Engineering"}>Software Engineering</option>
           </Select>
 
-          <FormLabel>Briefly describe any work experience you have</FormLabel>
+          <FormLabel>What is your current status?</FormLabel>
+          <Textarea
+            value={qualification.status}
+            onChange={(e) => {
+              setQualification({
+                ...qualification,
+                status: e.target.value,
+              });
+            }}
+            type={"text"}
+            placeholder="e.g. I am studying at..."
+            mb={5}
+            borderColor={"gray"}
+          />
+
+          <FormLabel>Please briefly describe your expectations</FormLabel>
           <Textarea
             value={qualification.experience}
             onChange={(e) => {
@@ -396,159 +198,7 @@ const Qualification = ({
             mb={5}
             borderColor={"gray"}
           />
-
-          {/*   <HStack>
-            <Button onClick={() => handleLocalSave()}>
-              Save and continue Later
-            </Button>
-          </HStack> */}
-
-          <FormLabel>
-            <Text as="span" color="red">
-              *
-            </Text>{" "}
-            Upload Your CV ( PDF or image( jpg, jpeg, png ) )
-          </FormLabel>
-
-          {isVisible ? (
-            <Alert status="warning" mb={10}>
-              <AlertIcon />
-              <Box>
-                <AlertDescription>
-                  Please don't forget to click on the upload button after
-                  selecting your CV.
-                </AlertDescription>
-              </Box>
-              <CloseButton
-                alignSelf="flex-start"
-                position="absolute"
-                right={0}
-                top={0}
-                onClick={onClose}
-              />
-            </Alert>
-          ) : (
-            <></>
-          )}
-          <Text color={"red"}>{uploadError}</Text>
-          <Input
-            onChange={(e) => {
-              if (!e.target.files || e.target.files.length === 0) {
-                setSelectedCv(undefined);
-                return;
-              }
-
-              // Selects just one file
-
-              setSelectedCv(e.target.files[0]);
-            }}
-            mb={5}
-            border={"none"}
-            type="file"
-          />
-
-          <Box mt={5} mb={5} w={"100%"}>
-            {(selectedCv?.name.includes("pdf") === true ||
-              selectedCv?.name.includes("png") === true ||
-              selectedCv?.name.includes("jpg") === true ||
-              selectedCv?.name.includes("jpeg") === true) && (
-              <>
-                <Heading mb={5} fontSize={"1.1rem"}>
-                  Preview
-                </Heading>
-                {selectedCv.name.includes(".pdf") === true ? (
-                  <iframe src={previewCV} />
-                ) : (
-                  <Image
-                    src={previewCV}
-                    width={300}
-                    height={300}
-                    alt="There seems to be a problem with the file you selected"
-                    mb={10}
-                  />
-                )}
-                <Button
-                  mt={5}
-                  bg={"brand.100"}
-                  color={"white"}
-                  _hover={{
-                    bg: "default",
-                  }}
-                  onClick={handleUploadCv}
-                >
-                  {uploadCvbtnText}
-                </Button>
-              </>
-            )}
-          </Box>
-        </>
-      ) : component === "solartraining" ? (
-        <>
-          <Text mb={5}>
-            Having good a knowledge in electricity or electronics is a great
-            advantage
-          </Text>
-
-          <FormLabel>What is your highest level of education?</FormLabel>
-          <Input
-            value={qualification.highestQual}
-            onChange={(e) => {
-              setQualification({
-                ...qualification,
-                highestQual: e.target.value,
-              });
-            }}
-            mb={5}
-            borderColor={"gray"}
-          />
-
-          <FormLabel>
-            Do you have any knowledge in electricity, electronics or any related
-            fields?
-          </FormLabel>
-          <RadioGroup
-            value={qualification.elecKnowledge}
-            onChange={(e) => {
-              setQualification({ ...qualification, elecKnowledge: e });
-            }}
-            mb={5}
-          >
-            <Stack direction="row">
-              <Radio borderColor={"gray.400"} value="Yes">
-                Yes
-              </Radio>
-              <Radio borderColor={"gray.400"} value="No">
-                No
-              </Radio>
-            </Stack>
-          </RadioGroup>
-
-          <Box
-            display={qualification.elecKnowledge != "Yes" ? "none" : "block"}
-          >
-            <FormLabel>What is your highest qualification obtained?</FormLabel>
-            <Input
-              value={qualification.highestQual}
-              onChange={(e) => {
-                setQualification({
-                  ...qualification,
-                  highestQual: e.target.value,
-                });
-              }}
-              mb={5}
-              borderColor={"gray"}
-            />
-          </Box>
-
-          <HStack>
-            <Button onClick={() => handleLocalSave()}>
-              Save and continue Later
-            </Button>
-          </HStack>
-        </>
-      ) : (
-        <></>
-      )}
+         
     </Container>
   );
 };

@@ -37,10 +37,10 @@ const ViewCandData = (props) => {
   return (
     <>
       <Head>
-        <title>ADES-UK Healthcare Candidate</title>
+        <title>ENCADEV Candidate</title>
         <meta
           name="description"
-          content="ADES-UK healthcare candidate information page"
+          content="ENCADEV candidate information page"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -365,7 +365,7 @@ const ViewCandData = (props) => {
 export const getServerSideProps = async (context) => {
   const { id } = context.query;
 
-  const candidatescollection = collection(db, "august-session-candidates");
+  const candidatescollection = collection(db, "encadev");
   // Query all Id cards
   const candidateQuery = query(
     candidatescollection,

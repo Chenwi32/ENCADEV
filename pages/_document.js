@@ -5,7 +5,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <meta name="description" content="ADES-UK forms" />
+        <meta name="description" content="ENCADEV engineering career development, ofering best career development process" />
         <link rel="icon" href="/favicon.ico" />
         {/* Google  Web Fonts (Outfit) */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
