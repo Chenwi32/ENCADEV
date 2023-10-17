@@ -52,7 +52,7 @@ const Banner = () => {
             face the real world with us.
           </Text>
 
-          <Link href="/contact">
+          <Link href="/form">
             <Button
               bg={
                 "linear-gradient(239deg, rgba(0,211,192,1) 10%, rgba(31,30,30,1) 90%)"
@@ -65,7 +65,7 @@ const Banner = () => {
                 bg: "brand.200",
               }}
             >
-              Get in touch
+              Get started
             </Button>
           </Link>
         </Flex>

@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>ENCADEV</title>
-        <meta name="description" content="ENCADEV" />
+        <meta name="description" content="ENCADEV engineering career development in cameroon" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AuthContextProvider>

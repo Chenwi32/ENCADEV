@@ -17,7 +17,7 @@ export default function Home() {
     <>
       <Head>
         <title>ENCADEV</title>
-        <meta name="description" content="ADES-UK forms" />
+        <meta name="description" content="ENCADEV forms, engineering career development" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container maxW={1000}>

@@ -78,11 +78,6 @@ const Dashboard = (props) => {
 
         <Container maxW={1200}>
           <HStack mb={5} gap={5} justifyContent={"flex-end"}>
-            <Link href={"/older-candidates"}>
-              <Button bg={"brand.100"} color={"brand.300"} _hover={{ bg: "" }}>
-                See Older Candidates
-              </Button>
-            </Link>
 
             <Button
               onClick={onOpen}
@@ -200,7 +195,7 @@ const Dashboard = (props) => {
 
 export const getServerSideProps = async () => {
   const user = auth.currentUser;
-  const candidatescollection = collection(db, "august-session-candidates", );
+  const candidatescollection = collection(db, "encadev");
 
   // Query all Id cards
   const candidateQuery = query(

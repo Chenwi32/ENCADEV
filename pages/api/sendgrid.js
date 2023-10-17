@@ -8,10 +8,7 @@ async function sendEmail(req, res) {
   try {
     await sendgrid.send({
       to: [
-        "admin@adaptive-elearn.com",
-        "ernestine.vegah@gmail.com",
-        "mbokesalle@gmail.com",
-        "bebvera1@gmail.com",
+        "chenwi.webdev@gmail.com"
       ], // email where messages will be received emails
       from: "chenwieugene.j@gmail.com", // your website email address here
       subject: `${data.personalInfo.name} has registered for the healthcare services`,
@@ -38,14 +35,14 @@ async function sendEmail(req, res) {
               <p>${req.body.personalInfo.name} has shown an interest in our healthcare services and is waiting for feedback.
               </p>
               <br>
-              <p>Please go to the <a href="https://ades-forms.vercel.app/dash_board">dashboard</a> and review his/her information</p>
+              <p>Please go to the <a href="">dashboard</a> and review his/her information</p>
               <br>
               </div>
              
               <p class="footer" style="font-size: 16px;padding-bottom: 20px;border-bottom: 1px solid #D1D5DB;">Best regards<br>Chenwi Eugene</p>
               <div class="footer-links" style="display: flex;justify-content: center;align-items: center;">
                 
-                <a href="https://www.adaptive-elearn.com/" style="text-decoration: none;margin: 8px;color: #1B2D45;">ADES</a>
+                <p style="text-decoration: none;margin: 8px;color: #1B2D45;">ENCADEV</p>
    
               </div>
               </div>
