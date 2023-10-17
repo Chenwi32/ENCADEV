@@ -1,4 +1,3 @@
-
 import {
   Container,
   Flex,
@@ -10,24 +9,25 @@ import {
   MenuList,
   IconButton,
   Box,
+  Text,
 } from "@chakra-ui/react";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-
 const Nav = () => {
   const [isLargerThan700] = useMediaQuery("(min-width: 700px)");
- 
+
   const router = useRouter();
 
   return (
     <Container
       maxW={"unset"}
-      color={"brand.300"}
+      color={"brand.200"}
       fontWeight={800}
-      bg={"linear-gradient(126deg, rgba(255,255,255,1) 49%, #76c7ec 49%);"}
+      bg={"brand.300"}
+      /* bg={"linear-gradient(126deg, rgba(255,255,255,1) 49%, #00D3C0 49%);"} */
       p={isLargerThan700 ? 2 : 0}
       boxShadow={"lg"}
       mb={5}
@@ -40,9 +40,12 @@ const Nav = () => {
       >
         {" "}
         <Box w={"50%"} color={"brand.200"}>
-          <Link href={"https://www.adaptive-elearn.com/"}>
+          <Link href={"/"}>
             {" "}
-            <Image src="/images/logo.png" w={isLargerThan700 ? 300 : 250} />
+            {/* <Image src="/images/logo.png" w={isLargerThan700 ? 300 : 250} /> */}
+            <Text fontWeight={"1000"} color={"brand.200"}>
+              ENCADEV
+            </Text>
           </Link>
         </Box>
         <Flex
@@ -53,19 +56,21 @@ const Nav = () => {
           alignItems={"center"}
         >
           <Link
-            href="/healthcare"
-            className={router.pathname == "/healthcare" ? "active" : ""}
+            href="/about
+            "
+            className={router.pathname == "/about" ? "active" : ""}
           >
-            Healthcare
+            About Us
           </Link>
           <Link
-            href="/solar_training"
-            className={router.pathname == "/solar_training" ? "active" : ""}
+            href="/form
+            "
+            className={router.pathname == "/form" ? "active" : "btn"}
           >
-            solar Training
+            Join Us
           </Link>
         </Flex>
-        <Menu>
+        {/*      <Menu>
           <MenuButton
             color={"brand.300"}
             p={2}
@@ -127,7 +132,7 @@ const Nav = () => {
               </MenuItem>{" "}
             </Link>
           </MenuList>
-        </Menu>
+        </Menu> */}
       </Flex>
     </Container>
   );

@@ -1,7 +1,5 @@
-import { Box, Button, Container, Flex, Heading, Icon, Text } from "@chakra-ui/react";
-import { faFacebook, faFacebookF, faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
+import { Box, Container, Heading, Text } from "@chakra-ui/react";
+
 
 import { useEffect, useState } from "react";
 import ReactConfetti from "react-confetti";
@@ -32,44 +30,17 @@ const Success = () => {
 
       <article>
         <Heading fontFamily={"Andika"} fontSize={"1.5rem"} mb={5}>
-          Your Application has been sucessfully sent!!{" "}
+          Your information has been sucessfully sent!!{" "}
         </Heading>
         <Text mb={5}>
-          Thanks for your interest in our services. We appreciate your trust.
-          Our team will carefully analyse your information and will get back to
-          you within 4 working days to let you know the next step. <br /> <strong>Hang in there!!</strong>
+          Thank you for taking the first step to prepare yourself for a
+          successful career. We are grateful that you trust us to help you
+          through this challenging journey. Our team will carefully analyse your
+          information and will get back to you through any of the contact
+          informations you provided, so you should expect an email, a call, or a
+          whatsapp message from us anytime soon.
+          <br /> <strong>Hang in there!!</strong>
         </Text>
-
-        <Text fontSize={"1rem"} mb={5}>
-          Application Done, Return to{" "}
-          <Text as={"span"} color={"brand.100"}>
-            <Link href={"https://www.adaptive-elearn.com/"}>
-              Home Page &#x27A1;
-            </Link>
-          </Text>
-        </Text>
-
-        <Text mb={5}>
-          If you want to stay on the form, just refresh the page.
-        </Text>
-
-        <Heading fontSize={"1.2rem"}>Follow Us on:</Heading>
-        <Flex fontSize={"2rem"}>
-          <Link
-            target="_blank"
-            href={"https://web.facebook.com/profile.php?id=100093065717794"}
-          >
-            <Icon color={"brand.100"} mr={5}>
-              <FontAwesomeIcon icon={faFacebookF} />
-            </Icon>
-          </Link>
-          <Link target="_blank" href={"https://twitter.com/ades_uk41031"}>
-            <Icon color={"brand.100.1"} mr={5}>
-              <FontAwesomeIcon icon={faTwitter} />
-            </Icon>
-          </Link>
-         
-        </Flex>
       </article>
     </Container>
   );

@@ -16,13 +16,11 @@ import Form from "../components/forms/form";
 const stepTitles = [
   "Personal info",
   "Qualification",
-  "Civil Status",
-  "Financial Status",
   "Confirm",
   "Finish",
 ];
 
-const Healthcare = () => {
+const FormPage = () => {
   const [isLargerThan700] = useMediaQuery("(min-width: 700px)");
 
   const [formData, setFormData] = useState({
@@ -32,35 +30,15 @@ const Healthcare = () => {
       sex: "",
       email: "",
       phoneNumber: "",
-      country: "",
       province: "",
       city: "",
       move: "",
     },
     qualification: {
       qualification: "",
-      othersSpecific: "",
-      certificate: "",
-      CV: "",
       subject: "",
-      institution: "",
-      date: "",
-      lanOfInstruct: "",
-      englishProff: "",
-      position: "",
-      experience: "",
-    },
-    civilStatus: {
-      marital: "",
-      children: "",
-      numOfChildren: "",
-      ageGroup: "",
-      bringingThem: "",
-      drivingSkills: "",
-    },
-    financialStatus: {
-      signature: "",
-      date: "",
+      status: "",
+      expectations: "",
     },
   });
   const [step, setStep] = useState(1);
@@ -100,7 +78,7 @@ const Healthcare = () => {
   const sendData = async () => {
     const timestamp = Date.now().toString();
 
-    const candidate = doc(db, `august-session-candidates/${timestamp}`);
+    const candidate = doc(db, `encadev/${timestamp}`);
 
     const candidateData = formData;
 
@@ -114,9 +92,9 @@ const Healthcare = () => {
 
   const handleLocalSave = () => {
     if (typeof window !== "undefined" && window.localStorage) {
-      localStorage.setItem("healthFormData", JSON.stringify(formData));
+      localStorage.setItem("encadev", JSON.stringify(formData));
 
-      const data = JSON.parse(localStorage.getItem("healthFormData"));
+      const data = JSON.parse(localStorage.getItem("encadev"));
 
       setFormData(data);
     }
@@ -125,8 +103,8 @@ const Healthcare = () => {
   return (
     <>
       <Head>
-        <title>ADES-UK-Foms | Healthcare</title>
-        <meta name="description" content="ADES-UK healthcare form" />
+        <title>ENCADEV | Form</title>
+        <meta name="description" content="ENCADEV subscription form" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container
@@ -142,7 +120,7 @@ const Healthcare = () => {
           mb={5}
           textAlign={"center"}
         >
-          {step === 6 ? "Success" : "ADES Healthcare Form"}
+          {step === 6 ? "Success" : "ENCADEV Form"}
         </Heading>
         <Flex flexDirection={isLargerThan700 ? "row" : "column"}>
           <aside>
@@ -178,4 +156,4 @@ const Healthcare = () => {
   );
 };
 
-export default Healthcare;
+export default FormPage;

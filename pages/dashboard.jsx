@@ -1,14 +1,39 @@
+import {
+  Box,
+  Button,
+  Container,
+  HStack,
+  Heading,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalOverlay,
+  Text,
+  VStack,
+  useDisclosure,
+  useMediaQuery,
+} from "@chakra-ui/react";
+import {
+  collection,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  startAt,
+  where,
+} from "firebase/firestore";
+import { auth, db } from "../firebase";
+import { useRouter } from "next/router";
+import Head from "next/head";
+
+import ProtectedRoute from "../components/protectedroute";
 import { useEffect, useState } from "react";
 import { useAuth } from "../components/authcontprov";
-import { Button, Container, HStack, Heading, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalOverlay, Text, VStack, useDisclosure, useMediaQuery } from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import ProtectedRoute from "../components/protectedroute";
-import Head from "next/head";
 import Link from "next/link";
-import { collection, getDocs, query } from "firebase/firestore";
-import { db } from "../firebase";
 
-const OlderCandidates = (props) => {
+const Dashboard = (props) => {
   const { user, logOut, rememberMe } = useAuth();
 
   const [userName, setUserName] = useState("");
@@ -20,7 +45,7 @@ const OlderCandidates = (props) => {
 
   const router = useRouter();
 
-  const { july_results } = props;
+  const { results } = props;
 
   useEffect(() => {
     if (user.email !== null) {
@@ -41,21 +66,21 @@ const OlderCandidates = (props) => {
 
   return (
     <>
-      {/* <ProtectedRoute rememberMe={rememberMe}> */}
+      <ProtectedRoute rememberMe={rememberMe}>
         <Head>
-          <title>ADES-UK-Forms | Healthcare Candidates</title>
+          <title>ENCADEV | Candidates</title>
           <meta
             name="description"
-            content="ADES-UK healthcare List of candidates"
+            content="ENCADEV List of candidates"
           />
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
         <Container maxW={1200}>
           <HStack mb={5} gap={5} justifyContent={"flex-end"}>
-            <Link href={"/dash_board"}>
+            <Link href={"/older-candidates"}>
               <Button bg={"brand.100"} color={"brand.300"} _hover={{ bg: "" }}>
-                See New Candidates
+                See Older Candidates
               </Button>
             </Link>
 
@@ -78,16 +103,15 @@ const OlderCandidates = (props) => {
               Hey {userName}, welcome back
             </Heading>
             <Heading fontFamily={"Andika"} mb={5}>
-              Here are the names of Candidates of our last hiring session
+              Names of Candidates
             </Heading>
             <Heading fontFamily={"Andika"} fontSize={"1.1rem"} mb={5}>
-              {july_results.length === 0
+              {results.length === 0
                 ? "Sorry, no one has registered yet"
-                : "Click on a candidate to view their data"}
+                : "Click on a candidate to view more information."}
             </Heading>
-                      <VStack
-                          align={"left"} gap={3}>
-              {july_results.map((candit, i) => {
+            <VStack align={"left"} gap={3}>
+              {results.map((candit, i) => {
                 const canNumber = i + 1;
                 return (
                   <Text
@@ -102,9 +126,7 @@ const OlderCandidates = (props) => {
                     key={candit.personalInfo.phoneNumber}
                     cursor={"pointer"}
                     onClick={() => {
-                      router.push(
-                        `/older-candidates/${candit.personalInfo.phoneNumber}`
-                      );
+                      router.push(`/${candit.personalInfo.phoneNumber}`);
                     }}
                   >
                     <Button
@@ -171,39 +193,40 @@ const OlderCandidates = (props) => {
             </ModalContent>
           </Modal>
         </Container>
-   {/*    </ProtectedRoute> */}
+      </ProtectedRoute>
     </>
   );
-}
+};
 
 export const getServerSideProps = async () => {
+  const user = auth.currentUser;
+  const candidatescollection = collection(db, "august-session-candidates", );
 
-  const july_candidatescollection = collection(db, "candidates");
   // Query all Id cards
- 
-  const july_candidateQuery = query(
-    july_candidatescollection
+  const candidateQuery = query(
+    candidatescollection,
     /* limit(10) */
   );
+  
 
   // get id cards
-  
-  const july_querySnapshot = await getDocs(july_candidateQuery);
+  const querySnapshot = await getDocs(candidateQuery);
+ ;
 
   // Map through the ids and add them to a new array
-  
-  const july_results = [];
-
+  const results = [];
  
-  july_querySnapshot.forEach((snapshot) => {
-    july_results.push(snapshot.data());
+  querySnapshot.forEach((snapshot) => {
+    results.push(snapshot.data());
   });
+ 
 
   return {
     props: {
-      july_results: JSON.parse(JSON.stringify(july_results)),
+      results: JSON.parse(JSON.stringify(results)),
+     
     },
   };
 };
 
-export default OlderCandidates;
+export default Dashboard;

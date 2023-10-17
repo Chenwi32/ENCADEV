@@ -37,10 +37,10 @@ const ViewCandData = (props) => {
   return (
     <>
       <Head>
-        <title>ADES-UK Healthcare Candidate</title>
+        <title>ENCADEV Candidate</title>
         <meta
           name="description"
-          content="ADES-UK healthcare candidate information page"
+          content="ENCADEV candidate information page"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>

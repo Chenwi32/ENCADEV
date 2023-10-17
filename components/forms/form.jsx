@@ -16,10 +16,8 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import CivilStatus from "./civil_satus";
 import { emailRegex, phoneNumberRegex } from "../../constants/regexConstants";
 import Qualification from "./qualification";
-import FinancialStatus from "./financial_status";
 import Success from "./success";
 import Confirm from "../confirm";
 import { useRouter } from "next/router";
@@ -32,10 +30,6 @@ const Form = ({
   sendData,
   handleLocalSave,
 }) => {
-  useEffect(() => {
-    onOpen();
-  }, []);
-
   const router = useRouter();
 
   const { onOpen, onClose, isOpen, onToggle } = useDisclosure();
@@ -82,10 +76,6 @@ const Form = ({
         updateFormData(personalInfo);
       } else if (step === 2) {
         updateFormData(qualification);
-      } else if (step === 3) {
-        updateFormData(civilStatus);
-      } else if (step === 4) {
-        updateFormData(financialStatus);
       } /*else if (step === 5) {
         
          sendData(); 
@@ -104,17 +94,9 @@ const Form = ({
     setStep((s) => s - 1);
   };
 
-  if (step != 6)
+  if (step != 4)
     return (
       <Container transition={"0.5s"}>
-        <Text mb={5} display={step === 5 ? "none" : "block"}>
-          {" "}
-          All fields with an asterisk (
-          <Text as="span" color="red">
-            *
-          </Text>
-          ) are mandatory.
-        </Text>
         {step === 1 && (
           <ScaleFade initialScale={0.9} in={onToggle}>
             <PersonalData
@@ -138,27 +120,17 @@ const Form = ({
 
         {step === 3 && (
           <ScaleFade initialScale={0.9} in={onToggle}>
-            <CivilStatus
-              civilStatus={civilStatus}
-              setCivilStatus={setCivilStatus}
-            />
-          </ScaleFade>
-        )}
-        {step === 4 && (
-          <ScaleFade initialScale={0.9} in={onToggle}>
-            <FinancialStatus
-              financialStatus={financialStatus}
-              setFinancialStatus={setFinancialStatus}
-              updateFormData={updateFormData}
-            />
-          </ScaleFade>
-        )}
-
-        {step === 5 && (
-          <ScaleFade initialScale={0.9} in={onToggle}>
             <Confirm formData={formData} />
           </ScaleFade>
         )}
+        <Text mb={5} display={step >= 3 ? "none" : "block"}>
+          {" "}
+          All fields with an asterisk (
+          <Text as="span" color="red">
+            *
+          </Text>
+          ) are mandatory.
+        </Text>
 
         <Flex justifyContent={"space-between"} mt={5}>
           <Button
@@ -175,91 +147,37 @@ const Form = ({
           </Button>
           <Button
             onClick={(e) => {
-              onOpen();
-              /* handleSubmit(e);*/
+              /*    onOpen(); */
+              handleSubmit(e);
             }}
             type="submit"
-            bg={"brand.100"}
+            bg={
+              "linear-gradient(239deg, rgba(0,211,192,1) 10%, rgba(31,30,30,1) 90%)"
+            }
             color={"brand.300"}
             _hover={{
               bg: "",
             }}
             isDisabled={hasValidPhoneNumber != true}
-            display={step >= 5 ? "none" : "block"}
+            display={step >= 3 ? "none" : "block"}
           >
-            {step === 4 ? "Confirm" : "Next Step"}
+            {step === 2 ? "Confirm" : "Next Step"}
           </Button>
 
           <Button
-            display={step >= 5 ? "block" : "none"}
-            bg={"brand.100"}
+            display={step >= 3 ? "block" : "none"}
+            bg={
+              "linear-gradient(239deg, rgba(0,211,192,1) 10%, rgba(31,30,30,1) 90%)"
+            }
             color={"brand.300"}
             _hover={{ bg: "" }}
             onClick={() => {
-              onOpen();
+              sendData();
+              setStep((s) => s + 1);
             }}
           >
             send
           </Button>
-
-          <Modal onClose={onClose} isOpen={isOpen} isCentered>
-            <ModalOverlay />
-            <ModalContent>
-              <ModalHeader>Applications temporarily closed</ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>
-                {/*  <Text>
-                  This is a special hiring session to replace candidates who
-                  were dropped because of their inability to meet up with the
-                  financial requirements. You may proceed with your application
-                  if you have the financial ability to pay for the service
-                  package.
-                </Text> */}
-
-                <Text>
-                  Thank you for your interest in ADES-UK healthcare services.
-                  Unfortunately, we have concluded recruitment for this hiring
-                  session; therefore, we are no longer receiving applications.
-                </Text>
-                <Text>
-                  Our next hiring session will be communicated on our website.
-                </Text>
-              </ModalBody>
-              <ModalFooter>
-                {/*  {step === 1 && (
-                  <Button _hover={{ bg: "" }} onClick={onClose}>
-                    Close
-                  </Button>
-                )} */}
-
-                {/* {step === 5 && ( */}
-                <Flex>
-                  <Button
-                    onClick={() => {
-                      router.push("/");
-                      onClose();
-                    }}
-                    _hover={{ bg: "" }}
-                  >
-                    {/*  Cancel */} Close
-                  </Button>
-
-                  {/* <Button
-                      onClick={() => {
-                        sendData();
-                        setStep((s) => s + 1);
-                      }}
-                      bg={"brand.100"}
-                      color={"brand.300"}
-                      _hover={{ bg: "" }}
-                    >
-                      Send
-                    </Button> */}
-                </Flex>
-                {/* )} */}
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
         </Flex>
       </Container>
     );

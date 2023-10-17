@@ -11,9 +11,7 @@ import Head from "next/head";
 const theme = extendTheme({
   colors: {
     brand: {
-      100: "#0282BF",
-      100.1: "#76c7ec",
-      100.2: "rgba(96, 185, 226, 0.767)",
+      100: "#00D3C0",
       200: "#252628",
       300: "#FFFFFF",
     },
@@ -24,8 +22,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>ADES-UK | Forms</title>
-        <meta name="description" content="ADES-UK forms" />
+        <title>ENCADEV</title>
+        <meta name="description" content="ENCADEV" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AuthContextProvider>
